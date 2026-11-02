@@ -219,10 +219,8 @@ ul.r li{margin:3px 0}
 /* ===== cài đặt AI ===== */
 #aiset .lb,#keys .lb{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 4px}
 #aiset .card>.lb:first-of-type{margin-top:4px}
-#keys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
-#keys .hint{grid-column:1/-1;margin:12px 0 0}
-#keys .kf .lb{margin-top:8px}
-@media(max-width:600px){#keys{grid-template-columns:minmax(0,1fr)}}
+#keys{display:block}
+#aiset .lb#kFor,#aiset div.lb{margin-bottom:0}
 
 /* ===== mạch kiến thức ===== */
 :root{--mSD:#e3ecff;--mSDi:#1d4fa8;--mHH:#fdebd3;--mHHi:#8a4a00;--mTK:#efe4fb;--mTKi:#5b2f9c}
@@ -259,6 +257,21 @@ table.ct td.nd{width:20%}
 table.ct td.bai{width:20%;font-size:12px;color:var(--muted)}
 table.ct td.bai span{display:block}
 table.ct mark{background:#ffe58a;color:inherit;border-radius:2px}
+/* nhiều key */
+#kTabs button{padding:5px 11px;font-size:13px}
+#kTabs .kc{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-size:11px;margin-left:2px}
+#kTabs button[aria-pressed="true"] .kc{background:rgba(255,255,255,.25);color:inherit}
+.krow{display:flex;gap:6px;align-items:center;margin-top:6px}
+.krow .kn{width:22px;text-align:center;font-size:12px;font-weight:700;color:var(--muted);flex:none}
+.krow input{flex:1;font-family:ui-monospace,Consolas,monospace;font-size:12.5px}
+.kst{font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.kst:empty{display:none}
+.kst.ok{background:var(--good-bg);color:var(--good)}.kst.quota{background:var(--warn-bg);color:var(--warn)}.kst.bad{background:var(--bad-bg);color:var(--bad)}
+label.opt{display:flex;gap:8px;align-items:flex-start;font-size:13px;margin-top:14px;cursor:pointer}
+label.opt input{margin-top:3px;accent-color:var(--accent);flex:none}
+.ailog{margin-top:12px;font-size:12px;color:var(--muted)}
+.ailog:empty{display:none}
+.ailog ol{margin:4px 0 0;padding-left:20px}.ailog li.ok{color:var(--good);font-weight:600}
 </style>
 </head>
 <body>
@@ -284,16 +297,26 @@ table.ct mark{background:#ffe58a;color:inherit;border-radius:2px}
       <header class="top"><div><div class="kick">Bắt đầu</div><h1>Cài đặt AI &amp; API key</h1>
         <p>Một lần cài đặt, dùng chung cho mọi bước: soạn yêu cầu cần đạt, phân bổ ma trận, viết bản đặc tả và ra đề.</p></div></header>
       <div class="grid2">
-        <div class="card"><h2>AI đang sử dụng</h2><p class="hint">Chọn nhà cung cấp và mô hình. Có thể gõ tên mô hình bất kì nếu không có trong gợi ý.</p>
-          <label class="lb" for="prov">Nhà cung cấp</label><select id="prov"></select>
-          <label class="lb" for="model">Mô hình</label><input type="text" id="model" list="ml"><datalist id="ml"></datalist>
-          <button type="button" class="btn small" id="lm" style="margin-top:8px;display:none">Tải danh sách mô hình từ key của bạn</button>
+        <div class="card"><h2>AI đang sử dụng</h2><p class="hint">Chọn AI chính và cách chọn mô hình. Ở chế độ tự động, trang thử mô hình nhẹ trước (nhanh, ít tốn hạn mức); mô hình lỗi hoặc hết lượt thì tự lên mô hình mạnh hơn.</p>
+          <label class="lb" for="prov">AI chính</label><select id="prov"></select>
+          <label class="lb">Chọn mô hình</label>
+          <div class="seg" id="modeSeg"><button type="button" data-m="auto">Tự động: thấp → cao</button><button type="button" data-m="fixed">Một mô hình cố định</button></div>
+          <div id="autoW"><label class="lb" for="mlist">Thứ tự thử (mỗi dòng một mô hình, từ thấp đến cao)</label><textarea id="mlist" rows="6" spellcheck="false" style="font-family:ui-monospace,Consolas,monospace;font-size:12.5px"></textarea>
+            <div class="row" style="margin-top:6px"><button type="button" class="btn small" id="msort">Sắp xếp thấp → cao</button><button type="button" class="btn small ghost" id="mreset">Khôi phục mặc định</button><button type="button" class="btn small" id="lm" style="display:none">Tải danh sách mô hình từ key</button></div></div>
+          <div id="fixedW" hidden><label class="lb" for="model">Mô hình</label><input type="text" id="model" list="ml" spellcheck="false"></div><datalist id="ml"></datalist>
           <div id="burlw"><label class="lb" for="burl">Base URL</label><input type="text" id="burl" placeholder="https://.../v1"></div>
-          <p class="hint" id="ph" style="margin:12px 0 0"></p>
-          <div class="row" style="margin-top:14px"><button class="btn primary" id="aiTest">Kiểm tra kết nối</button><span class="badge mute" id="pb">0 key</span><span class="hint" id="aiTestOut" style="margin:0"></span></div>
+          <label class="opt"><input type="checkbox" id="xprov"> Khi AI chính lỗi hoặc hết lượt ở mọi key, tự chuyển sang AI khác đã nhập key</label>
+          <p class="hint" id="ph" style="margin:10px 0 0;line-height:1.55"></p>
+          <div class="ailog" id="aiLog"></div>
         </div>
         <div>
-          <div class="card"><h2>API key</h2><p class="hint">Mỗi AI một key. Key chỉ lưu trong trình duyệt của máy này và gửi thẳng đến nhà cung cấp AI tương ứng.</p><div id="keys"></div></div>
+          <div class="card"><div class="row"><h2 style="margin:0">API key</h2><span class="sp"></span><span class="badge mute" id="pb">0 key</span></div>
+            <p class="hint" style="margin-top:4px">Nhập được <b>nhiều key cho mỗi AI</b> (dán nhiều key cùng lúc, cách nhau bằng dấu cách hoặc xuống dòng, trang tự tách). Khi một key hết lượt hoặc lỗi, trang tự chuyển sang key kế tiếp. Key chỉ lưu trong trình duyệt của máy này.</p>
+            <div class="seg" id="kTabs"></div>
+            <div class="lb" style="margin-top:12px">Key của <span id="kFor"></span></div>
+            <div id="keys"></div>
+            <div class="row" style="margin-top:10px"><button type="button" class="btn small" id="kAdd">+ Thêm key</button><span class="sp"></span><button type="button" class="btn small primary" id="aiTest">Kiểm tra tất cả key</button></div>
+            <p class="hint" id="aiTestOut" style="margin:8px 0 0"></p></div>
           <div class="card"><h2>AI hỗ trợ ở những bước nào</h2><ul class="r">
             <li><b>Bước 2 · Nội dung kiểm tra:</b> soạn yêu cầu cần đạt theo 4 mức độ, bám YCCĐ chính thức CT GDPT 2018.</li>
             <li><b>Bước 3 · Ma trận:</b> đề xuất phân bổ số câu vào từng nội dung, giữ đúng cấu trúc đề.</li>
@@ -1610,7 +1633,8 @@ function render(){
   const sec={rade:'rade',ai:'aiset',ct:'ctref'}[S.step]||'p1';['p1','rade','aiset','ctref'].forEach(id=>$('#'+id).hidden=id!==sec);
   if(S.step==='rade'){if(window.RADE)RADE.refresh()}
   else if(S.step==='ct')renderCT();
-  else if(S.step!=='ai')({thongtin:renderInfo,noidung:renderContent,matran:renderMatrix,xuat:renderExport})[S.step]();
+  else if(S.step==='ai'){if(window.AI&&AI.refreshUI)AI.refreshUI()}
+  else ({thongtin:renderInfo,noidung:renderContent,matran:renderMatrix,xuat:renderExport})[S.step]();
   window.scrollTo({top:0});
 }
 
@@ -1660,11 +1684,14 @@ const SYSJ=`Bạn là chuyên gia xây dựng ma trận và bản đặc tả đ
 async function aiJSON(btn,prompt){
   if(!window.AI||!AI.ready()){toast('Chưa có API key. Hãy nhập key ở mục Cài đặt AI.');setStep('ai');return null}
   const old=btn?btn.textContent:'';if(btn){btn.disabled=true;btn.textContent='AI đang xử lý…'}
-  let txt='';const box=document.createElement('div');
-  try{await AI.call([{type:'text',text:prompt}],d=>{txt+=d},null,{sys:SYSJ,web:false,errEl:box});
-    const s=txt.replace(/```(?:json)?/g,''),a=s.indexOf('{'),b=s.lastIndexOf('}');
-    if(a<0||b<a)throw new Error('AI không trả về dữ liệu JSON. Hãy thử lại hoặc đổi mô hình.');
-    return JSON.parse(s.slice(a,b+1))}
+  let txt='';
+  const parse=t=>{const s=t.replace(/```(?:json)?/g,''),a=s.indexOf('{'),b=s.lastIndexOf('}');if(a<0||b<a)return null;try{return JSON.parse(s.slice(a,b+1))}catch(e){return null}};
+  try{const used=await AI.call([{type:'text',text:prompt}],d=>{txt+=d},null,{sys:SYSJ,web:false,
+      onReset:()=>{txt=''},onStatus:s=>{if(btn&&btn.isConnected)btn.textContent='AI: '+s.replace(/ · key \d+$/,'')+'…'},
+      validate:t=>parse(t)!=null});   /* trả lời sai định dạng JSON thì tự lên mô hình cao hơn */
+    const j=parse(txt);if(!j)throw new Error('AI không trả về dữ liệu đúng định dạng.');
+    if(used&&used.tag)setTimeout(()=>toast('Đã dùng '+used.tag),2600);
+    return j}
   catch(e){toast('Lỗi AI: '+String(e.message||e).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').slice(0,220));return null}
   finally{if(btn&&btn.isConnected){btn.disabled=false;btn.textContent=old}}}
 function unitCTText(uid){const L=ctLines(S.grade,uid);return L.length?L.map(x=>`  - [${LVF[x.lv]}] ${x.t}`).join('\n'):'  (không có – tự suy ra từ tên bài, đúng chương trình)'}
@@ -1991,25 +2018,166 @@ function draw(id){$('l_'+id).innerHTML=files[id].map((f,i)=>`<span class="chip">
  const n=$('n_'+id);n.textContent=files[id].length+' tệp';n.classList.toggle('mute',!files[id].length)}
 
 /* ---- cài đặt AI (giữ nguyên logic gốc) ---- */
-const PV={anthropic:{n:'Anthropic · Claude',m:['claude-sonnet-5-5','claude-opus-5-5','claude-haiku-5-5'],w:1},
-gemini:{n:'Google · Gemini',m:['gemini-3.8-flash','gemini-3.7-flash','gemini-3.6-flash','gemini-3.5-flash','gemini-3.1-pro-preview','gemini-3-flash-preview','gemini-2.5-pro','gemini-2.5-flash','gemini-2.5-flash-lite'],w:1},
-openai:{n:'OpenAI · ChatGPT',u:'https://api.openai.com/v1',m:['gpt-4o','gpt-4.1','gpt-5']},
+/* ================= BỘ GỌI AI: nhiều key + tự động mô hình thấp → cao ================= */
+const PV={anthropic:{n:'Anthropic · Claude',m:['claude-haiku-5-5','claude-sonnet-5-5','claude-opus-5-5'],w:1},
+gemini:{n:'Google · Gemini',m:['gemini-2.5-flash-lite','gemini-2.5-flash','gemini-3-flash-preview','gemini-3.5-flash','gemini-3.6-flash','gemini-3.7-flash','gemini-3.8-flash','gemini-2.5-pro','gemini-3.1-pro-preview'],w:1},
+openai:{n:'OpenAI · ChatGPT',u:'https://api.openai.com/v1',m:['gpt-4o-mini','gpt-4o','gpt-4.1','gpt-5']},
 deepseek:{n:'DeepSeek',u:'https://api.deepseek.com/v1',m:['deepseek-chat','deepseek-reasoner']},
-openrouter:{n:'OpenRouter (nhiều mô hình)',u:'https://openrouter.ai/api/v1',m:['anthropic/claude-sonnet-4.5','google/gemini-2.5-pro','openai/gpt-4o','deepseek/deepseek-chat'],on:1},
+openrouter:{n:'OpenRouter (nhiều mô hình)',u:'https://openrouter.ai/api/v1',m:['deepseek/deepseek-chat','google/gemini-2.5-flash','openai/gpt-4o','anthropic/claude-sonnet-4.5','google/gemini-2.5-pro'],on:1},
 custom:{n:'Khác (tương thích OpenAI)',u:'',m:[]}};
-let CFG={prov:'anthropic',keys:{},models:{},urls:{},link:true};
+const pshort=p=>PV[p].n.split(' · ').pop().split(' (')[0];
+/* hạng mô hình: lite/nano < mini/flash/haiku < thường < pro/opus/reasoner; cùng hạng thì phiên bản thấp trước */
+function rank(n){const s=String(n).toLowerCase().replace(/^.*\//,'');let t=2;
+  const w=r=>new RegExp('(^|[-_.:])('+r+')([-_.:]|$)').test(s);
+  if(w('lite|nano'))t=0;else if(w('mini|haiku|flash|small'))t=1;else if(w('pro|opus|reasoner|ultra|large'))t=3;
+  const v=parseFloat((s.match(/(\d+(?:\.\d+)?)/)||[0,0])[1])||0;return t*1000+v+(/preview|exp/.test(s)?.001:0)}
+const byRank=a=>[...new Set(a.map(s=>String(s).trim()).filter(Boolean))].sort((x,y)=>rank(x)-rank(y));
+
+let CFG={prov:'gemini',mode:'auto',keys:{},models:{},urls:{},lists:{},link:true,xprov:true,kst:{},kptr:{}};
 try{CFG=Object.assign(CFG,JSON.parse(localStorage.getItem('rd_cfg')||'{}'))}catch(e){}
+/* chuyển dữ liệu cũ: mỗi AI một key (chuỗi) -> danh sách key */
+Object.keys(PV).forEach(p=>{const k=CFG.keys[p];if(!Array.isArray(k))CFG.keys[p]=k?[String(k)]:[]});
+['kst','kptr','lists','models','urls'].forEach(x=>{if(!CFG[x]||typeof CFG[x]!=='object')CFG[x]={}});
+if(!PV[CFG.prov])CFG.prov='gemini';
 function sv(){try{localStorage.setItem('rd_cfg',JSON.stringify(CFG))}catch(e){}}
-function badge(){$('pb').textContent=Object.values(CFG.keys).filter(Boolean).length+' key'}
+const keysOf=p=>(CFG.keys[p]||[]).map(s=>String(s||'').trim()).filter(Boolean);
+const urlOf=p=>(CFG.urls[p]||PV[p].u||'').trim().replace(/\/$/,'');
+const listOf=p=>(CFG.lists[p]&&CFG.lists[p].length?CFG.lists[p]:byRank(PV[p].m));
+function modelsOf(p){if(CFG.mode==='fixed'&&p===CFG.prov){const m=(CFG.models[p]||listOf(p)[0]||'').trim();return m?[m]:[]}return listOf(p)}
+const usable=p=>keysOf(p).length&&modelsOf(p).length&&(PV[p].u===undefined||urlOf(p));
+function chain(){const ps=[CFG.prov];if(CFG.xprov!==false)Object.keys(PV).forEach(p=>{if(p!==CFG.prov)ps.push(p)});return ps.filter(usable)}
+function aiReady(){return chain().length>0}
+function modelLabel(){const p=CFG.prov,l=modelsOf(p);if(!l.length)return 'chưa có mô hình';return CFG.mode==='fixed'?l[0]:(l.length>1?`tự động ${l[0]} → ${l[l.length-1]}`:l[0])}
+
+/* ---- gọi một lần: 1 AI · 1 mô hình · 1 key ---- */
+async function chk(r){if(!r.ok){const tx=await r.text();const e=new Error('HTTP '+r.status);e.status=r.status;e.body=tx;throw e}}
+async function sse(r,h){const rd=r.body.getReader(),dc=new TextDecoder();let buf='';
+ for(;;){const{done,value}=await rd.read();if(done)break;buf+=dc.decode(value,{stream:true});const ls=buf.split('\n');buf=ls.pop();
+  for(const l of ls){if(!l.startsWith('data:'))continue;const t=l.slice(5).trim();if(t==='[DONE]')continue;let j;try{j=JSON.parse(t)}catch(e){continue}h(j)}}}
+const streamErr=(msg,code,body)=>{const e=new Error(msg||'Lỗi từ máy chủ AI');e.status=code;e.body=body||msg;return e};
+async function once(p,m,k,content,on,sig,sys,web){
+ const J=(u,hd,b)=>fetch(u,{method:'POST',signal:sig,headers:Object.assign({'content-type':'application/json'},hd),body:JSON.stringify(b)});let r;
+ if(p==='anthropic'){const b={model:m,max_tokens:16000,stream:true,system:sys,messages:[{role:'user',content}]};
+  if(web)b.tools=[{type:'web_search_20250305',name:'web_search',max_uses:6}];
+  r=await J('https://api.anthropic.com/v1/messages',{'x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},b);await chk(r);
+  await sse(r,j=>{if(j.type==='content_block_delta'&&j.delta.type==='text_delta')on(j.delta.text);
+   if(j.type==='error'){const t=j.error&&j.error.type;throw streamErr(j.error&&j.error.message,t==='rate_limit_error'?429:t==='overloaded_error'?529:t==='authentication_error'?401:500,JSON.stringify(j.error))}})}
+ else if(p==='gemini'){const b={systemInstruction:{parts:[{text:sys}]},contents:[{role:'user',parts:content.map(c=>c.type==='text'?{text:c.text}:{inlineData:{mimeType:c.source.media_type,data:c.source.data}})}],generationConfig:{maxOutputTokens:16000}};
+  if(web)b.tools=[{google_search:{}}];
+  r=await J(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(m)}:streamGenerateContent?alt=sse&key=${encodeURIComponent(k)}`,{},b);await chk(r);
+  await sse(r,j=>{if(j.error)throw streamErr(j.error.message,j.error.code,JSON.stringify(j.error));for(const q of(j.candidates?.[0]?.content?.parts||[]))if(q.text&&!q.thought)on(q.text)})}
+ else{const base=urlOf(p);if(!base)throw streamErr('Chưa nhập Base URL',0,'base url');
+  const mm=(p==='openrouter'&&web&&!/:online$/.test(m))?m+':online':m;
+  const parts=content.map(c=>c.type==='text'?{type:'text',text:c.text}:c.type==='image'?{type:'image_url',image_url:{url:`data:${c.source.media_type};base64,${c.source.data}`}}:{type:'file',file:{filename:'tailieu.pdf',file_data:`data:application/pdf;base64,${c.source.data}`}});
+  const b={model:mm,stream:true,messages:[{role:'system',content:sys},{role:'user',content:parts}]};if(p==='deepseek')b.max_tokens=8192;
+  r=await J(base+'/chat/completions',{authorization:'Bearer '+k},b);await chk(r);
+  await sse(r,j=>{if(j.error)throw streamErr(j.error.message||JSON.stringify(j.error),j.error.code||500,JSON.stringify(j.error));const d=j.choices?.[0]?.delta?.content;if(d)on(d)})}}
+
+/* ---- phân loại lỗi để biết nên đổi key hay đổi mô hình ---- */
+function kind(e){if(e&&e.name==='AbortError')return 'abort';const s=+e.status||0,b=String((e.body||'')+' '+(e.message||'')).toLowerCase();
+ if(s===401||s===403||s===402||/api key not valid|api_key_invalid|invalid api key|invalid x-api-key|incorrect api key|authentication|permission_denied|unauthorized|insufficient_quota|insufficient balance|credit balance/.test(b))return 'key';
+ if(s===429||/resource_exhausted|rate limit|rate_limit|quota/.test(b))return 'quota';
+ if(s===404||/not found|not supported|does not exist|unknown model|model_not_found|invalid model|no endpoints/.test(b))return 'model';
+ return 'other'}
+const KN={key:'key sai hoặc hết tín dụng',quota:'hết hạn mức / giới hạn tốc độ',model:'mô hình không có hoặc không hỗ trợ',other:'lỗi',fmt:'trả lời sai định dạng',empty:'trả lời rỗng'};
+function errText(e){let m='';try{const j=JSON.parse(e.body);m=(j.error&&(j.error.message||j.error.type))||j.message||''}catch(_){m=e.message||''}
+ if(e instanceof TypeError||/failed to fetch/i.test(m))m='không kết nối được (mạng hoặc trình duyệt chặn)';
+ return (e.status?e.status+' · ':'')+String(m).replace(/\s+/g,' ').slice(0,140)}
+const retryDelay=t=>{const x=/"retryDelay"\s*:\s*"([\d.]+)s"/.exec(t||'')||/retry in ([\d.]+)s/i.exec(t||'')||/try again in ([\d.]+)s/i.exec(t||'');return x?parseFloat(x[1]):null};
+function markKey(p,i,st){(CFG.kst[p]=CFG.kst[p]||[])[i]={st,t:Date.now()};if(ktab===p&&$('keys'))paintKeyStates()}
+const RUN={log:[],used:''};
+
+/* ---- gọi AI: lần lượt AI chính → AI khác; trong mỗi AI: mô hình thấp → cao; trong mỗi mô hình: xoay vòng các key ---- */
+async function call(content,on,sig,o={}){
+ const sys=o.sys||SYS,status=t=>{o.onStatus&&o.onStatus(t)};
+ const wantWeb=o.web!=null?o.web:($('src')?$('src').value!=='2':false);
+ const ps=chain();if(!ps.length)throw new Error('Chưa có API key. Hãy nhập ít nhất một key ở mục Cài đặt AI.');
+ const log=[];RUN.log=log;let noWeb=false,emitted=false;
+ for(let pass=0;pass<2;pass++){let minWait=null;
+  for(const p of ps){const keys=keysOf(p),dead=new Set();
+   for(const m of modelsOf(p)){if(dead.size>=keys.length)break;
+    const start=(+CFG.kptr[p]||0)%keys.length;let nextModel=false;
+    for(let j=0;j<keys.length&&!nextModel;j++){const ki=(start+j)%keys.length;if(dead.has(ki))continue;
+     const tag=`${pshort(p)} · ${m} · key ${ki+1}`;status(tag);
+     if(emitted){o.onReset&&o.onReset();emitted=false}
+     let full='';
+     try{await once(p,m,keys[ki],content,d=>{full+=d;emitted=true;on(d)},sig,sys,wantWeb&&!noWeb&&!!(PV[p].w||PV[p].on));
+      if(!full.trim()){log.push({tag,r:KN.empty});nextModel=true;continue}
+      if(o.validate&&!o.validate(full)){log.push({tag,r:KN.fmt});nextModel=true;continue}
+      log.push({tag,r:'thành công',ok:1});CFG.kptr[p]=ki;markKey(p,ki,'ok');sv();RUN.used=tag;o.onDone&&o.onDone(tag);return {p,m,ki,tag,noWeb}}
+     catch(e){const k=kind(e);if(k==='abort')throw e;log.push({tag,r:KN[k]+' ('+errText(e)+')'});
+      if(e.status===429&&/ground|search/i.test(e.body||'')&&wantWeb&&!noWeb){noWeb=true;j--;continue}
+      if(k==='key'){dead.add(ki);markKey(p,ki,'bad');continue}
+      if(k==='quota'){markKey(p,ki,'quota');const d=retryDelay(e.body);if(d!=null)minWait=minWait==null?d:Math.min(minWait,d);continue}
+      nextModel=true}}
+   }
+  }
+  if(pass===0&&minWait!=null&&minWait<=65){await new Promise((res,rej)=>{let n=Math.ceil(minWait+1);status(`tất cả đang giới hạn tốc độ – thử lại sau ${n}s`);
+    const iv=setInterval(()=>{if(sig&&sig.aborted){clearInterval(iv);return rej(new DOMException('Aborted','AbortError'))}n--;if(n<=0){clearInterval(iv);res()}else status(`tất cả đang giới hạn tốc độ – thử lại sau ${n}s`)},1000)});continue}
+  break}
+ sv();if(ktab&&$('keys'))paintKeyStates();
+ const tips=[];const rs=log.map(x=>x.r).join(' ');
+ if(/hết hạn mức/.test(rs))tips.push('thêm key khác (mỗi tài khoản Google/nhà cung cấp một key), đợi qua ngày, hoặc giảm số đề/tệp gửi kèm');
+ if(/key sai/.test(rs))tips.push('kiểm tra lại key (bấm “Kiểm tra tất cả key” trong Cài đặt AI)');
+ if(/mô hình không có/.test(rs))tips.push('sửa danh sách mô hình hoặc bấm “Tải danh sách mô hình từ key”');
+ const e=new Error(`Không gọi được AI sau ${log.length} lần thử:\n`+log.slice(-12).map(x=>'• '+x.tag+': '+x.r).join('\n')+(tips.length?'\nGợi ý: '+tips.join('; ')+'.':''));e.log=log;throw e}
+
+/* ================= giao diện Cài đặt AI ================= */
+let ktab=CFG.prov;
 $('prov').innerHTML=Object.keys(PV).map(p=>`<option value="${p}">${PV[p].n}</option>`).join('');
-$('keys').innerHTML=Object.keys(PV).map(p=>`<div class="kf"><label class="lb" for="k_${p}">${PV[p].n}</label><input type="password" id="k_${p}" placeholder="Dán API key" autocomplete="off"></div>`).join('')+'<p class="hint">Chỉ cần key của AI đang chọn. Gemini có gói miễn phí tại aistudio.google.com.</p>';
-Object.keys(PV).forEach(p=>{const e=$('k_'+p);e.value=CFG.keys[p]||'';e.oninput=()=>{CFG.keys[p]=e.value.trim();sv();badge();loadHint()}});
-function loadHint(){stat();const p=CFG.prov,c=PV[p];$('ph').textContent=(CFG.keys[p]?'':'⚠ Chưa có API key cho AI này (nhập ở ô API key bên phải). ')+(c.w?'✔ Hỗ trợ tìm kiếm Internet.':c.on?'✔ Tìm Internet qua chế độ :online của OpenRouter.':'⚠ AI này không tự tìm Internet; nguồn 1 và 3 chỉ dùng được khi có dữ liệu bạn đưa lên. Nếu báo lỗi đọc PDF/ảnh, hãy dùng file Word hoặc dán chữ.')}
-function loadP(){const p=$('prov').value,c=PV[p];CFG.prov=p;$('model').value=CFG.models[p]||c.m[0]||'';$('burl').value=CFG.urls[p]||c.u||'';
- $('burlw').style.display=c.u!==undefined?'':'none';$('lm').style.display=p==='gemini'?'':'none';$('ml').innerHTML=c.m.map(x=>`<option value="${x}">`).join('');loadHint();sv()}
-function saveP(){const p=CFG.prov;CFG.models[p]=$('model').value.trim();CFG.urls[p]=$('burl').value.trim();sv()}
+function badge(){const n=Object.keys(PV).reduce((s,p)=>s+keysOf(p).length,0);$('pb').textContent=n+' key'}
+function stat(){const el=$('aiStat');if(!el)return;const ok=aiReady(),n=keysOf(CFG.prov).length;
+ el.textContent=pshort(CFG.prov)+' · '+(ok?(CFG.mode==='fixed'?'cố định':'tự động')+(n>1?' · '+n+' key':''):'chưa có key');el.classList.toggle('ok',ok)}
+const ST={ok:['ok','dùng được'],quota:['quota','hết lượt'],bad:['bad','sai key'],test:['','đang thử…']};
+function paintKeyStates(){$$('#keys .krow').forEach(r=>{const i=+r.dataset.i,s=((CFG.kst[ktab]||[])[i]||{}).st,el=r.querySelector('.kst');const v=ST[s];el.className='kst '+(v?v[0]:'');el.textContent=v?v[1]:''})}
+function renderTabs(){$('kTabs').innerHTML=Object.keys(PV).map(q=>{const n=keysOf(q).length;return `<button type="button" data-p="${q}" aria-pressed="${q===ktab}">${pshort(q)}${n?` <span class="kc">${n}</span>`:''}</button>`}).join('')}
+function renderKeys(){const p=ktab,ks=CFG.keys[p];if(!ks.length)ks.push('');renderTabs();
+ $('keys').innerHTML=ks.map((k,i)=>`<div class="krow" data-i="${i}"><span class="kn">${i+1}</span><input type="password" data-i="${i}" value="${escH(k)}" placeholder="Dán API key ${escH(PV[p].n)}" autocomplete="off" spellcheck="false"><span class="kst"></span><button type="button" class="btn small ghost" data-act="show" data-i="${i}">Hiện</button><button type="button" class="btn small ghost" data-act="del" data-i="${i}" aria-label="Xoá key ${i+1}">Xoá</button></div>`).join('');
+ $('kFor').textContent=PV[p].n;paintKeyStates()}
+function keysChanged(){sv();badge();stat();renderTabs();loadHint()}
+$('kTabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;ktab=b.dataset.p;renderKeys()};
+$('keys').addEventListener('input',e=>{const t=e.target;if(t.tagName!=='INPUT')return;const i=+t.dataset.i,parts=t.value.split(/[\s,;]+/).map(s=>s.trim()).filter(Boolean);
+ if(parts.length>1){CFG.keys[ktab].splice(i,1,...parts);(CFG.kst[ktab]=[]);renderKeys();toast(`Đã tách thành ${parts.length} key.`)}else CFG.keys[ktab][i]=t.value.trim();keysChanged()});
+$('keys').addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const i=+b.dataset.i;
+ if(b.dataset.act==='show'){const inp=$('keys').querySelector(`input[data-i="${i}"]`);inp.type=inp.type==='password'?'text':'password';b.textContent=inp.type==='password'?'Hiện':'Ẩn'}
+ else{CFG.keys[ktab].splice(i,1);CFG.kst[ktab]=[];$('aiTestOut').textContent='';renderKeys();keysChanged()}});
+$('kAdd').onclick=()=>{CFG.keys[ktab].push('');renderKeys();const ins=$$('#keys input');ins[ins.length-1].focus()};
+function loadHint(){stat();const p=CFG.prov,c=PV[p],ks=keysOf(p).length,l=modelsOf(p);
+ const order=CFG.mode==='fixed'?`Luôn dùng ${l[0]||'(chưa nhập)'}`:`Thử lần lượt ${l.length} mô hình: ${l.join(' → ')||'(chưa có)'}`;
+ const others=Object.keys(PV).filter(q=>q!==p&&usable(q)).map(pshort);
+ $('ph').innerHTML=(ks?`<b>${ks} key</b> · `:'<b style="color:var(--warn)">Chưa có key cho AI chính.</b> ')+escH(order)+(ks>1?`; mỗi mô hình xoay vòng qua ${ks} key`:'')+'.'+
+  (CFG.xprov!==false&&others.length?` Dự phòng: ${escH(others.join(', '))}.`:'')+'<br>'+(c.w?'Hỗ trợ tìm kiếm Internet khi ra đề.':c.on?'Tìm Internet qua chế độ :online của OpenRouter.':'AI này không tự tìm Internet khi ra đề; nếu báo lỗi đọc PDF/ảnh, hãy dùng file Word hoặc dán chữ.')}
+function loadP(){const p=$('prov').value;CFG.prov=p;const c=PV[p];
+ $('model').value=CFG.models[p]||listOf(p)[0]||'';$('mlist').value=listOf(p).join('\n');$('burl').value=CFG.urls[p]||c.u||'';
+ $('burlw').style.display=c.u!==undefined?'':'none';$('lm').style.display=p==='gemini'?'':'none';$('ml').innerHTML=byRank(c.m.concat(listOf(p))).map(x=>`<option value="${escH(x)}">`).join('');
+ $$('#modeSeg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===(CFG.mode||'auto'))));
+ $('fixedW').hidden=CFG.mode!=='fixed';$('autoW').hidden=CFG.mode==='fixed';$('xprov').checked=CFG.xprov!==false;
+ ktab=p;renderKeys();loadHint();sv()}
+function saveP(){const p=CFG.prov;CFG.models[p]=$('model').value.trim();CFG.urls[p]=$('burl').value.trim();
+ const l=$('mlist').value.split('\n').map(s=>s.trim()).filter(Boolean);CFG.lists[p]=l;sv();loadHint()}
 $('prov').value=CFG.prov;loadP();badge();
-$('prov').onchange=loadP;['model','burl'].forEach(i=>$(i).onchange=saveP);
+$('prov').onchange=loadP;['model','burl','mlist'].forEach(i=>$(i).addEventListener('change',saveP));
+$('modeSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;CFG.mode=b.dataset.m;loadP()};
+$('xprov').onchange=e=>{CFG.xprov=e.target.checked;sv();loadHint()};
+$('msort').onclick=()=>{$('mlist').value=byRank($('mlist').value.split('\n')).join('\n');saveP();toast('Đã sắp xếp từ mô hình thấp đến cao.')};
+$('mreset').onclick=()=>{CFG.lists[CFG.prov]=[];$('mlist').value=byRank(PV[CFG.prov].m).join('\n');saveP()};
+$('lm').onclick=async()=>{const k=keysOf('gemini')[0];if(!k){toast('Hãy nhập ít nhất một key Gemini trước.');return}
+ try{const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key='+encodeURIComponent(k));await chk(r);const j=await r.json();
+  const l=(j.models||[]).filter(x=>(x.supportedGenerationMethods||[]).includes('generateContent')&&/^models\/gemini-\d/.test(x.name)&&!/image|tts|live|audio|embedding|robotics|omni|computer/.test(x.name)).map(x=>x.name.slice(7));
+  if(!l.length){toast('Không tìm thấy mô hình nào.');return}
+  PV.gemini.m=l;$('mlist').value=byRank(l).join('\n');saveP();loadP();toast(`Đã tải ${l.length} mô hình, xếp từ thấp đến cao.`)}catch(e){toast('Không tải được: '+errText(e))}};
+/* kiểm tra từng key của AI đang xem ở bảng key */
+$('aiTest').onclick=async()=>{const p=ktab,keys=CFG.keys[p].map(s=>String(s||'').trim()),o=$('aiTestOut'),b=$('aiTest');
+ if(!keys.filter(Boolean).length){o.textContent='Chưa có key nào cho '+PV[p].n+'.';return}
+ if(PV[p].u!==undefined&&!urlOf(p)){o.textContent='Chưa nhập Base URL.';return}
+ b.disabled=true;let ok=0,n=0;const ms=listOf(p).slice(0,4);
+ for(let i=0;i<keys.length;i++){if(!keys[i])continue;n++;markKey(p,i,'test');o.textContent=`Đang thử key ${i+1}/${keys.length}…`;let st='bad';
+  for(const m of ms){let t='';try{await once(p,m,keys[i],[{type:'text',text:'Trả lời đúng một từ: OK'}],d=>t+=d,null,'Bạn là trợ lý kiểm tra kết nối.',false);st='ok';break}
+   catch(e){const k=kind(e);if(k==='key'){st='bad';break}if(k==='quota'){st='quota';continue}st='bad';if(k!=='model'&&k!=='other')break}}
+  markKey(p,i,st);if(st==='ok')ok++}
+ sv();b.disabled=false;o.innerHTML=`<b style="color:${ok?'var(--good)':'var(--bad)'}">${ok}/${n} key dùng được</b> với ${escH(PV[p].n)}.`};
+function showLog(){const L=RUN.log||[];$('aiLog').innerHTML=L.length?`<b>Lần gọi AI gần nhất:</b><ol>${L.slice(-12).map(x=>`<li class="${x.ok?'ok':''}">${escH(x.tag)} – ${escH(x.r)}</li>`).join('')}</ol>`:''}
+function refreshUI(){badge();stat();renderKeys();loadHint();showLog()}
 
 
 /* ---- ma trận từ Phần 1 ---- */
@@ -2034,7 +2202,7 @@ function refresh(){const link=linked(),i=S.info;
  $$('#lnkSeg button').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.l==='1')===link)));
  document.querySelectorAll('#secs [data-sec="mt"],#secs [data-sec="dt"]').forEach(d=>d.hidden=link);
  $('rdSub').textContent=`Toán ${S.grade} · ${KYN[i.ky]} · ${i.time} phút · Công thức viết trong $...$ để chuyển sang MathType`;
- $('rdAi').innerHTML=`AI: <b>${escH(PV[CFG.prov].n)}</b> · ${escH($('model').value)}${aiReady()?'':' · <span style="color:var(--warn)">chưa có API key</span>'} · <a href="#ai" data-go="ai">Đổi trong Cài đặt AI</a>`;
+ {const n=keysOf(CFG.prov).length;$('rdAi').innerHTML=`AI: <b>${escH(PV[CFG.prov].n)}</b> · ${escH(modelLabel())}${n>1?` · ${n} key xoay vòng`:''}${aiReady()?'':' · <span style="color:var(--warn)">chưa có API key</span>'} · <a href="#ai" data-go="ai">Đổi trong Cài đặt AI</a>`}
  if(!link){$('lnkInfo').innerHTML='<p class="hint" style="margin:8px 0 0">Tải ma trận và bảng đặc tả của bạn ở hai mục bên dưới (Word, PDF, ảnh hoặc dán chữ).</p>';return}
  const K=calc(P()),T=K.T;
  if(!K.rows.length||!K.act.length){$('lnkInfo').innerHTML=`<p class="hint" style="margin:8px 0 0">Phần 1 chưa có ma trận (chưa chọn nội dung hoặc chưa bật dạng câu nào).</p><div class="rrow"><button class="btn small primary" data-go="noidung">Lập ma trận ở Phần 1</button></div>`;return}
@@ -2043,13 +2211,6 @@ function refresh(){const link=linked(),i=S.info;
   <div class="stat"><span class="chip ${ok?'good':'warn'}">${f(T.p)}/10 điểm</span>${K.act.filter(t=>T.typeC[t]).map(t=>`<span class="chip">${TYN[t]} ${T.typeC[t]} ${UNITW[t]} · ${f(T.typeP[t])}đ</span>`).join('')}</div>
   <div class="rrow"><button class="btn small" data-go="matran">Sửa ma trận</button><button class="btn small" data-go="xuat">Xem bản đặc tả</button></div>`}
 $('linkCard').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){e.preventDefault();setStep(b.dataset.go)}});
-function aiReady(){return !!(CFG.keys[CFG.prov]||'').trim()}
-function stat(){const el=$('aiStat');if(!el)return;const ok=aiReady();el.textContent=PV[CFG.prov].n.split(' · ').pop().split(' (')[0]+' · '+(ok?'sẵn sàng':'chưa có key');el.classList.toggle('ok',ok)}
-$('aiTest').onclick=async()=>{const o=$('aiTestOut');if(!aiReady()){o.textContent='Chưa có API key cho AI đang chọn.';return}
- const b=$('aiTest');b.disabled=true;o.textContent='Đang gửi thử…';let t='';const box=document.createElement('div');
- try{await call([{type:'text',text:'Trả lời đúng một từ: OK'}],d=>t+=d,null,{sys:'Bạn là trợ lý kiểm tra kết nối.',web:false,errEl:box});o.innerHTML=`<span style="color:var(--good);font-weight:600">Kết nối được</span> · ${escH($('model').value)} trả lời: “${escH(t.trim().slice(0,40))}”`}
- catch(e){o.innerHTML=`<span style="color:var(--bad);font-weight:600">Lỗi:</span> ${escH(String(e.message||e).replace(/<[^>]+>/g,' ').slice(0,300))}`}
- b.disabled=false};
 document.getElementById('aiset').addEventListener('click',e=>{const b=e.target.closest('[data-goto]');if(b)setStep(b.dataset.goto)});
 $('lnkSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;CFG.link=b.dataset.l==='1';sv();refresh()});
 
@@ -2079,58 +2240,6 @@ Trả lời ĐÚNG định dạng 3 phần, mỗi phần mở đầu bằng mộ
 ===HƯỚNG DẪN===
 (hướng dẫn giải/chấm)`});return c}
 
-$('lm').onclick=async()=>{const k=(CFG.keys.gemini||'').trim();if(!k)return toast('Hãy nhập API key trước.');
- try{const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key='+encodeURIComponent(k));await chk(r);const j=await r.json();
-  const l=(j.models||[]).filter(x=>(x.supportedGenerationMethods||[]).includes('generateContent')&&/^models\/gemini-\d/.test(x.name)&&!/image|tts|live|audio|embedding|robotics|omni/.test(x.name)).map(x=>x.name.slice(7)).sort().reverse();
-  if(!l.length)return toast('Không tìm thấy mô hình nào.');PV.gemini.m=l;$('ml').innerHTML=l.map(x=>`<option value="${x}">`).join('');
-  $('ph').textContent='✔ Đã tải '+l.length+' mô hình dùng được với key này (gõ vào ô Mô hình để xem gợi ý): '+l.join(', ')}catch(e){toast(e.message)}};
-async function chk(r){if(!r.ok)throw new Error('Lỗi API '+r.status+': '+(await r.text()).slice(0,350))}
-async function sse(r,h){const rd=r.body.getReader(),dc=new TextDecoder();let buf='';
- for(;;){const{done,value}=await rd.read();if(done)break;buf+=dc.decode(value,{stream:true});const ls=buf.split('\n');buf=ls.pop();
-  for(const l of ls){if(!l.startsWith('data:'))continue;const t=l.slice(5).trim();if(t==='[DONE]')continue;let j;try{j=JSON.parse(t)}catch(e){continue}h(j)}}}
-async function call(content,on,sig,o={}){saveP();const SYS_=o.sys||SYS,EB=o.errEl||EB;const p=CFG.prov,m=$('model').value.trim(),k=(CFG.keys[p]||'').trim(),web=o.web!=null?o.web:$('src').value!=='2';
- const J=(u,hd,b)=>fetch(u,{method:'POST',signal:sig,headers:Object.assign({'content-type':'application/json'},hd),body:JSON.stringify(b)});let r;
- if(p==='anthropic'){const b={model:m,max_tokens:16000,stream:true,system:SYS_,messages:[{role:'user',content}]};
-  if(web)b.tools=[{type:'web_search_20250305',name:'web_search',max_uses:6}];
-  r=await J('https://api.anthropic.com/v1/messages',{'x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},b);await chk(r);
-  await sse(r,j=>{if(j.type==='content_block_delta'&&j.delta.type==='text_delta')on(j.delta.text);if(j.type==='error')throw new Error(j.error.message)})}
- else if(p==='gemini'){const cand=[m,...PV.gemini.m.filter(x=>x!==m)].slice(0,6);let got=false,lastE=null,noWeb=false;
-  const mk=w=>{const b={systemInstruction:{parts:[{text:SYS_}]},contents:[{role:'user',parts:content.map(c=>c.type==='text'?{text:c.text}:{inlineData:{mimeType:c.source.media_type,data:c.source.data}})}],generationConfig:{maxOutputTokens:16000}};if(w)b.tools=[{google_search:{}}];return b};
-  const note=t=>EB.innerHTML=`<div class="err" style="background:#fff1e0;color:#7a3f0c">${t}</div>`;
-  const wait=(s,mm)=>new Promise((res,rej)=>{let n=Math.ceil(s);const sh=()=>note(`⏳ Mô hình <b>${mm}</b> đang bị giới hạn tốc độ (429). Tự thử lại sau ${n}s...`);sh();
-   const iv=setInterval(()=>{if(sig&&sig.aborted){clearInterval(iv);return rej(new DOMException('Aborted','AbortError'))}n--;if(n<=0){clearInterval(iv);EB.innerHTML='';res()}else sh()},1000)});
-  const rdel=t=>{const x=/"retryDelay"\s*:\s*"([\d.]+)s"/.exec(t||'')||/retry in ([\d.]+)s/i.exec(t||'');return x?parseFloat(x[1]):null};
-  for(let i=0;i<cand.length;i++){const mm=cand[i];
-   for(let t=0;t<3;t++){
-    try{r=await J(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(mm)}:streamGenerateContent?alt=sse&key=${encodeURIComponent(k)}`,{},mk(web&&!noWeb));
-     if(!r.ok){const tx=await r.text();const er=new Error('Lỗi API '+r.status+' (mô hình '+mm+'): '+tx.slice(0,500));er.status=r.status;er.body=tx;throw er}
-     await sse(r,j=>{if(j.error){const er=new Error(j.error.message);er.status=j.error.code;er.body=JSON.stringify(j.error);throw er}for(const q of(j.candidates?.[0]?.content?.parts||[]))if(q.text&&!q.thought){got=true;on(q.text)}});
-     if(mm!==m){$('model').value=mm;saveP();note(`Mô hình ${m} bị lỗi/hết hạn mức nên trang đã tự chuyển sang <b>${mm}</b>.`)}else if(noWeb)note('Hạn mức tìm kiếm Google đã hết nên lần này đề được tạo <b>không dùng tìm kiếm Internet</b>.');else EB.innerHTML='';
-     return}
-    catch(e){lastE=e;if(got||e.name==='AbortError')throw e;
-     if(e.status===429){const d=rdel(e.body),daily=/PerDay|per_day|"limit":\s*0/i.test(e.body||'');
-      if(!daily&&d!==null&&d<=65&&t<2){await wait(d+1,mm);continue}
-      if(web&&!noWeb){noWeb=true;t--;continue}
-      break}
-     const sg=/use models\/([\w.\-]+)/.exec(e.message||'');if(sg&&!cand.includes(sg[1]))cand.splice(i+1,0,sg[1]);break}}}
-  if(lastE&&lastE.status===429){let vio=[],raw=lastE.body||'',nt='';
-   try{const j=JSON.parse(raw);for(const d of(j.error?.details||[]))for(const v of(d.violations||[]))vio.push(v)}catch(_){}
-   try{const rc=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(cand[0])}:countTokens?key=${encodeURIComponent(k)}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({generateContentRequest:Object.assign({model:'models/'+cand[0]},mk(false))})});
-    if(rc.ok){const n=(await rc.json()).totalTokens;nt=`<br>📏 Nội dung gửi đi khoảng <b>${n.toLocaleString('vi-VN')} token</b>${n>200000?' — QUÁ LỚN so với giới hạn token/phút của gói miễn phí (thường 250.000), hãy tải ít/nhỏ tệp hơn (đặc biệt PDF nhiều trang, ảnh lớn).':'.'}`}}catch(_){}
-   const ms=vio.map(v=>(v.quotaMetric||'')+' | '+(v.quotaId||'')).join('\n');
-   let why='Chưa xác định được hạn mức nào hết.';
-   if(/input_token/i.test(ms))why='Hết hạn mức <b>token đầu vào</b> (gửi quá nhiều chữ/ảnh/PDF trong 1 phút) — nguyên nhân do <b>kích thước đề gửi lên</b>, không phải do key.';
-   else if(/ground|search/i.test(ms))why='Hết hạn mức <b>tìm kiếm Google (grounding)</b>.';
-   else if(/PerDay/i.test(ms))why='Hết hạn mức <b>số lượt gọi trong ngày</b> của mô hình này với gói hiện tại.';
-   else if(/PerMinute|per_minute/i.test(ms))why='Hết hạn mức <b>số lượt gọi trong phút</b>.';
-   lastE.message=`<b>Gemini trả lỗi 429 (hết hạn mức) ở tất cả ${cand.length} mô hình đã thử, kể cả khi đã tắt tìm kiếm Google.</b><br>${why}${nt}<br><br>👉 Cách xử lý: giảm số đề mỗi lần xuống 1, tắt “vẽ hình”, tải ít tệp/ít trang hơn (cắt PDF chỉ giữ trang cần), chọn mô hình <b>gemini-2.5-flash-lite</b> hoặc <b>gemini-2.5-flash</b>, hoặc bật thanh toán cho key trên ai.studio; hoặc dùng AI khác trong mục Cài đặt.<br><br><small style="white-space:pre-wrap">Chi tiết kỹ thuật:\n${ms||raw.slice(0,600)}</small>`}
-  throw lastE}
- else{const base=$('burl').value.trim().replace(/\/$/,'');if(!base)throw new Error('Vui lòng nhập Base URL.');
-  const mm=(p==='openrouter'&&web&&!/:online$/.test(m))?m+':online':m;
-  const parts=content.map(c=>c.type==='text'?{type:'text',text:c.text}:c.type==='image'?{type:'image_url',image_url:{url:`data:${c.source.media_type};base64,${c.source.data}`}}:{type:'file',file:{filename:'tailieu.pdf',file_data:`data:application/pdf;base64,${c.source.data}`}});
-  const b={model:mm,stream:true,messages:[{role:'system',content:SYS_},{role:'user',content:parts}]};if(p==='deepseek')b.max_tokens=8192;
-  r=await J(base+'/chat/completions',{authorization:'Bearer '+k},b);await chk(r);
-  await sse(r,j=>{if(j.error)throw new Error(j.error.message||JSON.stringify(j.error));const d=j.choices?.[0]?.delta?.content;if(d)on(d)})}}
 
 
 /* ---- hiển thị kết quả ---- */
@@ -2185,12 +2294,14 @@ $('go').onclick=async()=>{$('err').innerHTML='';const E=m=>$('err').innerHTML=`<
  const n=+$('num').value;R=[];cur=0;rv='ĐỀ THI';ctl=new AbortController();
  $('go').disabled=true;$('go').textContent='Đang tạo đề…';$('stop').hidden=false;
  try{for(let k=1;k<=n;k++){R.push({raw:''});cur=k-1;frame();
-   await call(build(k,n),d=>{R[k-1].raw+=d;if(Date.now()-tm>700){tm=Date.now();show(false)}},ctl.signal);show(true)}}
- catch(e){if(e.name!=='AbortError')E(e.message)}
+   const used=await call(build(k,n),d=>{R[k-1].raw+=d;if(Date.now()-tm>700){tm=Date.now();show(false)}},ctl.signal,
+     {onReset:()=>{R[k-1].raw='';show(false)},onStatus:t=>{$('err').innerHTML=`<div class="err info">Đề ${k}/${n} · đang dùng ${escH(t)}…</div>`}});
+   show(true);$('err').innerHTML=`<div class="err info" style="background:var(--good-bg);color:var(--good)">Đề ${k}/${n} tạo bằng ${escH(used.tag)}${used.noWeb?' (không tìm Internet vì hết hạn mức tìm kiếm)':''}.</div>`}}
+ catch(e){if(e.name!=='AbortError')E(escH(e.message))}
  $('go').disabled=false;$('go').textContent='Tạo đề';$('stop').hidden=true;if(R.length)frame()};
 
 window.RADE={refresh};
-window.AI={ready:aiReady,call:(content,on,sig,o)=>call(content,on,sig,o),label:()=>PV[CFG.prov].n+' · '+$('model').value};
+window.AI={ready:aiReady,call:(content,on,sig,o)=>call(content,on,sig,o),label:()=>PV[CFG.prov].n+' · '+modelLabel(),refreshUI,run:RUN};
 stat();refresh();
 })();
 </script>
