@@ -2,8 +2,12 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
+<meta name="app-ui-version" content="1.6.3">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Ma trận &amp; Ra đề Toán THCS</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<script>try{var _t=localStorage.getItem("mt-theme");if(_t)document.documentElement.dataset.theme=_t}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap">
@@ -257,6 +261,63 @@ table.ct td.nd{width:20%}
 table.ct td.bai{width:20%;font-size:12px;color:var(--muted)}
 table.ct td.bai span{display:block}
 table.ct mark{background:#ffe58a;color:inherit;border-radius:2px}
+/* bài tổng hợp phần tự luận */
+.tlg{display:flex;flex-direction:column;gap:8px}
+.tlgrp{border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--surface)}
+.tlgrp.big{border-color:var(--accent);background:var(--accent-soft)}
+.tlgh{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;margin-bottom:4px}
+.tlgrp.big .tlgh b{color:var(--accent)}
+.tlpt{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tlq{display:flex;gap:8px;align-items:center;font-size:12.5px;padding:3px 0;cursor:pointer}
+.tlq input{width:16px;height:16px;accent-color:var(--accent);flex:none}
+.tlq .tlc{flex:none;min-width:30px;font-weight:700;color:var(--accent)}
+.tlq .tln{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#secs details.acc.flash{outline:2px solid var(--accent);outline-offset:2px;transition:outline-color .4s}
+#srcHint .chip{font-size:12px}
+.err .btn{margin-left:4px;vertical-align:middle}
+/* bước 2: đơn vị kiến thức + nhánh bài SGK */
+.lsn-list{margin:6px 0 2px 28px;border-left:2px solid var(--line);padding:2px 0 2px 10px;display:flex;flex-direction:column;gap:2px}
+.lsn{display:flex;gap:8px;align-items:center;padding:3px 6px;border-radius:4px;cursor:pointer;font-size:13px}
+.lsn:hover{background:var(--bg)}
+.lsn input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);flex:none}
+.lsn .ln{flex:1;min-width:0}
+.lsn.off .ln{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line-strong)}
+.lsn .u-lv.sm .lvc{font-size:10px;padding:0 5px}
+.lsn .lt{display:flex;gap:4px;align-items:center;font-size:11.5px;color:var(--muted);flex:none}
+.lsn .lt input{width:40px;text-align:center;padding:2px 4px;font-size:12px}
+.utiet{font-size:12.5px;color:var(--muted);white-space:nowrap;align-self:center;font-variant-numeric:tabular-nums}
+.tag.warn{background:var(--warn-bg);color:var(--warn)}.tag.mute{background:var(--head);color:var(--muted)}
+@media(max-width:860px){.lsn{flex-wrap:wrap}.lsn .u-lv.sm{order:4;margin-left:24px}}
+.notes li.gap{color:var(--warn);list-style:none;margin:8px 0 0 -18px;padding:8px 12px;background:var(--warn-bg);border-radius:6px;line-height:1.6}
+.notes li.gap .btn{margin:4px 4px 0 0}
+.f .fn{font-weight:500;color:var(--muted);font-size:11.5px}
+.rangebar{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+.rangebar .lab{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em;text-transform:uppercase}
+.rangebar label{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:600;color:var(--muted)}
+.rangebar select{width:auto;max-width:300px}
+.chcount{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.chcount b{color:var(--ink)}
+.u-lv{display:flex;gap:3px;flex:none;align-self:center}
+.u-lv .lvc{min-width:0;padding:1px 5px;font-size:10.5px}
+.lvc.lv0{background:transparent;color:var(--muted);border:1px dashed var(--line-strong)}
+.unit.lesson .tiet{align-self:center;flex:none}
+.unit.lesson .tiet input{width:44px}
+.unit.lesson .u-h .btn{align-self:center}
+@media(max-width:860px){.unit.lesson .u-h{flex-wrap:wrap}.u-lv{order:5;margin-left:28px}}
+/* hướng dẫn & giao diện */
+table.cfg td:first-child label{white-space:nowrap}
+@media(max-width:860px){.chap .ch-h input[type=text]{flex-basis:100%}}
+.gsteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.gsteps .card+.card{margin-top:0}
+@media(max-width:1100px){.gsteps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.gsteps{grid-template-columns:minmax(0,1fr)}}
+.gs{display:flex;flex-direction:column;gap:6px}
+.gs p{margin:0 0 6px;color:var(--muted);font-size:13px;flex:1}
+.gs .btn{align-self:flex-start}
+.gn{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:13px}
+.themeb{font:inherit;font-size:11.5px;font-weight:600;background:rgba(255,255,255,.08);color:var(--side-ink);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:3px 10px;cursor:pointer}
+.themeb:hover{background:rgba(255,255,255,.14)}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.92em;background:var(--head);padding:0 4px;border-radius:3px}
 /* nhiều key */
 #kTabs button{padding:5px 11px;font-size:13px}
 #kTabs .kc{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-size:11px;margin-left:2px}
@@ -289,7 +350,8 @@ label.opt input{margin-top:3px;accent-color:var(--accent);flex:none}
     <button class="it" data-step="rade"><span class="n ai">AI</span>Tạo đề theo ma trận</button>
     <div class="grp">Tra cứu</div>
     <button class="it" data-step="ct"><span class="n ai">CT</span>YCCĐ – CT GDPT 2018</button>
-    <div class="foot"><span class="badge" id="gradeBadge"></span><p>CT GDPT 2018 · Kết nối tri thức · CV 7991/BGDĐT-GDTrH</p></div>
+    <button class="it" data-step="hd"><span class="n">?</span>Hướng dẫn sử dụng</button>
+    <div class="foot"><div class="row" style="gap:6px"><span class="badge" id="gradeBadge"></span><span class="sp"></span><button type="button" class="themeb" id="themeBtn" title="Đổi giao diện sáng/tối">Tự động</button></div><p>CT GDPT 2018 · Kết nối tri thức · CV 7991/BGDĐT-GDTrH</p></div>
   </aside>
 
   <div class="mainc"><div class="wrap">
@@ -329,6 +391,33 @@ label.opt input{margin-top:3px;accent-color:var(--accent);flex:none}
 
     <section id="ctref" hidden></section>
 
+    <section id="guide" hidden>
+      <header class="top"><div><div class="kick">Tra cứu</div><h1>Hướng dẫn sử dụng</h1>
+        <p>Từ lúc nhập API key đến khi có ma trận, bản đặc tả và đề kiểm tra hoàn chỉnh, khoảng 10–15 phút.</p></div></header>
+      <div class="gsteps">
+        <div class="card gs"><span class="gn">0</span><h2>Cài đặt AI</h2><p>Chọn AI chính (khuyên dùng <b>Gemini</b>, có gói miễn phí tại aistudio.google.com) và dán một hoặc nhiều API key. Bấm <b>Kiểm tra tất cả key</b>. Để chế độ <b>Tự động: thấp → cao</b> để trang tự đổi key, đổi mô hình khi hết lượt.</p><button class="btn small" data-goto="ai">Mở Cài đặt AI →</button></div>
+        <div class="card gs"><span class="gn">1</span><h2>Thông tin đề</h2><p>Chọn khối lớp, kì kiểm tra, nhập tên trường, tổ chuyên môn, năm học, thời gian làm bài. Phần đầu của ma trận và đặc tả cập nhật ngay.</p><button class="btn small" data-goto="thongtin">Mở bước 1 →</button></div>
+        <div class="card gs"><span class="gn">2</span><h2>Nội dung kiểm tra</h2><p>Mỗi chủ đề gồm các đơn vị kiến thức, trong mỗi đơn vị là các bài SGK. Chọn đủ bài thì đề ra ngẫu nhiên trong cả đơn vị; bỏ chọn bài nào (chưa học) thì đề bỏ nội dung bài đó. Có <b>Chọn nhanh: từ bài… đến bài…</b>, Học kì I, II. Mở <b>Yêu cầu cần đạt</b> ở từng bài để xem YCCĐ chính thức CT GDPT 2018; sửa trực tiếp hoặc bấm <b>AI soạn YCCĐ 4 mức</b>. Sửa số tiết cho khớp phân phối chương trình của trường.</p><button class="btn small" data-goto="noidung">Mở bước 2 →</button></div>
+        <div class="card gs"><span class="gn">3</span><h2>Cấu trúc &amp; ma trận</h2><p>Chọn mẫu cấu trúc (4 dạng theo CV 7991, TN 3đ + TL 7đ, hoặc chỉ tự luận), chỉnh số câu, điểm. Bấm <b>Phân bổ tự động</b> (theo số tiết) hoặc <b>AI đề xuất phân bổ</b>, rồi sửa từng ô. Chip màu xanh “10/10 điểm” là ma trận đã cân.</p><button class="btn small" data-goto="matran">Mở bước 3 →</button></div>
+        <div class="card gs"><span class="gn">4</span><h2>Đặc tả &amp; xuất file</h2><p>Xem ma trận và bản đặc tả theo mẫu. Bấm <b>AI viết đặc tả chi tiết</b> để có mô tả riêng cho từng câu, từng ý. Tải file Word (A4 ngang) hoặc lưu dự án .json để mở trên máy khác.</p><button class="btn small" data-goto="xuat">Mở bước 4 →</button></div>
+        <div class="card gs"><span class="gn">5</span><h2>Ra đề bằng AI</h2><p>Phần 2 dùng thẳng ma trận và đặc tả vừa lập. Có thể tải thêm đề minh hoạ, ngân hàng câu hỏi; chọn nguồn đề, số đề, vẽ hình. Bấm <b>Tạo đề</b>, xem Đề thi / Hướng dẫn chấm, tải Word.</p><button class="btn small" data-goto="rade">Mở Phần 2 →</button></div>
+      </div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="card"><h2>Mẹo &amp; lưu ý</h2><ul class="r">
+          <li>Mọi thay đổi được <b>tự lưu</b> trong trình duyệt của máy đang dùng. Muốn chuyển máy: bước 4 → <b>Lưu dự án (.json)</b>, sang máy mới bấm <b>Mở dự án…</b>.</li>
+          <li>Mức độ của YCCĐ (Biết/Hiểu/Vận dụng) là gợi ý theo động từ; tổ chuyên môn nên rà lại cho thống nhất.</li>
+          <li>Công thức trong đề viết dạng <code>$...$</code>; mở bằng Word rồi chuyển sang MathType (MathType → Toggle TeX).</li>
+          <li>Câu Đúng–Sai tính theo ý: 4 ý = 1 câu.</li>
+          <li>Đề do AI soạn cần giáo viên kiểm tra lại số liệu, đáp án và hình vẽ trước khi sử dụng.</li></ul></div>
+        <div class="card"><h2>Khi gặp lỗi AI</h2><ul class="r">
+          <li><b>Hết hạn mức (429):</b> thêm key khác (mỗi tài khoản một key), giảm số đề mỗi lần, bớt tệp PDF/ảnh gửi kèm, hoặc đợi qua ngày.</li>
+          <li><b>Sai key:</b> kiểm tra lại key, bấm Kiểm tra tất cả key để xem key nào dùng được.</li>
+          <li><b>Mô hình không có:</b> với Gemini bấm “Tải danh sách mô hình từ key”; với AI khác sửa danh sách mô hình.</li>
+          <li>Xem <b>Lần gọi AI gần nhất</b> trong Cài đặt AI để biết đã thử những mô hình, key nào.</li>
+          <li>Key chỉ lưu trên trình duyệt của máy này; không dùng trang trên máy tính công cộng.</li></ul></div>
+      </div>
+    </section>
+
     <section id="p1">
       <header class="top"><div><div class="kick">Phần 1</div><h1>Ma trận &amp; đặc tả đề kiểm tra Toán THCS</h1>
         <p>Chương trình GDPT 2018 · Sách Kết nối tri thức với cuộc sống · Khung theo Công văn 7991/BGDĐT-GDTrH</p></div></header>
@@ -341,21 +430,24 @@ label.opt input{margin-top:3px;accent-color:var(--accent);flex:none}
         <div class="rcol">
           <div class="card" id="linkCard">
             <h2>Ma trận &amp; bảng đặc tả làm căn cứ</h2>
-            <div class="seg" id="lnkSeg"><button type="button" data-l="1">Dùng ma trận ở Phần 1</button><button type="button" data-l="0">Tải tệp khác</button></div>
+            <div class="seg" id="lnkSeg"><button type="button" data-l="1">Dùng ma trận ở Phần 1</button><button type="button" data-l="0">Nhập ma trận &amp; đặc tả có sẵn</button></div>
             <div id="lnkInfo"></div>
             <p class="hint" id="rdAi" style="margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line)"></p>
           </div>
           <div id="secs"></div>
+          <details class="acc" id="tlCard"><summary><span>Phần tự luận: bài tổng hợp</span><span class="sbad"><span class="badge mute" id="tlBadge"></span></span></summary><div class="bd" id="tlBody"></div></details>
           <details class="acc" open><summary><span>Tuỳ chọn tạo đề</span></summary><div class="bd">
             <label class="lb" for="src">Nguồn lấy đề bài</label>
             <select id="src"><option value="1">1 · Hoàn toàn từ Internet</option><option value="2">2 · Từ ngân hàng câu hỏi / bài tập đã đưa lên</option><option value="3">3 · Kết hợp cả hai nguồn</option></select>
+            <div id="srcHint"></div>
             <div class="rcols">
               <div><label class="lb" for="num">Số đề cần tạo</label><select id="num"><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
               <div><label class="lb" for="star">Nội dung có dấu *</label><select id="star"><option value="no">Không có dấu *</option><option value="yes">Có dấu *</option></select></div>
               <div><label class="lb" for="close">Bám sát đề minh hoạ</label><select id="close"><option value="yes">Có, bám sát</option><option value="no">Không cần</option></select></div>
               <div><label class="lb" for="det">Hướng dẫn chấm</label><select id="det"><option value="yes">Chi tiết từng câu</option><option value="no">Rút gọn</option></select></div>
             </div>
-            <label class="lb" for="fig">Vẽ hình trong đề</label><select id="fig"><option value="yes">Có, vẽ khi bài toán cần hình</option><option value="no">Không vẽ hình</option></select>
+            <label class="lb" for="fig">Vẽ hình trong đề</label><select id="fig"><option value="all">Hình học + hình minh hoạ bài toán thực tế</option><option value="hh">Chỉ hình học (hình phẳng, hình khối, đồ thị)</option><option value="no">Không vẽ hình</option></select>
+            <label class="lb" for="tt">Bài toán thực tế</label><select id="tt"><option value="auto">Theo bản đặc tả</option><option value="tang">Tăng cường, kèm hình minh hoạ</option></select>
             <label class="lb" for="note">Yêu cầu thêm (không bắt buộc)</label><textarea id="note" rows="2" placeholder="Ví dụ: ưu tiên bối cảnh thực tế ở Hải Phòng"></textarea>
           </div></details>
           <div class="rrow"><button class="btn primary big" id="go">Tạo đề</button><button class="btn" id="stop" hidden>Dừng</button></div>
@@ -920,392 +1012,43 @@ window.CURRICULUM[9] = { chapters: [
 
 </script>
 <script>
-/* Yêu cầu cần đạt – Chương trình GDPT 2018 môn Toán (Thông tư 32/2018/TT-BGDĐT), cấp THCS.
-   Mỗi nội dung: [mạch, phân mạch, chủ đề, nội dung, [[yêu cầu cần đạt, "mã bài KNTT liên quan"], ...]] */
+/* Yêu cầu cần đạt – Chương trình GDPT 2018 môn Toán (Thông tư 32/2018/TT-BGDĐT), cấp THCS,
+   gắn theo từng bài SGK Kết nối tri thức với cuộc sống (lớp 6–9).
+   CT2018[lớp] = [mạch, phân mạch, chủ đề, nội dung, [[yêu cầu cần đạt, "số các bài SGK"], ...]]
+   SGK[lớp][mã chương] = [[số bài, tên bài, số tiết gợi ý], ...] */
 window.CT_MACH={SD:'Số và Đại số',HH:'Hình học và Đo lường',TK:'Thống kê và Xác suất'};
-window.CT2018={
-6:[
-['SD','Số','Số tự nhiên','Số tự nhiên và tập hợp các số tự nhiên. Thứ tự trong tập hợp các số tự nhiên',[
- ['Sử dụng được thuật ngữ tập hợp, phần tử thuộc (không thuộc) một tập hợp; sử dụng được cách cho tập hợp.','6-1-1'],
- ['Nhận biết được tập hợp các số tự nhiên.','6-1-1'],
- ['Biểu diễn được số tự nhiên trong hệ thập phân.','6-1-1'],
- ['Biểu diễn được các số tự nhiên từ 1 đến 30 bằng cách sử dụng các chữ số La Mã.','6-1-1'],
- ['Nhận biết được (quan hệ) thứ tự trong tập hợp các số tự nhiên; so sánh được hai số tự nhiên cho trước.','6-1-1']]],
-['SD','Số','Số tự nhiên','Các phép tính với số tự nhiên. Phép tính luỹ thừa với số mũ tự nhiên',[
- ['Thực hiện được các phép tính: cộng, trừ, nhân, chia trong tập hợp số tự nhiên.','6-1-2'],
- ['Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng trong tính toán.','6-1-2'],
- ['Thực hiện được phép tính luỹ thừa với số mũ tự nhiên; thực hiện được các phép nhân và phép chia hai luỹ thừa cùng cơ số với số mũ tự nhiên.','6-1-3'],
- ['Nhận biết được thứ tự thực hiện các phép tính.','6-1-3'],
- ['Vận dụng được các tính chất của phép tính (kể cả phép tính luỹ thừa với số mũ tự nhiên) để tính nhẩm, tính nhanh một cách hợp lí.','6-1-2 6-1-3'],
- ['Giải quyết được những vấn đề thực tiễn gắn với thực hiện các phép tính (ví dụ: tính tiền mua sắm, tính lượng hàng mua được từ số tiền đã có,...).','6-1-2 6-1-3']]],
-['SD','Số','Số tự nhiên','Tính chia hết trong tập hợp các số tự nhiên. Số nguyên tố. Ước chung và bội chung',[
- ['Nhận biết được quan hệ chia hết, khái niệm ước và bội.','6-2-1'],
- ['Vận dụng được dấu hiệu chia hết cho 2, 5, 9, 3 để xác định một số đã cho có chia hết cho 2, 5, 9, 3 hay không.','6-2-1'],
- ['Nhận biết được khái niệm số nguyên tố, hợp số.','6-2-2'],
- ['Thực hiện được việc phân tích một số tự nhiên lớn hơn 1 thành tích của các thừa số nguyên tố trong những trường hợp đơn giản.','6-2-2'],
- ['Xác định được ước chung, ước chung lớn nhất; xác định được bội chung, bội chung nhỏ nhất của hai hoặc ba số tự nhiên; nhận biết được phân số tối giản; thực hiện được phép cộng, phép trừ phân số bằng cách sử dụng ước chung lớn nhất, bội chung nhỏ nhất.','6-2-3'],
- ['Nhận biết được phép chia có dư, định lí về phép chia có dư.','6-2-1'],
- ['Vận dụng được kiến thức số học vào giải quyết những vấn đề thực tiễn (ví dụ: tính toán tiền hay lượng hàng hoá khi mua sắm, xác định số đồ vật cần thiết để sắp xếp chúng theo những quy tắc cho trước,...).','6-2-1 6-2-2 6-2-3']]],
-['SD','Số','Số nguyên','Số nguyên âm và tập hợp các số nguyên. Thứ tự trong tập hợp các số nguyên',[
- ['Nhận biết được số nguyên âm, tập hợp các số nguyên.','6-3-1'],
- ['Biểu diễn được số nguyên trên trục số.','6-3-1'],
- ['Nhận biết được số đối của một số nguyên.','6-3-1'],
- ['Nhận biết được thứ tự trong tập hợp các số nguyên. So sánh được hai số nguyên cho trước.','6-3-1'],
- ['Nhận biết được ý nghĩa của số nguyên âm trong một số bài toán thực tiễn.','6-3-1']]],
-['SD','Số','Số nguyên','Các phép tính với số nguyên. Tính chia hết trong tập hợp các số nguyên',[
- ['Thực hiện được các phép tính: cộng, trừ, nhân, chia (chia hết) trong tập hợp các số nguyên.','6-3-2 6-3-3'],
- ['Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc trong tập hợp các số nguyên trong tính toán (tính viết và tính nhẩm, tính nhanh một cách hợp lí).','6-3-2 6-3-3'],
- ['Nhận biết được quan hệ chia hết, khái niệm ước và bội trong tập hợp các số nguyên.','6-3-3'],
- ['Giải quyết được những vấn đề thực tiễn gắn với thực hiện các phép tính về số nguyên (ví dụ: tính lỗ lãi khi buôn bán,...).','6-3-2 6-3-3']]],
-['SD','Số','Phân số','Phân số. Tính chất cơ bản của phân số. So sánh phân số',[
- ['Nhận biết được phân số với tử số hoặc mẫu số là số nguyên âm.','6-6-1'],
- ['Nhận biết được khái niệm hai phân số bằng nhau và nhận biết được quy tắc bằng nhau của hai phân số.','6-6-1'],
- ['Nêu được hai tính chất cơ bản của phân số.','6-6-1'],
- ['So sánh được hai phân số cho trước.','6-6-1'],
- ['Nhận biết được số đối của một phân số.','6-6-1'],
- ['Nhận biết được hỗn số dương.','6-6-1']]],
-['SD','Số','Phân số','Các phép tính với phân số',[
- ['Thực hiện được các phép tính cộng, trừ, nhân, chia với phân số.','6-6-2'],
- ['Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc với phân số trong tính toán (tính viết và tính nhẩm, tính nhanh một cách hợp lí).','6-6-2'],
- ['Tính được giá trị phân số của một số cho trước và tính được một số biết giá trị phân số của số đó.','6-6-3'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với các phép tính về phân số (ví dụ: các bài toán liên quan đến chuyển động trong Vật lí,...).','6-6-2 6-6-3']]],
-['SD','Số','Số thập phân','Số thập phân và các phép tính với số thập phân. Tỉ số và tỉ số phần trăm',[
- ['Nhận biết được số thập phân âm, số đối của một số thập phân.','6-7-1'],
- ['So sánh được hai số thập phân cho trước.','6-7-1'],
- ['Thực hiện được các phép tính cộng, trừ, nhân, chia với số thập phân.','6-7-2'],
- ['Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc với số thập phân trong tính toán (tính viết và tính nhẩm, tính nhanh một cách hợp lí).','6-7-2'],
- ['Thực hiện được ước lượng và làm tròn số thập phân.','6-7-2'],
- ['Tính được tỉ số và tỉ số phần trăm của hai đại lượng.','6-7-3'],
- ['Tính được giá trị phần trăm của một số cho trước và tính được một số biết giá trị phần trăm của số đó.','6-7-3'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với các phép tính về số thập phân, tỉ số và tỉ số phần trăm (ví dụ: các bài toán liên quan đến lãi suất tín dụng, liên quan đến thành phần các chất trong Hoá học,...).','6-7-2 6-7-3']]],
-['HH','Hình học trực quan','Các hình phẳng trong thực tiễn','Tam giác đều, hình vuông, lục giác đều',[
- ['Nhận dạng được tam giác đều, hình vuông, lục giác đều.','6-4-1'],
- ['Mô tả được một số yếu tố cơ bản (cạnh, góc, đường chéo) của: tam giác đều (ví dụ: ba cạnh bằng nhau, ba góc bằng nhau); hình vuông (ví dụ: bốn cạnh bằng nhau, mỗi góc là góc vuông, hai đường chéo bằng nhau); lục giác đều (ví dụ: sáu cạnh bằng nhau, sáu góc bằng nhau, ba đường chéo chính bằng nhau).','6-4-1'],
- ['Vẽ được tam giác đều, hình vuông bằng dụng cụ học tập.','6-4-1'],
- ['Tạo lập được lục giác đều thông qua việc lắp ghép các tam giác đều.','6-4-1']]],
-['HH','Hình học trực quan','Các hình phẳng trong thực tiễn','Hình chữ nhật, hình thoi, hình bình hành, hình thang cân',[
- ['Mô tả được một số yếu tố cơ bản (cạnh, góc, đường chéo) của hình chữ nhật, hình thoi, hình bình hành, hình thang cân.','6-4-2'],
- ['Vẽ được hình chữ nhật, hình thoi, hình bình hành bằng các dụng cụ học tập.','6-4-2'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với việc tính chu vi và diện tích của các hình đặc biệt nói trên (ví dụ: tính chu vi hoặc diện tích của một số đối tượng có dạng đặc biệt nói trên,...).','6-4-3']]],
-['HH','Hình học trực quan','Tính đối xứng của hình phẳng trong thế giới tự nhiên','Hình có trục đối xứng',[
- ['Nhận biết được trục đối xứng của một hình phẳng.','6-5-1'],
- ['Nhận biết được những hình phẳng trong tự nhiên có trục đối xứng (khi quan sát trên hình ảnh 2 chiều).','6-5-1']]],
-['HH','Hình học trực quan','Tính đối xứng của hình phẳng trong thế giới tự nhiên','Hình có tâm đối xứng',[
- ['Nhận biết được tâm đối xứng của một hình phẳng.','6-5-2'],
- ['Nhận biết được những hình phẳng trong thế giới tự nhiên có tâm đối xứng (khi quan sát trên hình ảnh 2 chiều).','6-5-2']]],
-['HH','Hình học trực quan','Tính đối xứng của hình phẳng trong thế giới tự nhiên','Vai trò của đối xứng trong thế giới tự nhiên',[
- ['Nhận biết được tính đối xứng trong Toán học, tự nhiên, nghệ thuật, kiến trúc, công nghệ chế tạo,...','6-5-1 6-5-2'],
- ['Nhận biết được vẻ đẹp của thế giới tự nhiên biểu hiện qua tính đối xứng (ví dụ: nhận biết vẻ đẹp của một số loài thực vật, động vật trong tự nhiên có tâm đối xứng hoặc có trục đối xứng).','6-5-1 6-5-2']]],
-['HH','Hình học phẳng','Các hình hình học cơ bản','Điểm, đường thẳng, tia',[
- ['Nhận biết được những quan hệ cơ bản giữa điểm, đường thẳng: điểm thuộc đường thẳng, điểm không thuộc đường thẳng; tiên đề về đường thẳng đi qua hai điểm phân biệt.','6-8-1'],
- ['Nhận biết được khái niệm hai đường thẳng cắt nhau, song song.','6-8-1'],
- ['Nhận biết được khái niệm ba điểm thẳng hàng, ba điểm không thẳng hàng.','6-8-1'],
- ['Nhận biết được khái niệm điểm nằm giữa hai điểm.','6-8-1'],
- ['Nhận biết được khái niệm tia.','6-8-1']]],
-['HH','Hình học phẳng','Các hình hình học cơ bản','Đoạn thẳng. Độ dài đoạn thẳng',[
- ['Nhận biết được khái niệm đoạn thẳng, trung điểm của đoạn thẳng, độ dài đoạn thẳng.','6-8-2']]],
-['HH','Hình học phẳng','Các hình hình học cơ bản','Góc. Các góc đặc biệt. Số đo góc',[
- ['Nhận biết được khái niệm góc, điểm trong của góc (không đề cập đến góc lõm).','6-8-3'],
- ['Nhận biết được các góc đặc biệt (góc vuông, góc nhọn, góc tù, góc bẹt).','6-8-3'],
- ['Nhận biết được khái niệm số đo góc.','6-8-3']]],
-['TK','Một số yếu tố thống kê','Thu thập và tổ chức dữ liệu','Thu thập, phân loại, biểu diễn dữ liệu theo các tiêu chí cho trước',[
- ['Thực hiện được việc thu thập, phân loại dữ liệu theo các tiêu chí cho trước từ những nguồn: bảng biểu, kiến thức trong các môn học khác.','6-9-1'],
- ['Nhận biết được tính hợp lí của dữ liệu theo các tiêu chí đơn giản.','6-9-1']]],
-['TK','Một số yếu tố thống kê','Thu thập và tổ chức dữ liệu','Mô tả và biểu diễn dữ liệu trên các bảng, biểu đồ',[
- ['Đọc và mô tả thành thạo các dữ liệu ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart).','6-9-1 6-9-2'],
- ['Lựa chọn và biểu diễn được dữ liệu vào bảng, biểu đồ thích hợp ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart).','6-9-1 6-9-2']]],
-['TK','Một số yếu tố thống kê','Phân tích và xử lí dữ liệu','Hình thành và giải quyết vấn đề đơn giản xuất hiện từ các số liệu và biểu đồ thống kê đã có',[
- ['Nhận ra được vấn đề hoặc quy luật đơn giản dựa trên phân tích các số liệu thu được ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart).','6-9-1 6-9-2'],
- ['Giải quyết được những vấn đề đơn giản liên quan đến các số liệu thu được ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart).','6-9-1 6-9-2'],
- ['Nhận biết được mối liên hệ giữa thống kê với những kiến thức trong các môn học trong Chương trình lớp 6 (ví dụ: Lịch sử và Địa lí lớp 6, Khoa học tự nhiên lớp 6,...) và trong thực tiễn (ví dụ: khí hậu, giá cả thị trường,...).','6-9-2']]],
-['TK','Một số yếu tố xác suất','Một số yếu tố xác suất','Làm quen với một số mô hình xác suất đơn giản. Làm quen với việc mô tả xác suất (thực nghiệm) của khả năng xảy ra nhiều lần của một sự kiện trong một số mô hình xác suất đơn giản',[
- ['Làm quen với mô hình xác suất trong một số trò chơi, thí nghiệm đơn giản (ví dụ: ở trò chơi tung đồng xu thì mô hình xác suất gồm hai khả năng ứng với mặt xuất hiện của đồng xu,...).','6-9-3'],
- ['Làm quen với việc mô tả xác suất (thực nghiệm) của khả năng xảy ra nhiều lần của một sự kiện trong một số mô hình xác suất đơn giản.','6-9-3']]],
-['TK','Một số yếu tố xác suất','Một số yếu tố xác suất','Mô tả xác suất (thực nghiệm) của khả năng xảy ra nhiều lần của một sự kiện trong một số mô hình xác suất đơn giản',[
- ['Sử dụng được phân số để mô tả xác suất (thực nghiệm) của khả năng xảy ra nhiều lần thông qua kiểm đếm số lần lặp lại của khả năng đó trong một số mô hình xác suất đơn giản.','6-9-3']]]
-],
-7:[
-['SD','Số','Số hữu tỉ','Số hữu tỉ và tập hợp các số hữu tỉ. Thứ tự trong tập hợp các số hữu tỉ',[
- ['Nhận biết được số hữu tỉ và lấy được ví dụ về số hữu tỉ.','7-1-1'],
- ['Nhận biết được tập hợp các số hữu tỉ.','7-1-1'],
- ['Biểu diễn được số hữu tỉ trên trục số.','7-1-1'],
- ['Nhận biết được số đối của một số hữu tỉ.','7-1-1'],
- ['Nhận biết được thứ tự trong tập hợp các số hữu tỉ. So sánh được hai số hữu tỉ.','7-1-1']]],
-['SD','Số','Số hữu tỉ','Các phép tính với số hữu tỉ',[
- ['Thực hiện được các phép tính: cộng, trừ, nhân, chia trong tập hợp số hữu tỉ.','7-1-2'],
- ['Mô tả được phép tính luỹ thừa với số mũ tự nhiên của một số hữu tỉ và một số tính chất của phép tính đó (tích và thương của hai luỹ thừa cùng cơ số, luỹ thừa của luỹ thừa).','7-1-3'],
- ['Mô tả được thứ tự thực hiện các phép tính, quy tắc dấu ngoặc, quy tắc chuyển vế trong tập hợp số hữu tỉ.','7-1-4'],
- ['Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc với số hữu tỉ trong tính toán (tính viết và tính nhẩm, tính nhanh một cách hợp lí).','7-1-2 7-1-4'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với các phép tính về số hữu tỉ (ví dụ: các bài toán liên quan đến chuyển động trong Vật lí, trong đo đạc,...).','7-1-2 7-1-3 7-1-4']]],
-['SD','Số','Số thực','Căn bậc hai số học',[
- ['Nhận biết được khái niệm căn bậc hai số học của một số không âm.','7-2-2'],
- ['Tính được giá trị (đúng hoặc gần đúng) căn bậc hai số học của một số nguyên dương bằng máy tính cầm tay.','7-2-2']]],
-['SD','Số','Số thực','Số vô tỉ. Số thực',[
- ['Nhận biết được số thập phân hữu hạn và số thập phân vô hạn tuần hoàn.','7-2-1'],
- ['Nhận biết được số vô tỉ, số thực, tập hợp các số thực.','7-2-2 7-2-3'],
- ['Nhận biết được trục số thực và biểu diễn được số thực trên trục số trong trường hợp thuận lợi.','7-2-3'],
- ['Nhận biết được số đối của một số thực.','7-2-3'],
- ['Nhận biết được thứ tự trong tập hợp các số thực.','7-2-3'],
- ['Nhận biết được giá trị tuyệt đối của một số thực.','7-2-3'],
- ['Thực hiện được ước lượng và làm tròn số căn cứ vào độ chính xác cho trước.','7-2-3']]],
-['SD','Số','Số thực','Tỉ lệ thức và dãy tỉ số bằng nhau',[
- ['Nhận biết được tỉ lệ thức và các tính chất của tỉ lệ thức.','7-6-1'],
- ['Vận dụng được tính chất của tỉ lệ thức trong giải toán.','7-6-1'],
- ['Nhận biết được dãy tỉ số bằng nhau.','7-6-2'],
- ['Vận dụng được tính chất của dãy tỉ số bằng nhau trong giải toán (ví dụ: chia một số thành các phần tỉ lệ với các số cho trước,...).','7-6-2']]],
-['SD','Số','Số thực','Giải toán về đại lượng tỉ lệ',[
- ['Giải được một số bài toán đơn giản về đại lượng tỉ lệ thuận (ví dụ: bài toán về tổng sản phẩm thu được và năng suất lao động,...).','7-6-3'],
- ['Giải được một số bài toán đơn giản về đại lượng tỉ lệ nghịch (ví dụ: bài toán về thời gian hoàn thành kế hoạch và năng suất lao động,...).','7-6-3']]],
-['SD','Đại số','Biểu thức đại số','Biểu thức đại số',[
- ['Nhận biết được biểu thức số.','7-7-1'],
- ['Nhận biết được biểu thức đại số.','7-7-1'],
- ['Tính được giá trị của một biểu thức đại số.','7-7-1']]],
-['SD','Đại số','Biểu thức đại số','Đa thức một biến',[
- ['Nhận biết được định nghĩa đa thức một biến.','7-7-2'],
- ['Nhận biết được cách biểu diễn đa thức một biến; xác định được bậc của đa thức một biến.','7-7-2'],
- ['Tính được giá trị của đa thức khi biết giá trị của biến.','7-7-2'],
- ['Nhận biết được khái niệm nghiệm của đa thức một biến.','7-7-2'],
- ['Thực hiện được các phép tính: phép cộng, phép trừ, phép nhân, phép chia trong tập hợp các đa thức một biến; vận dụng được những tính chất của các phép tính đó trong tính toán.','7-7-3 7-7-4']]],
-['HH','Hình học trực quan','Các hình khối trong thực tiễn','Hình hộp chữ nhật và hình lập phương',[
- ['Mô tả được một số yếu tố cơ bản (đỉnh, cạnh, góc, đường chéo) của hình hộp chữ nhật và hình lập phương.','7-10-1'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với việc tính thể tích, diện tích xung quanh của hình hộp chữ nhật, hình lập phương (ví dụ: tính thể tích hoặc diện tích xung quanh của một số đồ vật quen thuộc có dạng hình hộp chữ nhật, hình lập phương,...).','7-10-1']]],
-['HH','Hình học trực quan','Các hình khối trong thực tiễn','Lăng trụ đứng tam giác, lăng trụ đứng tứ giác',[
- ['Mô tả được hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác (ví dụ: hai mặt đáy là song song; các mặt bên đều là hình chữ nhật) và tạo lập được hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác.','7-10-2'],
- ['Tính được diện tích xung quanh, thể tích của hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác.','7-10-2'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với việc tính thể tích, diện tích xung quanh của một lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác (ví dụ: tính thể tích hoặc diện tích xung quanh của một số đồ vật quen thuộc có dạng lăng trụ đứng tam giác, lăng trụ đứng tứ giác,...).','7-10-2']]],
-['HH','Hình học phẳng','Các hình hình học cơ bản','Góc ở vị trí đặc biệt. Tia phân giác của một góc',[
- ['Nhận biết được các góc ở vị trí đặc biệt (hai góc kề bù, hai góc đối đỉnh).','7-3-1'],
- ['Nhận biết được tia phân giác của một góc.','7-3-1'],
- ['Nhận biết được cách vẽ tia phân giác của một góc bằng dụng cụ học tập.','7-3-1']]],
-['HH','Hình học phẳng','Các hình hình học cơ bản','Hai đường thẳng song song. Tiên đề Euclid về đường thẳng song song',[
- ['Mô tả được một số tính chất của hai đường thẳng song song.','7-3-3'],
- ['Mô tả được dấu hiệu song song của hai đường thẳng thông qua cặp góc đồng vị, cặp góc so le trong.','7-3-2'],
- ['Nhận biết được tiên đề Euclid về đường thẳng song song.','7-3-3']]],
-['HH','Hình học phẳng','Các hình hình học cơ bản','Khái niệm định lí, chứng minh một định lí',[
- ['Nhận biết được thế nào là một định lí, chứng minh một định lí.','7-3-4']]],
-['HH','Hình học phẳng','Các hình hình học cơ bản','Tam giác. Tam giác bằng nhau. Tam giác cân. Quan hệ giữa đường vuông góc và đường xiên. Các đường đồng quy của tam giác',[
- ['Giải thích được định lí về tổng các góc trong một tam giác bằng 180°.','7-4-1'],
- ['Nhận biết được liên hệ về độ dài của ba cạnh trong một tam giác.','7-9-2'],
- ['Nhận biết được khái niệm hai tam giác bằng nhau.','7-4-2'],
- ['Giải thích được các trường hợp bằng nhau của hai tam giác, của hai tam giác vuông.','7-4-2 7-4-3'],
- ['Mô tả được tam giác cân và giải thích được tính chất của tam giác cân (ví dụ: hai cạnh bên bằng nhau; hai góc đáy bằng nhau).','7-4-4'],
- ['Nhận biết được khái niệm: đường vuông góc và đường xiên; khoảng cách từ một điểm đến một đường thẳng. Giải thích được quan hệ giữa đường vuông góc và đường xiên dựa trên mối quan hệ giữa cạnh và góc đối trong tam giác (đối diện với góc lớn hơn là cạnh lớn hơn và ngược lại).','7-9-1 7-9-2'],
- ['Nhận biết được đường trung trực của một đoạn thẳng và tính chất cơ bản của đường trung trực.','7-4-4'],
- ['Nhận biết được: các đường đặc biệt trong tam giác (đường trung tuyến, đường cao, đường phân giác, đường trung trực); sự đồng quy của các đường đặc biệt đó.','7-9-3 7-9-4']]],
-['HH','Hình học phẳng','Các hình hình học cơ bản','Giải bài toán có nội dung hình học và vận dụng giải quyết vấn đề thực tiễn liên quan đến hình học',[
- ['Diễn đạt được lập luận và chứng minh hình học trong những trường hợp đơn giản (ví dụ: lập luận và chứng minh được các đoạn thẳng bằng nhau, các góc bằng nhau từ các điều kiện ban đầu liên quan đến tam giác,...).','7-3-4 7-4-2 7-4-3 7-4-4 7-9-3 7-9-4'],
- ['Giải quyết được một số vấn đề thực tiễn liên quan đến ứng dụng của hình học như: đo, vẽ, tạo dựng các hình đã học.','7-4-2 7-4-4 7-9-2']]],
-['TK','Một số yếu tố thống kê','Thu thập và tổ chức dữ liệu','Thu thập, phân loại, biểu diễn dữ liệu theo các tiêu chí cho trước',[
- ['Thực hiện và lí giải được việc thu thập, phân loại dữ liệu theo các tiêu chí cho trước từ những nguồn: văn bản, bảng biểu, kiến thức trong các môn học khác và trong thực tiễn.','7-5-1'],
- ['Giải thích được tính hợp lí của dữ liệu theo các tiêu chí toán học đơn giản (ví dụ: tính hợp lí, tính đại diện của một kết luận trong phỏng vấn; tính hợp lí của các quảng cáo;...).','7-5-1']]],
-['TK','Một số yếu tố thống kê','Thu thập và tổ chức dữ liệu','Mô tả và biểu diễn dữ liệu trên các bảng, biểu đồ',[
- ['Đọc và mô tả thành thạo các dữ liệu ở dạng biểu đồ thống kê: biểu đồ hình quạt tròn (pie chart); biểu đồ đoạn thẳng (line graph).','7-5-2 7-5-3'],
- ['Lựa chọn và biểu diễn được dữ liệu vào bảng, biểu đồ thích hợp ở dạng: biểu đồ hình quạt tròn (cho sẵn) (pie chart); biểu đồ đoạn thẳng (line graph).','7-5-2 7-5-3'],
- ['Nhận biết được những dạng biểu diễn khác nhau cho một tập dữ liệu.','7-5-2 7-5-3']]],
-['TK','Một số yếu tố thống kê','Phân tích và xử lí dữ liệu','Hình thành và giải quyết vấn đề đơn giản xuất hiện từ các số liệu và biểu đồ thống kê đã có',[
- ['Nhận ra được vấn đề hoặc quy luật đơn giản dựa trên phân tích các số liệu thu được ở dạng: biểu đồ hình quạt tròn (cho sẵn) (pie chart); biểu đồ đoạn thẳng (line graph).','7-5-2 7-5-3'],
- ['Giải quyết được những vấn đề đơn giản liên quan đến các số liệu thu được ở dạng: biểu đồ hình quạt tròn (cho sẵn) (pie chart); biểu đồ đoạn thẳng (line graph).','7-5-2 7-5-3'],
- ['Nhận biết được mối liên hệ giữa thống kê với những kiến thức trong các môn học khác trong Chương trình lớp 7 (ví dụ: Lịch sử và Địa lí lớp 7, Khoa học tự nhiên lớp 7,...) và trong thực tiễn (ví dụ: môi trường, y học, tài chính,...).','7-5-1']]],
-['TK','Một số yếu tố xác suất','Một số yếu tố xác suất','Làm quen với biến cố ngẫu nhiên. Làm quen với xác suất của biến cố ngẫu nhiên trong một số ví dụ đơn giản',[
- ['Làm quen với các khái niệm mở đầu về biến cố ngẫu nhiên và xác suất của biến cố ngẫu nhiên trong các ví dụ đơn giản.','7-8-1 7-8-2'],
- ['Nhận biết được xác suất của một biến cố ngẫu nhiên trong một số ví dụ đơn giản (ví dụ: lấy bóng trong túi, tung xúc xắc,...).','7-8-2']]]
-],
-8:[
-['SD','Đại số','Biểu thức đại số','Đa thức nhiều biến. Các phép toán cộng, trừ, nhân, chia các đa thức nhiều biến',[
- ['Nhận biết được các khái niệm về đơn thức, đa thức nhiều biến.','8-1-1'],
- ['Tính được giá trị của đa thức khi biết giá trị của các biến.','8-1-1'],
- ['Thực hiện được việc thu gọn đơn thức, đa thức.','8-1-1'],
- ['Thực hiện được phép nhân đơn thức với đa thức và phép chia hết một đơn thức cho một đơn thức.','8-1-2'],
- ['Thực hiện được các phép tính: phép cộng, phép trừ, phép nhân các đa thức nhiều biến trong những trường hợp đơn giản.','8-1-2'],
- ['Thực hiện được phép chia hết một đa thức cho một đơn thức trong những trường hợp đơn giản.','8-1-2']]],
-['SD','Đại số','Biểu thức đại số','Hằng đẳng thức đáng nhớ',[
- ['Nhận biết được các khái niệm: đồng nhất thức, hằng đẳng thức.','8-2-1'],
- ['Mô tả được các hằng đẳng thức: bình phương của tổng và hiệu; hiệu hai bình phương; lập phương của tổng và hiệu; tổng và hiệu hai lập phương.','8-2-1'],
- ['Vận dụng được các hằng đẳng thức để phân tích đa thức thành nhân tử ở dạng: vận dụng trực tiếp hằng đẳng thức; vận dụng hằng đẳng thức thông qua nhóm hạng tử và đặt nhân tử chung.','8-2-2']]],
-['SD','Đại số','Biểu thức đại số','Phân thức đại số. Tính chất cơ bản của phân thức đại số. Các phép toán cộng, trừ, nhân, chia các phân thức đại số',[
- ['Nhận biết được các khái niệm cơ bản về phân thức đại số: định nghĩa; điều kiện xác định; giá trị của phân thức đại số; hai phân thức bằng nhau.','8-6-1'],
- ['Mô tả được những tính chất cơ bản của phân thức đại số.','8-6-1'],
- ['Thực hiện được các phép tính: phép cộng, phép trừ, phép nhân, phép chia đối với hai phân thức đại số.','8-6-2'],
- ['Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc với phân thức đại số trong tính toán.','8-6-2']]],
-['SD','Đại số','Hàm số và đồ thị','Hàm số và đồ thị',[
- ['Nhận biết được những mô hình thực tế dẫn đến khái niệm hàm số.','8-7-2'],
- ['Tính được giá trị của hàm số khi hàm số đó xác định bởi công thức.','8-7-2'],
- ['Xác định được toạ độ của một điểm trên mặt phẳng toạ độ; xác định được một điểm trên mặt phẳng toạ độ khi biết toạ độ của nó.','8-7-2'],
- ['Nhận biết được đồ thị hàm số.','8-7-2']]],
-['SD','Đại số','Hàm số và đồ thị','Hàm số bậc nhất y = ax + b (a ≠ 0) và đồ thị. Hệ số góc của đường thẳng y = ax + b (a ≠ 0)',[
- ['Thiết lập được bảng giá trị của hàm số bậc nhất y = ax + b (a ≠ 0).','8-7-3'],
- ['Vẽ được đồ thị của hàm số bậc nhất y = ax + b (a ≠ 0).','8-7-3'],
- ['Nhận biết được khái niệm hệ số góc của đường thẳng y = ax + b (a ≠ 0).','8-7-3'],
- ['Sử dụng được hệ số góc của đường thẳng để nhận biết và giải thích được sự cắt nhau hoặc song song của hai đường thẳng cho trước.','8-7-3'],
- ['Vận dụng được hàm số bậc nhất và đồ thị vào giải quyết một số bài toán thực tiễn (ví dụ: bài toán về chuyển động đều trong Vật lí,...).','8-7-3']]],
-['SD','Đại số','Phương trình','Phương trình bậc nhất',[
- ['Hiểu được khái niệm phương trình bậc nhất một ẩn và cách giải.','8-7-1'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với phương trình bậc nhất (ví dụ: các bài toán liên quan đến chuyển động trong Vật lí, các bài toán liên quan đến Hoá học,...).','8-7-1']]],
-['HH','Hình học trực quan','Các hình khối trong thực tiễn','Hình chóp tam giác đều, hình chóp tứ giác đều',[
- ['Mô tả (đỉnh, mặt đáy, mặt bên, cạnh bên), tạo lập được hình chóp tam giác đều và hình chóp tứ giác đều.','8-10-1'],
- ['Tính được diện tích xung quanh, thể tích của một hình chóp tam giác đều và hình chóp tứ giác đều.','8-10-1'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với việc tính thể tích, diện tích xung quanh của hình chóp tam giác đều và hình chóp tứ giác đều (ví dụ: tính thể tích hoặc diện tích xung quanh của một số đồ vật quen thuộc có dạng hình chóp tam giác đều và hình chóp tứ giác đều,...).','8-10-1']]],
-['HH','Hình học phẳng','Định lí Pythagore','Định lí Pythagore',[
- ['Giải thích được định lí Pythagore.','8-9-3'],
- ['Tính được độ dài cạnh trong tam giác vuông bằng cách sử dụng định lí Pythagore.','8-9-3'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với việc vận dụng định lí Pythagore (ví dụ: tính khoảng cách giữa hai vị trí).','8-9-3']]],
-['HH','Hình học phẳng','Tứ giác','Tứ giác',[
- ['Mô tả được tứ giác, tứ giác lồi.','8-3-1'],
- ['Giải thích được định lí về tổng các góc trong một tứ giác lồi bằng 360°.','8-3-1']]],
-['HH','Hình học phẳng','Tứ giác','Tính chất và dấu hiệu nhận biết các tứ giác đặc biệt',[
- ['Giải thích được tính chất về góc kề một đáy, cạnh bên, đường chéo của hình thang cân.','8-3-2'],
- ['Nhận biết được dấu hiệu để một hình thang là hình thang cân (ví dụ: hình thang có hai đường chéo bằng nhau là hình thang cân).','8-3-2'],
- ['Giải thích được tính chất về cạnh đối, góc đối, đường chéo của hình bình hành.','8-3-2'],
- ['Nhận biết được dấu hiệu để một tứ giác là hình bình hành (ví dụ: tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành).','8-3-2'],
- ['Giải thích được tính chất về hai đường chéo của hình chữ nhật.','8-3-2'],
- ['Nhận biết được dấu hiệu để một hình bình hành là hình chữ nhật (ví dụ: hình bình hành có hai đường chéo bằng nhau là hình chữ nhật).','8-3-2'],
- ['Giải thích được tính chất về đường chéo của hình thoi.','8-3-2'],
- ['Nhận biết được dấu hiệu để một hình bình hành là hình thoi (ví dụ: hình bình hành có hai đường chéo vuông góc với nhau là hình thoi).','8-3-2'],
- ['Giải thích được tính chất về hai đường chéo của hình vuông.','8-3-2'],
- ['Nhận biết được dấu hiệu để một hình chữ nhật là hình vuông (ví dụ: hình chữ nhật có hai đường chéo vuông góc với nhau là hình vuông).','8-3-2']]],
-['HH','Hình học phẳng','Định lí Thalès trong tam giác','Định lí Thalès trong tam giác',[
- ['Giải thích được định lí Thalès trong tam giác (định lí thuận và đảo).','8-4-1'],
- ['Mô tả được định nghĩa đường trung bình của tam giác. Giải thích được tính chất đường trung bình của tam giác (đường trung bình của tam giác thì song song với cạnh thứ ba và bằng nửa cạnh đó).','8-4-1'],
- ['Giải thích được tính chất đường phân giác trong của tam giác.','8-4-2'],
- ['Tính được độ dài đoạn thẳng bằng cách sử dụng định lí Thalès.','8-4-1 8-4-2'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với việc vận dụng định lí Thalès (ví dụ: tính khoảng cách giữa hai vị trí).','8-4-1']]],
-['HH','Hình học phẳng','Hình đồng dạng','Tam giác đồng dạng',[
- ['Mô tả được định nghĩa của hai tam giác đồng dạng.','8-9-1'],
- ['Giải thích được các trường hợp đồng dạng của hai tam giác, của hai tam giác vuông.','8-9-1 8-9-2'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với việc vận dụng kiến thức về hai tam giác đồng dạng (ví dụ: tính độ dài đường cao hạ xuống cạnh huyền trong tam giác vuông bằng cách sử dụng mối quan hệ giữa đường cao đó với tích của hai hình chiếu của hai cạnh góc vuông lên cạnh huyền; đo gián tiếp chiều cao của vật; tính khoảng cách giữa hai vị trí trong đó có một vị trí không thể tới được,...).','8-9-1 8-9-2']]],
-['HH','Hình học phẳng','Hình đồng dạng','Hình đồng dạng',[
- ['Nhận biết được hình đồng dạng phối cảnh (hình vị tự), hình đồng dạng qua các hình ảnh cụ thể.','8-9-4'],
- ['Nhận biết được vẻ đẹp trong tự nhiên, nghệ thuật, kiến trúc, công nghệ chế tạo,... biểu hiện qua hình đồng dạng.','8-9-4']]],
-['TK','Một số yếu tố thống kê','Thu thập và tổ chức dữ liệu','Thu thập, phân loại, tổ chức dữ liệu theo các tiêu chí cho trước',[
- ['Thực hiện và lí giải được việc thu thập, phân loại dữ liệu theo các tiêu chí cho trước từ nhiều nguồn khác nhau: văn bản; bảng biểu; kiến thức trong các lĩnh vực giáo dục khác (Địa lí, Lịch sử, Giáo dục môi trường, Giáo dục tài chính,...); phỏng vấn, truyền thông, Internet; thực tiễn (môi trường, tài chính, y tế, giá cả thị trường,...).','8-5-1'],
- ['Chứng tỏ được tính hợp lí của dữ liệu theo các tiêu chí toán học đơn giản (ví dụ: tính hợp lí trong các số liệu điều tra; tính hợp lí của các quảng cáo,...).','8-5-1']]],
-['TK','Một số yếu tố thống kê','Thu thập và tổ chức dữ liệu','Mô tả và biểu diễn dữ liệu trên các bảng, biểu đồ',[
- ['Lựa chọn và biểu diễn được dữ liệu vào bảng, biểu đồ thích hợp ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart), biểu đồ hình quạt tròn (cho sẵn) (pie chart); biểu đồ đoạn thẳng (line graph).','8-5-1'],
- ['Nhận biết được mối liên hệ toán học đơn giản giữa các số liệu đã được biểu diễn. Từ đó, nhận biết được số liệu không chính xác trong những ví dụ đơn giản.','8-5-2'],
- ['So sánh được các dạng biểu diễn khác nhau cho một tập dữ liệu.','8-5-1'],
- ['Mô tả được cách chuyển dữ liệu từ dạng biểu diễn này sang dạng biểu diễn khác.','8-5-2']]],
-['TK','Một số yếu tố thống kê','Phân tích và xử lí dữ liệu','Hình thành và giải quyết vấn đề đơn giản xuất hiện từ các số liệu và biểu đồ thống kê đã có',[
- ['Phát hiện được vấn đề hoặc quy luật đơn giản dựa trên phân tích các số liệu thu được ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart), biểu đồ hình quạt tròn (pie chart); biểu đồ đoạn thẳng (line graph).','8-5-2'],
- ['Giải quyết được những vấn đề đơn giản liên quan đến các số liệu thu được ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart), biểu đồ hình quạt tròn (pie chart); biểu đồ đoạn thẳng (line graph).','8-5-2'],
- ['Nhận biết được mối liên hệ giữa thống kê với những kiến thức trong các môn học khác trong Chương trình lớp 8 (ví dụ: Lịch sử và Địa lí lớp 8, Khoa học tự nhiên lớp 8,...) và trong thực tiễn.','8-5-2']]],
-['TK','Một số yếu tố xác suất','Một số yếu tố xác suất','Mô tả xác suất của biến cố ngẫu nhiên trong một số ví dụ đơn giản. Mối liên hệ giữa xác suất thực nghiệm của một biến cố với xác suất của biến cố đó',[
- ['Sử dụng được tỉ số để mô tả xác suất của một biến cố ngẫu nhiên trong một số ví dụ đơn giản.','8-8-1'],
- ['Nhận biết được mối liên hệ giữa xác suất thực nghiệm của một biến cố với xác suất của biến cố đó thông qua một số ví dụ đơn giản.','8-8-1']]]
-],
-9:[
-['SD','Đại số','Căn thức','Căn bậc hai và căn bậc ba của số thực',[
- ['Nhận biết được khái niệm về căn bậc hai của số thực không âm, căn bậc ba của một số thực.','9-3-1 9-3-4'],
- ['Tính được giá trị (đúng hoặc gần đúng) căn bậc hai, căn bậc ba của một số hữu tỉ bằng máy tính cầm tay.','9-3-1 9-3-4'],
- ['Thực hiện được một số phép tính đơn giản về căn bậc hai của số thực không âm (căn bậc hai của một bình phương, căn bậc hai của một tích, căn bậc hai của một thương, đưa thừa số ra ngoài dấu căn bậc hai, đưa thừa số vào trong dấu căn bậc hai).','9-3-1 9-3-2 9-3-3']]],
-['SD','Đại số','Căn thức','Căn thức bậc hai và căn thức bậc ba của biểu thức đại số',[
- ['Nhận biết được khái niệm về căn thức bậc hai và căn thức bậc ba của một biểu thức đại số.','9-3-1 9-3-4'],
- ['Thực hiện được một số phép biến đổi đơn giản về căn thức bậc hai của biểu thức đại số (căn thức bậc hai của một bình phương, căn thức bậc hai của một tích, căn thức bậc hai của một thương, trục căn thức ở mẫu).','9-3-2 9-3-3']]],
-['SD','Đại số','Hàm số và đồ thị','Hàm số y = ax² (a ≠ 0) và đồ thị',[
- ['Thiết lập được bảng giá trị của hàm số y = ax² (a ≠ 0).','9-6-1'],
- ['Vẽ được đồ thị của hàm số y = ax² (a ≠ 0).','9-6-1'],
- ['Nhận biết được tính đối xứng (trục) và trục đối xứng của đồ thị hàm số y = ax² (a ≠ 0).','9-6-1'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với hàm số y = ax² (a ≠ 0) và đồ thị (ví dụ: các bài toán liên quan đến chuyển động trong Vật lí,...).','9-6-1']]],
-['SD','Đại số','Phương trình và hệ phương trình','Phương trình quy về phương trình bậc nhất một ẩn',[
- ['Giải được phương trình tích có dạng (a₁x + b₁)(a₂x + b₂) = 0.','9-2-1'],
- ['Giải được phương trình chứa ẩn ở mẫu quy về phương trình bậc nhất.','9-2-1']]],
-['SD','Đại số','Phương trình và hệ phương trình','Phương trình và hệ phương trình bậc nhất hai ẩn',[
- ['Nhận biết được khái niệm phương trình bậc nhất hai ẩn, hệ hai phương trình bậc nhất hai ẩn.','9-1-1'],
- ['Nhận biết được khái niệm nghiệm của hệ hai phương trình bậc nhất hai ẩn.','9-1-1'],
- ['Giải được hệ hai phương trình bậc nhất hai ẩn.','9-1-2'],
- ['Tính được nghiệm của hệ hai phương trình bậc nhất hai ẩn bằng máy tính cầm tay.','9-1-2'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với hệ hai phương trình bậc nhất hai ẩn (ví dụ: các bài toán liên quan đến cân bằng phản ứng trong Hoá học,...).','9-1-3']]],
-['SD','Đại số','Phương trình và hệ phương trình','Phương trình bậc hai một ẩn. Định lí Viète',[
- ['Nhận biết được khái niệm phương trình bậc hai một ẩn. Giải được phương trình bậc hai một ẩn.','9-6-2'],
- ['Tính được nghiệm phương trình bậc hai một ẩn bằng máy tính cầm tay.','9-6-2'],
- ['Giải thích được định lí Viète và ứng dụng (ví dụ: tính nhẩm nghiệm của phương trình bậc hai, tìm hai số biết tổng và tích của chúng,...).','9-6-3'],
- ['Vận dụng được phương trình bậc hai vào giải quyết bài toán thực tiễn.','9-6-2 9-6-4']]],
-['SD','Đại số','Bất phương trình bậc nhất một ẩn','Bất đẳng thức. Bất phương trình bậc nhất một ẩn',[
- ['Nhận biết được thứ tự trên tập hợp các số thực.','9-2-2'],
- ['Nhận biết được bất đẳng thức và mô tả được một số tính chất cơ bản của bất đẳng thức (tính chất bắc cầu; liên hệ giữa thứ tự và phép cộng, phép nhân).','9-2-2'],
- ['Nhận biết được khái niệm bất phương trình bậc nhất một ẩn, nghiệm của bất phương trình bậc nhất một ẩn.','9-2-3'],
- ['Giải được bất phương trình bậc nhất một ẩn.','9-2-3']]],
-['HH','Hình học trực quan','Các hình khối trong thực tiễn','Hình trụ. Hình nón. Hình cầu',[
- ['Mô tả (đường sinh, chiều cao, bán kính đáy), tạo lập được hình trụ.','9-10-1'],
- ['Mô tả (đỉnh, đường sinh, chiều cao, bán kính đáy), tạo lập được hình nón.','9-10-1'],
- ['Mô tả (tâm, bán kính), tạo lập được hình cầu, mặt cầu. Nhận biết được phần chung của mặt phẳng và hình cầu.','9-10-2'],
- ['Tính được diện tích xung quanh của hình trụ, hình nón, diện tích mặt cầu.','9-10-1 9-10-2'],
- ['Tính được thể tích của hình trụ, hình nón, hình cầu.','9-10-1 9-10-2'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với việc tính diện tích xung quanh, thể tích của hình trụ, hình nón, hình cầu (ví dụ: tính thể tích hoặc diện tích xung quanh của một số đồ vật quen thuộc có dạng hình trụ, hình nón, hình cầu,...).','9-10-1 9-10-2']]],
-['HH','Hình học phẳng','Hệ thức lượng trong tam giác vuông','Tỉ số lượng giác của góc nhọn. Một số hệ thức về cạnh và góc trong tam giác vuông',[
- ['Nhận biết được các giá trị sin (sine), côsin (cosine), tang (tangent), côtang (cotangent) của góc nhọn.','9-4-1'],
- ['Giải thích được tỉ số lượng giác của các góc nhọn đặc biệt (góc 30°, 45°, 60°) và của hai góc phụ nhau.','9-4-1'],
- ['Tính được giá trị (đúng hoặc gần đúng) tỉ số lượng giác của góc nhọn bằng máy tính cầm tay.','9-4-1'],
- ['Giải thích được một số hệ thức về cạnh và góc trong tam giác vuông (cạnh góc vuông bằng cạnh huyền nhân với sin góc đối hoặc nhân với côsin góc kề; cạnh góc vuông bằng cạnh góc vuông kia nhân với tang góc đối hoặc nhân với côtang góc kề).','9-4-2'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với tỉ số lượng giác của góc nhọn (ví dụ: Tính độ dài đoạn thẳng, độ lớn góc và áp dụng giải tam giác vuông,...).','9-4-2']]],
-['HH','Hình học phẳng','Đường tròn','Đường tròn. Vị trí tương đối của hai đường tròn',[
- ['Nhận biết được tâm đối xứng, trục đối xứng của đường tròn.','9-5-1'],
- ['So sánh được độ dài của đường kính và dây.','9-5-1 9-5-2'],
- ['Mô tả được ba vị trí tương đối của hai đường tròn (hai đường tròn cắt nhau, hai đường tròn tiếp xúc nhau, hai đường tròn không giao nhau).','9-5-5']]],
-['HH','Hình học phẳng','Đường tròn','Vị trí tương đối của đường thẳng và đường tròn. Tiếp tuyến của đường tròn',[
- ['Mô tả được ba vị trí tương đối của đường thẳng và đường tròn (đường thẳng và đường tròn cắt nhau, đường thẳng và đường tròn tiếp xúc nhau, đường thẳng và đường tròn không giao nhau).','9-5-4'],
- ['Giải thích được dấu hiệu nhận biết tiếp tuyến của đường tròn và tính chất của hai tiếp tuyến cắt nhau.','9-5-4']]],
-['HH','Hình học phẳng','Đường tròn','Góc ở tâm, góc nội tiếp',[
- ['Nhận biết được góc ở tâm, góc nội tiếp.','9-5-2 9-9-1'],
- ['Giải thích được mối liên hệ giữa số đo của cung với số đo góc ở tâm, số đo góc nội tiếp.','9-5-2 9-9-1'],
- ['Giải thích được mối liên hệ giữa số đo góc nội tiếp và số đo góc ở tâm cùng chắn một cung.','9-9-1']]],
-['HH','Hình học phẳng','Đường tròn','Đường tròn ngoại tiếp tam giác. Đường tròn nội tiếp tam giác',[
- ['Nhận biết được định nghĩa đường tròn ngoại tiếp tam giác.','9-9-2'],
- ['Xác định được tâm và bán kính đường tròn ngoại tiếp tam giác, trong đó có tâm và bán kính đường tròn ngoại tiếp tam giác vuông, tam giác đều.','9-9-2'],
- ['Nhận biết được định nghĩa đường tròn nội tiếp tam giác.','9-9-2'],
- ['Xác định được tâm và bán kính đường tròn nội tiếp tam giác, trong đó có tâm và bán kính đường tròn nội tiếp tam giác đều.','9-9-2']]],
-['HH','Hình học phẳng','Đường tròn','Tứ giác nội tiếp',[
- ['Nhận biết được tứ giác nội tiếp đường tròn và giải thích được định lí về tổng hai góc đối của tứ giác nội tiếp bằng 180°.','9-9-3'],
- ['Xác định được tâm và bán kính đường tròn ngoại tiếp hình chữ nhật, hình vuông.','9-9-3'],
- ['Tính được độ dài cung tròn, diện tích hình quạt tròn, diện tích hình vành khuyên (hình giới hạn bởi hai đường tròn đồng tâm).','9-5-3'],
- ['Giải quyết được một số vấn đề thực tiễn gắn với đường tròn (ví dụ: một số bài toán liên quan đến chuyển động tròn trong Vật lí; tính được diện tích một số hình phẳng có thể đưa về những hình phẳng gắn với hình tròn, chẳng hạn hình viên phân,...).','9-5-3 9-9-3']]],
-['HH','Hình học phẳng','Đa giác đều','Đa giác đều',[
- ['Nhận dạng được đa giác đều.','9-9-4'],
- ['Nhận biết được phép quay.','9-9-4'],
- ['Mô tả được các phép quay giữ nguyên hình đa giác đều.','9-9-4'],
- ['Nhận biết được những hình phẳng đều trong tự nhiên, nghệ thuật, kiến trúc, công nghệ chế tạo,...','9-9-4'],
- ['Nhận biết được vẻ đẹp của thế giới tự nhiên biểu hiện qua tính đều.','9-9-4']]],
-['TK','Một số yếu tố thống kê','Thu thập và tổ chức dữ liệu','Mô tả và biểu diễn dữ liệu trên các bảng, biểu đồ',[
- ['Lí giải và thiết lập được dữ liệu vào bảng, biểu đồ thích hợp ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart), biểu đồ hình quạt tròn (pie chart); biểu đồ đoạn thẳng (line graph).','9-7-1 9-7-2'],
- ['Phát hiện và lí giải được số liệu không chính xác dựa trên mối liên hệ toán học đơn giản giữa các số liệu đã được biểu diễn trong những ví dụ đơn giản.','9-7-1 9-7-2'],
- ['Lí giải và thực hiện được cách chuyển dữ liệu từ dạng biểu diễn này sang dạng biểu diễn khác.','9-7-2']]],
-['TK','Một số yếu tố thống kê','Phân tích và xử lí dữ liệu','Bảng tần số, biểu đồ tần số. Bảng tần số tương đối, biểu đồ tần số tương đối. Bảng tần số ghép nhóm, bảng tần số tương đối ghép nhóm, biểu đồ tần số tương đối ghép nhóm',[
- ['Xác định được tần số (frequency) của một giá trị.','9-7-1'],
- ['Thiết lập được bảng tần số, biểu đồ tần số (biểu diễn các giá trị và tần số của chúng ở dạng biểu đồ cột hoặc biểu đồ đoạn thẳng).','9-7-1'],
- ['Giải thích được ý nghĩa và vai trò của tần số trong thực tiễn.','9-7-1'],
- ['Xác định được tần số tương đối (relative frequency) của một giá trị.','9-7-2'],
- ['Thiết lập được bảng tần số tương đối, biểu đồ tần số tương đối (biểu diễn các giá trị và tần số tương đối của chúng ở dạng biểu đồ cột hoặc biểu đồ hình quạt tròn).','9-7-2'],
- ['Giải thích được ý nghĩa và vai trò của tần số tương đối trong thực tiễn.','9-7-2'],
- ['Thiết lập được bảng tần số ghép nhóm, bảng tần số tương đối ghép nhóm.','9-7-3'],
- ['Thiết lập được biểu đồ tần số tương đối ghép nhóm (histogram) (ở dạng biểu đồ cột hoặc biểu đồ đoạn thẳng).','9-7-3'],
- ['Nhận biết được mối liên hệ giữa thống kê với những kiến thức của các môn học khác trong Chương trình lớp 9 và trong thực tiễn.','9-7-2 9-7-3']]],
-['TK','Một số yếu tố xác suất','Một số yếu tố xác suất','Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố trong một số mô hình xác suất đơn giản',[
- ['Nhận biết được phép thử ngẫu nhiên và không gian mẫu.','9-8-1'],
- ['Tính được xác suất của biến cố bằng cách kiểm đếm số trường hợp có thể và số trường hợp thuận lợi trong một số mô hình xác suất đơn giản.','9-8-2']]]
-]
-};
-/* Bổ sung Bài 30 "Đa giác đều" (KNTT Toán 9, Chương IX) và đánh số lại hai bài hình khối */
-(function(){const c=window.CURRICULUM&&window.CURRICULUM[9];if(!c)return;const ch9=c.chapters.find(x=>x.id==='9-9'),ch10=c.chapters.find(x=>x.id==='9-10');
- if(ch9&&!ch9.units.some(u=>u.id==='9-9-4'))ch9.units.push({id:'9-9-4',name:'Đa giác đều (Bài 30)',
-  biet:['Nhận dạng được đa giác đều.','Nhận biết được phép quay.'],
-  hieu:['Mô tả được các phép quay giữ nguyên hình đa giác đều.'],
-  vd:['Xác định được các phép quay giữ nguyên một đa giác đều cho trước và giải quyết được vấn đề thực tiễn gắn với hình phẳng đều.']});
- if(ch10){ch10.units.forEach(u=>{u.name=u.name.replace('(Bài 31)','(Bài 32)').replace('(Bài 30)','(Bài 31)')})}})();
-/* Mức độ gợi ý theo động từ của YCCĐ (theo cách phân mức thường dùng trong CV 7991) */
+window.SGK={"6":{"6-1":[[1,"Tập hợp",2],[2,"Cách ghi số tự nhiên",2],[3,"Thứ tự trong tập hợp các số tự nhiên",2],[4,"Phép cộng và phép trừ số tự nhiên",3],[5,"Phép nhân và phép chia số tự nhiên",4],[6,"Luỹ thừa với số mũ tự nhiên",4],[7,"Thứ tự thực hiện các phép tính",5]],"6-2":[[8,"Quan hệ chia hết và tính chất",3],[9,"Dấu hiệu chia hết",3],[10,"Số nguyên tố",3],[11,"Ước chung. Ước chung lớn nhất",4],[12,"Bội chung. Bội chung nhỏ nhất",4]],"6-3":[[13,"Tập hợp các số nguyên",3],[14,"Phép cộng và phép trừ số nguyên",4],[15,"Quy tắc dấu ngoặc",2],[16,"Phép nhân số nguyên",4],[17,"Phép chia hết. Ước và bội của một số nguyên",4]],"6-4":[[18,"Hình tam giác đều. Hình vuông. Hình lục giác đều",4],[19,"Hình chữ nhật. Hình thoi. Hình bình hành. Hình thang cân",4],[20,"Chu vi và diện tích của một số tứ giác đã học",4]],"6-5":[[21,"Hình có trục đối xứng",3],[22,"Hình có tâm đối xứng",3]],"6-6":[[23,"Mở rộng phân số. Phân số bằng nhau",3],[24,"So sánh phân số. Hỗn số dương",3],[25,"Phép cộng và phép trừ phân số",3],[26,"Phép nhân và phép chia phân số",3],[27,"Hai bài toán về phân số",4]],"6-7":[[28,"Số thập phân",3],[29,"Tính toán với số thập phân",4],[30,"Làm tròn và ước lượng",3],[31,"Một số bài toán về tỉ số và tỉ số phần trăm",6]],"6-8":[[32,"Điểm và đường thẳng",3],[33,"Điểm nằm giữa hai điểm. Tia",3],[34,"Đoạn thẳng. Độ dài đoạn thẳng",3],[35,"Trung điểm của đoạn thẳng",3],[36,"Góc",3],[37,"Số đo góc",3]],"6-9":[[38,"Dữ liệu và thu thập dữ liệu",2],[39,"Bảng thống kê và biểu đồ tranh",3],[40,"Biểu đồ cột",3],[41,"Biểu đồ cột kép",3],[42,"Kết quả có thể và sự kiện trong trò chơi, thí nghiệm",2],[43,"Xác suất thực nghiệm",3]]},"7":{"7-1":[[1,"Tập hợp các số hữu tỉ",4],[2,"Cộng, trừ, nhân, chia số hữu tỉ",4],[3,"Luỹ thừa với số mũ tự nhiên của một số hữu tỉ",4],[4,"Thứ tự thực hiện các phép tính. Quy tắc chuyển vế",4]],"7-2":[[5,"Làm quen với số thập phân vô hạn tuần hoàn",3],[6,"Số vô tỉ. Căn bậc hai số học",3],[7,"Tập hợp các số thực",4]],"7-3":[[8,"Góc ở vị trí đặc biệt. Tia phân giác của một góc",3],[9,"Hai đường thẳng song song và dấu hiệu nhận biết",3],[10,"Tiên đề Euclid. Tính chất của hai đường thẳng song song",3],[11,"Định lí và chứng minh định lí",3]],"7-4":[[12,"Tổng các góc trong một tam giác",3],[13,"Hai tam giác bằng nhau. Trường hợp bằng nhau thứ nhất của tam giác",4],[14,"Trường hợp bằng nhau thứ hai và thứ ba của tam giác",5],[15,"Các trường hợp bằng nhau của tam giác vuông",4],[16,"Tam giác cân. Đường trung trực của đoạn thẳng",4]],"7-5":[[17,"Thu thập và phân loại dữ liệu",3],[18,"Biểu đồ hình quạt tròn",4],[19,"Biểu đồ đoạn thẳng",3]],"7-6":[[20,"Tỉ lệ thức",3],[21,"Tính chất của dãy tỉ số bằng nhau",3],[22,"Đại lượng tỉ lệ thuận",3],[23,"Đại lượng tỉ lệ nghịch",3]],"7-7":[[24,"Biểu thức đại số",3],[25,"Đa thức một biến",4],[26,"Phép cộng và phép trừ đa thức một biến",4],[27,"Phép nhân đa thức một biến",4],[28,"Phép chia đa thức một biến",3]],"7-8":[[29,"Làm quen với biến cố",4],[30,"Làm quen với xác suất của biến cố",4]],"7-9":[[31,"Quan hệ giữa góc và cạnh đối diện trong một tam giác",4],[32,"Quan hệ giữa đường vuông góc và đường xiên",4],[33,"Quan hệ giữa ba cạnh của một tam giác",4],[34,"Sự đồng quy của ba đường trung tuyến, ba đường phân giác trong một tam giác",4],[35,"Sự đồng quy của ba đường trung trực, ba đường cao trong một tam giác",4]],"7-10":[[36,"Hình hộp chữ nhật và hình lập phương",6],[37,"Hình lăng trụ đứng tam giác và hình lăng trụ đứng tứ giác",6]]},"8":{"8-1":[[1,"Đơn thức",3],[2,"Đa thức",2],[3,"Phép cộng và phép trừ đa thức",2],[4,"Phép nhân đa thức",3],[5,"Phép chia đa thức cho đơn thức",3]],"8-2":[[6,"Hiệu hai bình phương. Bình phương của một tổng hay một hiệu",3],[7,"Lập phương của một tổng. Lập phương của một hiệu",2],[8,"Tổng và hiệu hai lập phương",2],[9,"Phân tích đa thức thành nhân tử",4]],"8-3":[[10,"Tứ giác",2],[11,"Hình thang cân",3],[12,"Hình bình hành",3],[13,"Hình chữ nhật",3],[14,"Hình thoi và hình vuông",4]],"8-4":[[15,"Định lí Thalès trong tam giác",4],[16,"Đường trung bình của tam giác",3],[17,"Tính chất đường phân giác của tam giác",4]],"8-5":[[18,"Thu thập và phân loại dữ liệu",2],[19,"Biểu diễn dữ liệu bằng bảng, biểu đồ",3],[20,"Phân tích số liệu thống kê dựa vào biểu đồ",3]],"8-6":[[21,"Phân thức đại số",2],[22,"Tính chất cơ bản của phân thức đại số",3],[23,"Phép cộng và phép trừ phân thức đại số",3],[24,"Phép nhân và phép chia phân thức đại số",3]],"8-7":[[25,"Phương trình bậc nhất một ẩn",3],[26,"Giải bài toán bằng cách lập phương trình",4],[27,"Khái niệm hàm số và đồ thị của hàm số",4],[28,"Hàm số bậc nhất và đồ thị của hàm số bậc nhất",4],[29,"Hệ số góc của đường thẳng",4]],"8-8":[[30,"Kết quả có thể và kết quả thuận lợi",2],[31,"Cách tính xác suất của biến cố bằng tỉ số",2],[32,"Mối liên hệ giữa xác suất thực nghiệm với xác suất và ứng dụng",2]],"8-9":[[33,"Hai tam giác đồng dạng",3],[34,"Ba trường hợp đồng dạng của hai tam giác",5],[35,"Định lí Pythagore và ứng dụng",4],[36,"Các trường hợp đồng dạng của hai tam giác vuông",4],[37,"Hình đồng dạng",3]],"8-10":[[38,"Hình chóp tam giác đều",4],[39,"Hình chóp tứ giác đều",4]]},"9":{"9-1":[[1,"Khái niệm phương trình và hệ hai phương trình bậc nhất hai ẩn",3],[2,"Giải hệ hai phương trình bậc nhất hai ẩn",4],[3,"Giải bài toán bằng cách lập hệ phương trình",4]],"9-2":[[4,"Phương trình quy về phương trình bậc nhất một ẩn",5],[5,"Bất đẳng thức và tính chất",4],[6,"Bất phương trình bậc nhất một ẩn",5]],"9-3":[[7,"Căn bậc hai và căn thức bậc hai",5],[8,"Khai căn bậc hai với phép nhân và phép chia",5],[9,"Biến đổi đơn giản và rút gọn biểu thức chứa căn thức bậc hai",6],[10,"Căn bậc ba và căn thức bậc ba",4]],"9-4":[[11,"Tỉ số lượng giác của góc nhọn",5],[12,"Một số hệ thức giữa cạnh, góc trong tam giác vuông và ứng dụng",7]],"9-5":[[13,"Mở đầu về đường tròn",4],[14,"Cung và dây của một đường tròn",4],[15,"Độ dài của cung tròn. Diện tích hình quạt tròn và hình vành khuyên",4],[16,"Vị trí tương đối của đường thẳng và đường tròn",4],[17,"Vị trí tương đối của hai đường tròn",4]],"9-6":[[18,"Hàm số y = ax² (a ≠ 0)",4],[19,"Phương trình bậc hai một ẩn",5],[20,"Định lí Viète và ứng dụng",5],[21,"Giải bài toán bằng cách lập phương trình",4]],"9-7":[[22,"Bảng tần số và biểu đồ tần số",4],[23,"Bảng tần số tương đối và biểu đồ tần số tương đối",4],[24,"Bảng tần số, tần số tương đối ghép nhóm và biểu đồ",4]],"9-8":[[25,"Phép thử ngẫu nhiên và không gian mẫu",4],[26,"Xác suất của biến cố liên quan tới phép thử",4]],"9-9":[[27,"Góc nội tiếp",3],[28,"Đường tròn ngoại tiếp và đường tròn nội tiếp của một tam giác",4],[29,"Tứ giác nội tiếp",3],[30,"Đa giác đều",3]],"9-10":[[31,"Hình trụ và hình nón",6],[32,"Hình cầu",4]]}};
+window.CT2018={"6":[["SD","Số","Số tự nhiên","Số tự nhiên và tập hợp các số tự nhiên. Thứ tự trong tập hợp các số tự nhiên",[["Sử dụng được thuật ngữ tập hợp, phần tử thuộc (không thuộc) một tập hợp; sử dụng được cách cho tập hợp.","1"],["Nhận biết được tập hợp các số tự nhiên.","1"],["Biểu diễn được số tự nhiên trong hệ thập phân.","2"],["Biểu diễn được các số tự nhiên từ 1 đến 30 bằng cách sử dụng các chữ số La Mã.","2"],["Nhận biết được (quan hệ) thứ tự trong tập hợp các số tự nhiên; so sánh được hai số tự nhiên cho trước.","3"]]],["SD","Số","Số tự nhiên","Các phép tính với số tự nhiên. Phép tính luỹ thừa với số mũ tự nhiên",[["Thực hiện được các phép tính: cộng, trừ, nhân, chia trong tập hợp số tự nhiên.","4 5"],["Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng trong tính toán.","4 5"],["Thực hiện được phép tính luỹ thừa với số mũ tự nhiên; thực hiện được các phép nhân và phép chia hai luỹ thừa cùng cơ số với số mũ tự nhiên.","6"],["Nhận biết được thứ tự thực hiện các phép tính.","7"],["Vận dụng được các tính chất của phép tính (kể cả phép tính luỹ thừa với số mũ tự nhiên) để tính nhẩm, tính nhanh một cách hợp lí.","4 5 6 7"],["Giải quyết được những vấn đề thực tiễn gắn với thực hiện các phép tính (ví dụ: tính tiền mua sắm, tính lượng hàng mua được từ số tiền đã có,...).","4 5 7"]]],["SD","Số","Số tự nhiên","Tính chia hết trong tập hợp các số tự nhiên. Số nguyên tố. Ước chung và bội chung",[["Nhận biết được quan hệ chia hết, khái niệm ước và bội.","8"],["Vận dụng được dấu hiệu chia hết cho 2, 5, 9, 3 để xác định một số đã cho có chia hết cho 2, 5, 9, 3 hay không.","9"],["Nhận biết được khái niệm số nguyên tố, hợp số.","10"],["Thực hiện được việc phân tích một số tự nhiên lớn hơn 1 thành tích của các thừa số nguyên tố trong những trường hợp đơn giản.","10"],["Xác định được ước chung, ước chung lớn nhất; xác định được bội chung, bội chung nhỏ nhất của hai hoặc ba số tự nhiên; nhận biết được phân số tối giản; thực hiện được phép cộng, phép trừ phân số bằng cách sử dụng ước chung lớn nhất, bội chung nhỏ nhất.","11 12"],["Nhận biết được phép chia có dư, định lí về phép chia có dư.","8"],["Vận dụng được kiến thức số học vào giải quyết những vấn đề thực tiễn (ví dụ: tính toán tiền hay lượng hàng hoá khi mua sắm, xác định số đồ vật cần thiết để sắp xếp chúng theo những quy tắc cho trước,...).","8 11 12"]]],["SD","Số","Số nguyên","Số nguyên âm và tập hợp các số nguyên. Thứ tự trong tập hợp các số nguyên",[["Nhận biết được số nguyên âm, tập hợp các số nguyên.","13"],["Biểu diễn được số nguyên trên trục số.","13"],["Nhận biết được số đối của một số nguyên.","13"],["Nhận biết được thứ tự trong tập hợp các số nguyên. So sánh được hai số nguyên cho trước.","13"],["Nhận biết được ý nghĩa của số nguyên âm trong một số bài toán thực tiễn.","13"]]],["SD","Số","Số nguyên","Các phép tính với số nguyên. Tính chia hết trong tập hợp các số nguyên",[["Thực hiện được các phép tính: cộng, trừ, nhân, chia (chia hết) trong tập hợp các số nguyên.","14 16 17"],["Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc trong tập hợp các số nguyên trong tính toán (tính viết và tính nhẩm, tính nhanh một cách hợp lí).","14 15 16"],["Nhận biết được quan hệ chia hết, khái niệm ước và bội trong tập hợp các số nguyên.","17"],["Giải quyết được những vấn đề thực tiễn gắn với thực hiện các phép tính về số nguyên (ví dụ: tính lỗ lãi khi buôn bán,...).","14 15 16"]]],["SD","Số","Phân số","Phân số. Tính chất cơ bản của phân số. So sánh phân số",[["Nhận biết được phân số với tử số hoặc mẫu số là số nguyên âm.","23"],["Nhận biết được khái niệm hai phân số bằng nhau và nhận biết được quy tắc bằng nhau của hai phân số.","23"],["Nêu được hai tính chất cơ bản của phân số.","23"],["So sánh được hai phân số cho trước.","24"],["Nhận biết được số đối của một phân số.","25"],["Nhận biết được hỗn số dương.","24"]]],["SD","Số","Phân số","Các phép tính với phân số",[["Thực hiện được các phép tính cộng, trừ, nhân, chia với phân số.","25 26"],["Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc với phân số trong tính toán (tính viết và tính nhẩm, tính nhanh một cách hợp lí).","25 26"],["Tính được giá trị phân số của một số cho trước và tính được một số biết giá trị phân số của số đó.","27"],["Giải quyết được một số vấn đề thực tiễn gắn với các phép tính về phân số (ví dụ: các bài toán liên quan đến chuyển động trong Vật lí,...).","25 26 27"]]],["SD","Số","Số thập phân","Số thập phân và các phép tính với số thập phân. Tỉ số và tỉ số phần trăm",[["Nhận biết được số thập phân âm, số đối của một số thập phân.","28"],["So sánh được hai số thập phân cho trước.","28"],["Thực hiện được các phép tính cộng, trừ, nhân, chia với số thập phân.","29"],["Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc với số thập phân trong tính toán (tính viết và tính nhẩm, tính nhanh một cách hợp lí).","29"],["Thực hiện được ước lượng và làm tròn số thập phân.","30"],["Tính được tỉ số và tỉ số phần trăm của hai đại lượng.","31"],["Tính được giá trị phần trăm của một số cho trước và tính được một số biết giá trị phần trăm của số đó.","31"],["Giải quyết được một số vấn đề thực tiễn gắn với các phép tính về số thập phân, tỉ số và tỉ số phần trăm (ví dụ: các bài toán liên quan đến lãi suất tín dụng, liên quan đến thành phần các chất trong Hoá học,...).","29 31"]]],["HH","Hình học trực quan","Các hình phẳng trong thực tiễn","Tam giác đều, hình vuông, lục giác đều",[["Nhận dạng được tam giác đều, hình vuông, lục giác đều.","18"],["Mô tả được một số yếu tố cơ bản (cạnh, góc, đường chéo) của: tam giác đều (ví dụ: ba cạnh bằng nhau, ba góc bằng nhau); hình vuông (ví dụ: bốn cạnh bằng nhau, mỗi góc là góc vuông, hai đường chéo bằng nhau); lục giác đều (ví dụ: sáu cạnh bằng nhau, sáu góc bằng nhau, ba đường chéo chính bằng nhau).","18"],["Vẽ được tam giác đều, hình vuông bằng dụng cụ học tập.","18"],["Tạo lập được lục giác đều thông qua việc lắp ghép các tam giác đều.","18"]]],["HH","Hình học trực quan","Các hình phẳng trong thực tiễn","Hình chữ nhật, hình thoi, hình bình hành, hình thang cân",[["Mô tả được một số yếu tố cơ bản (cạnh, góc, đường chéo) của hình chữ nhật, hình thoi, hình bình hành, hình thang cân.","19"],["Vẽ được hình chữ nhật, hình thoi, hình bình hành bằng các dụng cụ học tập.","19"],["Giải quyết được một số vấn đề thực tiễn gắn với việc tính chu vi và diện tích của các hình đặc biệt nói trên (ví dụ: tính chu vi hoặc diện tích của một số đối tượng có dạng đặc biệt nói trên,...).","20"]]],["HH","Hình học trực quan","Tính đối xứng của hình phẳng trong thế giới tự nhiên","Hình có trục đối xứng",[["Nhận biết được trục đối xứng của một hình phẳng.","21"],["Nhận biết được những hình phẳng trong tự nhiên có trục đối xứng (khi quan sát trên hình ảnh 2 chiều).","21"]]],["HH","Hình học trực quan","Tính đối xứng của hình phẳng trong thế giới tự nhiên","Hình có tâm đối xứng",[["Nhận biết được tâm đối xứng của một hình phẳng.","22"],["Nhận biết được những hình phẳng trong thế giới tự nhiên có tâm đối xứng (khi quan sát trên hình ảnh 2 chiều).","22"]]],["HH","Hình học trực quan","Tính đối xứng của hình phẳng trong thế giới tự nhiên","Vai trò của đối xứng trong thế giới tự nhiên",[["Nhận biết được tính đối xứng trong Toán học, tự nhiên, nghệ thuật, kiến trúc, công nghệ chế tạo,...","21 22"],["Nhận biết được vẻ đẹp của thế giới tự nhiên biểu hiện qua tính đối xứng (ví dụ: nhận biết vẻ đẹp của một số loài thực vật, động vật trong tự nhiên có tâm đối xứng hoặc có trục đối xứng).","21 22"]]],["HH","Hình học phẳng","Các hình hình học cơ bản","Điểm, đường thẳng, tia",[["Nhận biết được những quan hệ cơ bản giữa điểm, đường thẳng: điểm thuộc đường thẳng, điểm không thuộc đường thẳng; tiên đề về đường thẳng đi qua hai điểm phân biệt.","32"],["Nhận biết được khái niệm hai đường thẳng cắt nhau, song song.","32"],["Nhận biết được khái niệm ba điểm thẳng hàng, ba điểm không thẳng hàng.","32"],["Nhận biết được khái niệm điểm nằm giữa hai điểm.","33"],["Nhận biết được khái niệm tia.","33"]]],["HH","Hình học phẳng","Các hình hình học cơ bản","Đoạn thẳng. Độ dài đoạn thẳng",[["Nhận biết được khái niệm đoạn thẳng, trung điểm của đoạn thẳng, độ dài đoạn thẳng.","34 35"]]],["HH","Hình học phẳng","Các hình hình học cơ bản","Góc. Các góc đặc biệt. Số đo góc",[["Nhận biết được khái niệm góc, điểm trong của góc (không đề cập đến góc lõm).","36"],["Nhận biết được các góc đặc biệt (góc vuông, góc nhọn, góc tù, góc bẹt).","37"],["Nhận biết được khái niệm số đo góc.","37"]]],["TK","Một số yếu tố thống kê","Thu thập và tổ chức dữ liệu","Thu thập, phân loại, biểu diễn dữ liệu theo các tiêu chí cho trước",[["Thực hiện được việc thu thập, phân loại dữ liệu theo các tiêu chí cho trước từ những nguồn: bảng biểu, kiến thức trong các môn học khác.","38"],["Nhận biết được tính hợp lí của dữ liệu theo các tiêu chí đơn giản.","38"]]],["TK","Một số yếu tố thống kê","Thu thập và tổ chức dữ liệu","Mô tả và biểu diễn dữ liệu trên các bảng, biểu đồ",[["Đọc và mô tả thành thạo các dữ liệu ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart).","39 40 41"],["Lựa chọn và biểu diễn được dữ liệu vào bảng, biểu đồ thích hợp ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart).","39 40 41"]]],["TK","Một số yếu tố thống kê","Phân tích và xử lí dữ liệu","Hình thành và giải quyết vấn đề đơn giản xuất hiện từ các số liệu và biểu đồ thống kê đã có",[["Nhận ra được vấn đề hoặc quy luật đơn giản dựa trên phân tích các số liệu thu được ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart).","39 40 41"],["Giải quyết được những vấn đề đơn giản liên quan đến các số liệu thu được ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart).","39 40 41"],["Nhận biết được mối liên hệ giữa thống kê với những kiến thức trong các môn học trong Chương trình lớp 6 (ví dụ: Lịch sử và Địa lí lớp 6, Khoa học tự nhiên lớp 6,...) và trong thực tiễn (ví dụ: khí hậu, giá cả thị trường,...).","38 41"]]],["TK","Một số yếu tố xác suất","Một số yếu tố xác suất","Làm quen với một số mô hình xác suất đơn giản. Làm quen với việc mô tả xác suất (thực nghiệm) của khả năng xảy ra nhiều lần của một sự kiện trong một số mô hình xác suất đơn giản",[["Làm quen với mô hình xác suất trong một số trò chơi, thí nghiệm đơn giản (ví dụ: ở trò chơi tung đồng xu thì mô hình xác suất gồm hai khả năng ứng với mặt xuất hiện của đồng xu,...).","42"],["Làm quen với việc mô tả xác suất (thực nghiệm) của khả năng xảy ra nhiều lần của một sự kiện trong một số mô hình xác suất đơn giản.","42 43"]]],["TK","Một số yếu tố xác suất","Một số yếu tố xác suất","Mô tả xác suất (thực nghiệm) của khả năng xảy ra nhiều lần của một sự kiện trong một số mô hình xác suất đơn giản",[["Sử dụng được phân số để mô tả xác suất (thực nghiệm) của khả năng xảy ra nhiều lần thông qua kiểm đếm số lần lặp lại của khả năng đó trong một số mô hình xác suất đơn giản.","43"]]]],"7":[["SD","Số","Số hữu tỉ","Số hữu tỉ và tập hợp các số hữu tỉ. Thứ tự trong tập hợp các số hữu tỉ",[["Nhận biết được số hữu tỉ và lấy được ví dụ về số hữu tỉ.","1"],["Nhận biết được tập hợp các số hữu tỉ.","1"],["Biểu diễn được số hữu tỉ trên trục số.","1"],["Nhận biết được số đối của một số hữu tỉ.","1"],["Nhận biết được thứ tự trong tập hợp các số hữu tỉ. So sánh được hai số hữu tỉ.","1"]]],["SD","Số","Số hữu tỉ","Các phép tính với số hữu tỉ",[["Thực hiện được các phép tính: cộng, trừ, nhân, chia trong tập hợp số hữu tỉ.","2"],["Mô tả được phép tính luỹ thừa với số mũ tự nhiên của một số hữu tỉ và một số tính chất của phép tính đó (tích và thương của hai luỹ thừa cùng cơ số, luỹ thừa của luỹ thừa).","3"],["Mô tả được thứ tự thực hiện các phép tính, quy tắc dấu ngoặc, quy tắc chuyển vế trong tập hợp số hữu tỉ.","4"],["Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc với số hữu tỉ trong tính toán (tính viết và tính nhẩm, tính nhanh một cách hợp lí).","2 4"],["Giải quyết được một số vấn đề thực tiễn gắn với các phép tính về số hữu tỉ (ví dụ: các bài toán liên quan đến chuyển động trong Vật lí, trong đo đạc,...).","2 3 4"]]],["SD","Số","Số thực","Căn bậc hai số học",[["Nhận biết được khái niệm căn bậc hai số học của một số không âm.","6"],["Tính được giá trị (đúng hoặc gần đúng) căn bậc hai số học của một số nguyên dương bằng máy tính cầm tay.","6"]]],["SD","Số","Số thực","Số vô tỉ. Số thực",[["Nhận biết được số thập phân hữu hạn và số thập phân vô hạn tuần hoàn.","5"],["Nhận biết được số vô tỉ, số thực, tập hợp các số thực.","6 7"],["Nhận biết được trục số thực và biểu diễn được số thực trên trục số trong trường hợp thuận lợi.","7"],["Nhận biết được số đối của một số thực.","7"],["Nhận biết được thứ tự trong tập hợp các số thực.","7"],["Nhận biết được giá trị tuyệt đối của một số thực.","7"],["Thực hiện được ước lượng và làm tròn số căn cứ vào độ chính xác cho trước.","5"]]],["SD","Số","Số thực","Tỉ lệ thức và dãy tỉ số bằng nhau",[["Nhận biết được tỉ lệ thức và các tính chất của tỉ lệ thức.","20"],["Vận dụng được tính chất của tỉ lệ thức trong giải toán.","20"],["Nhận biết được dãy tỉ số bằng nhau.","21"],["Vận dụng được tính chất của dãy tỉ số bằng nhau trong giải toán (ví dụ: chia một số thành các phần tỉ lệ với các số cho trước,...).","21"]]],["SD","Số","Số thực","Giải toán về đại lượng tỉ lệ",[["Giải được một số bài toán đơn giản về đại lượng tỉ lệ thuận (ví dụ: bài toán về tổng sản phẩm thu được và năng suất lao động,...).","22"],["Giải được một số bài toán đơn giản về đại lượng tỉ lệ nghịch (ví dụ: bài toán về thời gian hoàn thành kế hoạch và năng suất lao động,...).","23"]]],["SD","Đại số","Biểu thức đại số","Biểu thức đại số",[["Nhận biết được biểu thức số.","24"],["Nhận biết được biểu thức đại số.","24"],["Tính được giá trị của một biểu thức đại số.","24"]]],["SD","Đại số","Biểu thức đại số","Đa thức một biến",[["Nhận biết được định nghĩa đa thức một biến.","25"],["Nhận biết được cách biểu diễn đa thức một biến; xác định được bậc của đa thức một biến.","25"],["Tính được giá trị của đa thức khi biết giá trị của biến.","25"],["Nhận biết được khái niệm nghiệm của đa thức một biến.","25"],["Thực hiện được các phép tính: phép cộng, phép trừ, phép nhân, phép chia trong tập hợp các đa thức một biến; vận dụng được những tính chất của các phép tính đó trong tính toán.","26 27 28"]]],["HH","Hình học trực quan","Các hình khối trong thực tiễn","Hình hộp chữ nhật và hình lập phương",[["Mô tả được một số yếu tố cơ bản (đỉnh, cạnh, góc, đường chéo) của hình hộp chữ nhật và hình lập phương.","36"],["Giải quyết được một số vấn đề thực tiễn gắn với việc tính thể tích, diện tích xung quanh của hình hộp chữ nhật, hình lập phương (ví dụ: tính thể tích hoặc diện tích xung quanh của một số đồ vật quen thuộc có dạng hình hộp chữ nhật, hình lập phương,...).","36"]]],["HH","Hình học trực quan","Các hình khối trong thực tiễn","Lăng trụ đứng tam giác, lăng trụ đứng tứ giác",[["Mô tả được hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác (ví dụ: hai mặt đáy là song song; các mặt bên đều là hình chữ nhật) và tạo lập được hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác.","37"],["Tính được diện tích xung quanh, thể tích của hình lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác.","37"],["Giải quyết được một số vấn đề thực tiễn gắn với việc tính thể tích, diện tích xung quanh của một lăng trụ đứng tam giác, hình lăng trụ đứng tứ giác (ví dụ: tính thể tích hoặc diện tích xung quanh của một số đồ vật quen thuộc có dạng lăng trụ đứng tam giác, lăng trụ đứng tứ giác,...).","37"]]],["HH","Hình học phẳng","Các hình hình học cơ bản","Góc ở vị trí đặc biệt. Tia phân giác của một góc",[["Nhận biết được các góc ở vị trí đặc biệt (hai góc kề bù, hai góc đối đỉnh).","8"],["Nhận biết được tia phân giác của một góc.","8"],["Nhận biết được cách vẽ tia phân giác của một góc bằng dụng cụ học tập.","8"]]],["HH","Hình học phẳng","Các hình hình học cơ bản","Hai đường thẳng song song. Tiên đề Euclid về đường thẳng song song",[["Mô tả được một số tính chất của hai đường thẳng song song.","10"],["Mô tả được dấu hiệu song song của hai đường thẳng thông qua cặp góc đồng vị, cặp góc so le trong.","9"],["Nhận biết được tiên đề Euclid về đường thẳng song song.","10"]]],["HH","Hình học phẳng","Các hình hình học cơ bản","Khái niệm định lí, chứng minh một định lí",[["Nhận biết được thế nào là một định lí, chứng minh một định lí.","11"]]],["HH","Hình học phẳng","Các hình hình học cơ bản","Tam giác. Tam giác bằng nhau. Tam giác cân. Quan hệ giữa đường vuông góc và đường xiên. Các đường đồng quy của tam giác",[["Giải thích được định lí về tổng các góc trong một tam giác bằng 180°.","12"],["Nhận biết được liên hệ về độ dài của ba cạnh trong một tam giác.","33"],["Nhận biết được khái niệm hai tam giác bằng nhau.","13"],["Giải thích được các trường hợp bằng nhau của hai tam giác, của hai tam giác vuông.","13 14 15"],["Mô tả được tam giác cân và giải thích được tính chất của tam giác cân (ví dụ: hai cạnh bên bằng nhau; hai góc đáy bằng nhau).","16"],["Nhận biết được khái niệm: đường vuông góc và đường xiên; khoảng cách từ một điểm đến một đường thẳng. Giải thích được quan hệ giữa đường vuông góc và đường xiên dựa trên mối quan hệ giữa cạnh và góc đối trong tam giác (đối diện với góc lớn hơn là cạnh lớn hơn và ngược lại).","31 32"],["Nhận biết được đường trung trực của một đoạn thẳng và tính chất cơ bản của đường trung trực.","16"],["Nhận biết được: các đường đặc biệt trong tam giác (đường trung tuyến, đường cao, đường phân giác, đường trung trực); sự đồng quy của các đường đặc biệt đó.","34 35"]]],["HH","Hình học phẳng","Các hình hình học cơ bản","Giải bài toán có nội dung hình học và vận dụng giải quyết vấn đề thực tiễn liên quan đến hình học",[["Diễn đạt được lập luận và chứng minh hình học trong những trường hợp đơn giản (ví dụ: lập luận và chứng minh được các đoạn thẳng bằng nhau, các góc bằng nhau từ các điều kiện ban đầu liên quan đến tam giác,...).","13 14 15 16"],["Giải quyết được một số vấn đề thực tiễn liên quan đến ứng dụng của hình học như: đo, vẽ, tạo dựng các hình đã học.","14 15 16 33"]]],["TK","Một số yếu tố thống kê","Thu thập và tổ chức dữ liệu","Thu thập, phân loại, biểu diễn dữ liệu theo các tiêu chí cho trước",[["Thực hiện và lí giải được việc thu thập, phân loại dữ liệu theo các tiêu chí cho trước từ những nguồn: văn bản, bảng biểu, kiến thức trong các môn học khác và trong thực tiễn.","17"],["Giải thích được tính hợp lí của dữ liệu theo các tiêu chí toán học đơn giản (ví dụ: tính hợp lí, tính đại diện của một kết luận trong phỏng vấn; tính hợp lí của các quảng cáo;...).","17"]]],["TK","Một số yếu tố thống kê","Thu thập và tổ chức dữ liệu","Mô tả và biểu diễn dữ liệu trên các bảng, biểu đồ",[["Đọc và mô tả thành thạo các dữ liệu ở dạng biểu đồ thống kê: biểu đồ hình quạt tròn (pie chart); biểu đồ đoạn thẳng (line graph).","18 19"],["Lựa chọn và biểu diễn được dữ liệu vào bảng, biểu đồ thích hợp ở dạng: biểu đồ hình quạt tròn (cho sẵn) (pie chart); biểu đồ đoạn thẳng (line graph).","18 19"],["Nhận biết được những dạng biểu diễn khác nhau cho một tập dữ liệu.","18 19"]]],["TK","Một số yếu tố thống kê","Phân tích và xử lí dữ liệu","Hình thành và giải quyết vấn đề đơn giản xuất hiện từ các số liệu và biểu đồ thống kê đã có",[["Nhận ra được vấn đề hoặc quy luật đơn giản dựa trên phân tích các số liệu thu được ở dạng: biểu đồ hình quạt tròn (cho sẵn) (pie chart); biểu đồ đoạn thẳng (line graph).","18 19"],["Giải quyết được những vấn đề đơn giản liên quan đến các số liệu thu được ở dạng: biểu đồ hình quạt tròn (cho sẵn) (pie chart); biểu đồ đoạn thẳng (line graph).","18 19"],["Nhận biết được mối liên hệ giữa thống kê với những kiến thức trong các môn học khác trong Chương trình lớp 7 (ví dụ: Lịch sử và Địa lí lớp 7, Khoa học tự nhiên lớp 7,...) và trong thực tiễn (ví dụ: môi trường, y học, tài chính,...).","17 18 19"]]],["TK","Một số yếu tố xác suất","Một số yếu tố xác suất","Làm quen với biến cố ngẫu nhiên. Làm quen với xác suất của biến cố ngẫu nhiên trong một số ví dụ đơn giản",[["Làm quen với các khái niệm mở đầu về biến cố ngẫu nhiên và xác suất của biến cố ngẫu nhiên trong các ví dụ đơn giản.","29 30"],["Nhận biết được xác suất của một biến cố ngẫu nhiên trong một số ví dụ đơn giản (ví dụ: lấy bóng trong túi, tung xúc xắc,...).","30"]]]],"8":[["SD","Đại số","Biểu thức đại số","Đa thức nhiều biến. Các phép toán cộng, trừ, nhân, chia các đa thức nhiều biến",[["Nhận biết được các khái niệm về đơn thức, đa thức nhiều biến.","1 2"],["Tính được giá trị của đa thức khi biết giá trị của các biến.","1 2"],["Thực hiện được việc thu gọn đơn thức, đa thức.","1 2"],["Thực hiện được phép nhân đơn thức với đa thức và phép chia hết một đơn thức cho một đơn thức.","4 5"],["Thực hiện được các phép tính: phép cộng, phép trừ, phép nhân các đa thức nhiều biến trong những trường hợp đơn giản.","3 4"],["Thực hiện được phép chia hết một đa thức cho một đơn thức trong những trường hợp đơn giản.","5"]]],["SD","Đại số","Biểu thức đại số","Hằng đẳng thức đáng nhớ",[["Nhận biết được các khái niệm: đồng nhất thức, hằng đẳng thức.","6"],["Mô tả được các hằng đẳng thức: bình phương của tổng và hiệu; hiệu hai bình phương; lập phương của tổng và hiệu; tổng và hiệu hai lập phương.","6 7 8"],["Vận dụng được các hằng đẳng thức để phân tích đa thức thành nhân tử ở dạng: vận dụng trực tiếp hằng đẳng thức; vận dụng hằng đẳng thức thông qua nhóm hạng tử và đặt nhân tử chung.","9"]]],["SD","Đại số","Biểu thức đại số","Phân thức đại số. Tính chất cơ bản của phân thức đại số. Các phép toán cộng, trừ, nhân, chia các phân thức đại số",[["Nhận biết được các khái niệm cơ bản về phân thức đại số: định nghĩa; điều kiện xác định; giá trị của phân thức đại số; hai phân thức bằng nhau.","21"],["Mô tả được những tính chất cơ bản của phân thức đại số.","22"],["Thực hiện được các phép tính: phép cộng, phép trừ, phép nhân, phép chia đối với hai phân thức đại số.","23 24"],["Vận dụng được các tính chất giao hoán, kết hợp, phân phối của phép nhân đối với phép cộng, quy tắc dấu ngoặc với phân thức đại số trong tính toán.","23 24"]]],["SD","Đại số","Hàm số và đồ thị","Hàm số và đồ thị",[["Nhận biết được những mô hình thực tế dẫn đến khái niệm hàm số.","27"],["Tính được giá trị của hàm số khi hàm số đó xác định bởi công thức.","27"],["Xác định được toạ độ của một điểm trên mặt phẳng toạ độ; xác định được một điểm trên mặt phẳng toạ độ khi biết toạ độ của nó.","27"],["Nhận biết được đồ thị hàm số.","27"]]],["SD","Đại số","Hàm số và đồ thị","Hàm số bậc nhất y = ax + b (a ≠ 0) và đồ thị. Hệ số góc của đường thẳng y = ax + b (a ≠ 0)",[["Thiết lập được bảng giá trị của hàm số bậc nhất y = ax + b (a ≠ 0).","28"],["Vẽ được đồ thị của hàm số bậc nhất y = ax + b (a ≠ 0).","28"],["Nhận biết được khái niệm hệ số góc của đường thẳng y = ax + b (a ≠ 0).","29"],["Sử dụng được hệ số góc của đường thẳng để nhận biết và giải thích được sự cắt nhau hoặc song song của hai đường thẳng cho trước.","29"],["Vận dụng được hàm số bậc nhất và đồ thị vào giải quyết một số bài toán thực tiễn (ví dụ: bài toán về chuyển động đều trong Vật lí,...).","28 29"]]],["SD","Đại số","Phương trình","Phương trình bậc nhất",[["Hiểu được khái niệm phương trình bậc nhất một ẩn và cách giải.","25"],["Giải quyết được một số vấn đề thực tiễn gắn với phương trình bậc nhất (ví dụ: các bài toán liên quan đến chuyển động trong Vật lí, các bài toán liên quan đến Hoá học,...).","26"]]],["HH","Hình học trực quan","Các hình khối trong thực tiễn","Hình chóp tam giác đều, hình chóp tứ giác đều",[["Mô tả (đỉnh, mặt đáy, mặt bên, cạnh bên), tạo lập được hình chóp tam giác đều và hình chóp tứ giác đều.","38 39"],["Tính được diện tích xung quanh, thể tích của một hình chóp tam giác đều và hình chóp tứ giác đều.","38 39"],["Giải quyết được một số vấn đề thực tiễn gắn với việc tính thể tích, diện tích xung quanh của hình chóp tam giác đều và hình chóp tứ giác đều (ví dụ: tính thể tích hoặc diện tích xung quanh của một số đồ vật quen thuộc có dạng hình chóp tam giác đều và hình chóp tứ giác đều,...).","38 39"]]],["HH","Hình học phẳng","Định lí Pythagore","Định lí Pythagore",[["Giải thích được định lí Pythagore.","35"],["Tính được độ dài cạnh trong tam giác vuông bằng cách sử dụng định lí Pythagore.","35"],["Giải quyết được một số vấn đề thực tiễn gắn với việc vận dụng định lí Pythagore (ví dụ: tính khoảng cách giữa hai vị trí).","35"]]],["HH","Hình học phẳng","Tứ giác","Tứ giác",[["Mô tả được tứ giác, tứ giác lồi.","10"],["Giải thích được định lí về tổng các góc trong một tứ giác lồi bằng 360°.","10"]]],["HH","Hình học phẳng","Tứ giác","Tính chất và dấu hiệu nhận biết các tứ giác đặc biệt",[["Giải thích được tính chất về góc kề một đáy, cạnh bên, đường chéo của hình thang cân.","11"],["Nhận biết được dấu hiệu để một hình thang là hình thang cân (ví dụ: hình thang có hai đường chéo bằng nhau là hình thang cân).","11"],["Giải thích được tính chất về cạnh đối, góc đối, đường chéo của hình bình hành.","12"],["Nhận biết được dấu hiệu để một tứ giác là hình bình hành (ví dụ: tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường là hình bình hành).","12"],["Giải thích được tính chất về hai đường chéo của hình chữ nhật.","13"],["Nhận biết được dấu hiệu để một hình bình hành là hình chữ nhật (ví dụ: hình bình hành có hai đường chéo bằng nhau là hình chữ nhật).","13"],["Giải thích được tính chất về đường chéo của hình thoi.","14"],["Nhận biết được dấu hiệu để một hình bình hành là hình thoi (ví dụ: hình bình hành có hai đường chéo vuông góc với nhau là hình thoi).","14"],["Giải thích được tính chất về hai đường chéo của hình vuông.","14"],["Nhận biết được dấu hiệu để một hình chữ nhật là hình vuông (ví dụ: hình chữ nhật có hai đường chéo vuông góc với nhau là hình vuông).","14"]]],["HH","Hình học phẳng","Định lí Thalès trong tam giác","Định lí Thalès trong tam giác",[["Giải thích được định lí Thalès trong tam giác (định lí thuận và đảo).","15"],["Mô tả được định nghĩa đường trung bình của tam giác. Giải thích được tính chất đường trung bình của tam giác (đường trung bình của tam giác thì song song với cạnh thứ ba và bằng nửa cạnh đó).","16"],["Giải thích được tính chất đường phân giác trong của tam giác.","17"],["Tính được độ dài đoạn thẳng bằng cách sử dụng định lí Thalès.","15 16 17"],["Giải quyết được một số vấn đề thực tiễn gắn với việc vận dụng định lí Thalès (ví dụ: tính khoảng cách giữa hai vị trí).","15 16"]]],["HH","Hình học phẳng","Hình đồng dạng","Tam giác đồng dạng",[["Mô tả được định nghĩa của hai tam giác đồng dạng.","33"],["Giải thích được các trường hợp đồng dạng của hai tam giác, của hai tam giác vuông.","34 36"],["Giải quyết được một số vấn đề thực tiễn gắn với việc vận dụng kiến thức về hai tam giác đồng dạng (ví dụ: tính độ dài đường cao hạ xuống cạnh huyền trong tam giác vuông bằng cách sử dụng mối quan hệ giữa đường cao đó với tích của hai hình chiếu của hai cạnh góc vuông lên cạnh huyền; đo gián tiếp chiều cao của vật; tính khoảng cách giữa hai vị trí trong đó có một vị trí không thể tới được,...).","34 36"]]],["HH","Hình học phẳng","Hình đồng dạng","Hình đồng dạng",[["Nhận biết được hình đồng dạng phối cảnh (hình vị tự), hình đồng dạng qua các hình ảnh cụ thể.","37"],["Nhận biết được vẻ đẹp trong tự nhiên, nghệ thuật, kiến trúc, công nghệ chế tạo,... biểu hiện qua hình đồng dạng.","37"]]],["TK","Một số yếu tố thống kê","Thu thập và tổ chức dữ liệu","Thu thập, phân loại, tổ chức dữ liệu theo các tiêu chí cho trước",[["Thực hiện và lí giải được việc thu thập, phân loại dữ liệu theo các tiêu chí cho trước từ nhiều nguồn khác nhau: văn bản; bảng biểu; kiến thức trong các lĩnh vực giáo dục khác (Địa lí, Lịch sử, Giáo dục môi trường, Giáo dục tài chính,...); phỏng vấn, truyền thông, Internet; thực tiễn (môi trường, tài chính, y tế, giá cả thị trường,...).","18"],["Chứng tỏ được tính hợp lí của dữ liệu theo các tiêu chí toán học đơn giản (ví dụ: tính hợp lí trong các số liệu điều tra; tính hợp lí của các quảng cáo,...).","18"]]],["TK","Một số yếu tố thống kê","Thu thập và tổ chức dữ liệu","Mô tả và biểu diễn dữ liệu trên các bảng, biểu đồ",[["Lựa chọn và biểu diễn được dữ liệu vào bảng, biểu đồ thích hợp ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart), biểu đồ hình quạt tròn (cho sẵn) (pie chart); biểu đồ đoạn thẳng (line graph).","19"],["Nhận biết được mối liên hệ toán học đơn giản giữa các số liệu đã được biểu diễn. Từ đó, nhận biết được số liệu không chính xác trong những ví dụ đơn giản.","19 20"],["So sánh được các dạng biểu diễn khác nhau cho một tập dữ liệu.","19"],["Mô tả được cách chuyển dữ liệu từ dạng biểu diễn này sang dạng biểu diễn khác.","19"]]],["TK","Một số yếu tố thống kê","Phân tích và xử lí dữ liệu","Hình thành và giải quyết vấn đề đơn giản xuất hiện từ các số liệu và biểu đồ thống kê đã có",[["Phát hiện được vấn đề hoặc quy luật đơn giản dựa trên phân tích các số liệu thu được ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart), biểu đồ hình quạt tròn (pie chart); biểu đồ đoạn thẳng (line graph).","20"],["Giải quyết được những vấn đề đơn giản liên quan đến các số liệu thu được ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart), biểu đồ hình quạt tròn (pie chart); biểu đồ đoạn thẳng (line graph).","20"],["Nhận biết được mối liên hệ giữa thống kê với những kiến thức trong các môn học khác trong Chương trình lớp 8 (ví dụ: Lịch sử và Địa lí lớp 8, Khoa học tự nhiên lớp 8,...) và trong thực tiễn.","20"]]],["TK","Một số yếu tố xác suất","Một số yếu tố xác suất","Mô tả xác suất của biến cố ngẫu nhiên trong một số ví dụ đơn giản. Mối liên hệ giữa xác suất thực nghiệm của một biến cố với xác suất của biến cố đó",[["Sử dụng được tỉ số để mô tả xác suất của một biến cố ngẫu nhiên trong một số ví dụ đơn giản.","30 31"],["Nhận biết được mối liên hệ giữa xác suất thực nghiệm của một biến cố với xác suất của biến cố đó thông qua một số ví dụ đơn giản.","32"]]]],"9":[["SD","Đại số","Căn thức","Căn bậc hai và căn bậc ba của số thực",[["Nhận biết được khái niệm về căn bậc hai của số thực không âm, căn bậc ba của một số thực.","7 10"],["Tính được giá trị (đúng hoặc gần đúng) căn bậc hai, căn bậc ba của một số hữu tỉ bằng máy tính cầm tay.","7 10"],["Thực hiện được một số phép tính đơn giản về căn bậc hai của số thực không âm (căn bậc hai của một bình phương, căn bậc hai của một tích, căn bậc hai của một thương, đưa thừa số ra ngoài dấu căn bậc hai, đưa thừa số vào trong dấu căn bậc hai).","7 8 9"]]],["SD","Đại số","Căn thức","Căn thức bậc hai và căn thức bậc ba của biểu thức đại số",[["Nhận biết được khái niệm về căn thức bậc hai và căn thức bậc ba của một biểu thức đại số.","7 10"],["Thực hiện được một số phép biến đổi đơn giản về căn thức bậc hai của biểu thức đại số (căn thức bậc hai của một bình phương, căn thức bậc hai của một tích, căn thức bậc hai của một thương, trục căn thức ở mẫu).","7 8 9"]]],["SD","Đại số","Hàm số và đồ thị","Hàm số y = ax² (a ≠ 0) và đồ thị",[["Thiết lập được bảng giá trị của hàm số y = ax² (a ≠ 0).","18"],["Vẽ được đồ thị của hàm số y = ax² (a ≠ 0).","18"],["Nhận biết được tính đối xứng (trục) và trục đối xứng của đồ thị hàm số y = ax² (a ≠ 0).","18"],["Giải quyết được một số vấn đề thực tiễn gắn với hàm số y = ax² (a ≠ 0) và đồ thị (ví dụ: các bài toán liên quan đến chuyển động trong Vật lí,...).","18"]]],["SD","Đại số","Phương trình và hệ phương trình","Phương trình quy về phương trình bậc nhất một ẩn",[["Giải được phương trình tích có dạng (a₁x + b₁)(a₂x + b₂) = 0.","4"],["Giải được phương trình chứa ẩn ở mẫu quy về phương trình bậc nhất.","4"]]],["SD","Đại số","Phương trình và hệ phương trình","Phương trình và hệ phương trình bậc nhất hai ẩn",[["Nhận biết được khái niệm phương trình bậc nhất hai ẩn, hệ hai phương trình bậc nhất hai ẩn.","1"],["Nhận biết được khái niệm nghiệm của hệ hai phương trình bậc nhất hai ẩn.","1"],["Giải được hệ hai phương trình bậc nhất hai ẩn.","2"],["Tính được nghiệm của hệ hai phương trình bậc nhất hai ẩn bằng máy tính cầm tay.","2"],["Giải quyết được một số vấn đề thực tiễn gắn với hệ hai phương trình bậc nhất hai ẩn (ví dụ: các bài toán liên quan đến cân bằng phản ứng trong Hoá học,...).","3"]]],["SD","Đại số","Phương trình và hệ phương trình","Phương trình bậc hai một ẩn. Định lí Viète",[["Nhận biết được khái niệm phương trình bậc hai một ẩn. Giải được phương trình bậc hai một ẩn.","19"],["Tính được nghiệm phương trình bậc hai một ẩn bằng máy tính cầm tay.","19"],["Giải thích được định lí Viète và ứng dụng (ví dụ: tính nhẩm nghiệm của phương trình bậc hai, tìm hai số biết tổng và tích của chúng,...).","20"],["Vận dụng được phương trình bậc hai vào giải quyết bài toán thực tiễn.","21"]]],["SD","Đại số","Bất phương trình bậc nhất một ẩn","Bất đẳng thức. Bất phương trình bậc nhất một ẩn",[["Nhận biết được thứ tự trên tập hợp các số thực.","5"],["Nhận biết được bất đẳng thức và mô tả được một số tính chất cơ bản của bất đẳng thức (tính chất bắc cầu; liên hệ giữa thứ tự và phép cộng, phép nhân).","5"],["Nhận biết được khái niệm bất phương trình bậc nhất một ẩn, nghiệm của bất phương trình bậc nhất một ẩn.","6"],["Giải được bất phương trình bậc nhất một ẩn.","6"]]],["HH","Hình học trực quan","Các hình khối trong thực tiễn","Hình trụ. Hình nón. Hình cầu",[["Mô tả (đường sinh, chiều cao, bán kính đáy), tạo lập được hình trụ.","31"],["Mô tả (đỉnh, đường sinh, chiều cao, bán kính đáy), tạo lập được hình nón.","31"],["Mô tả (tâm, bán kính), tạo lập được hình cầu, mặt cầu. Nhận biết được phần chung của mặt phẳng và hình cầu.","32"],["Tính được diện tích xung quanh của hình trụ, hình nón, diện tích mặt cầu.","31 32"],["Tính được thể tích của hình trụ, hình nón, hình cầu.","31 32"],["Giải quyết được một số vấn đề thực tiễn gắn với việc tính diện tích xung quanh, thể tích của hình trụ, hình nón, hình cầu (ví dụ: tính thể tích hoặc diện tích xung quanh của một số đồ vật quen thuộc có dạng hình trụ, hình nón, hình cầu,...).","31 32"]]],["HH","Hình học phẳng","Hệ thức lượng trong tam giác vuông","Tỉ số lượng giác của góc nhọn. Một số hệ thức về cạnh và góc trong tam giác vuông",[["Nhận biết được các giá trị sin (sine), côsin (cosine), tang (tangent), côtang (cotangent) của góc nhọn.","11"],["Giải thích được tỉ số lượng giác của các góc nhọn đặc biệt (góc 30°, 45°, 60°) và của hai góc phụ nhau.","11"],["Tính được giá trị (đúng hoặc gần đúng) tỉ số lượng giác của góc nhọn bằng máy tính cầm tay.","11"],["Giải thích được một số hệ thức về cạnh và góc trong tam giác vuông (cạnh góc vuông bằng cạnh huyền nhân với sin góc đối hoặc nhân với côsin góc kề; cạnh góc vuông bằng cạnh góc vuông kia nhân với tang góc đối hoặc nhân với côtang góc kề).","12"],["Giải quyết được một số vấn đề thực tiễn gắn với tỉ số lượng giác của góc nhọn (ví dụ: Tính độ dài đoạn thẳng, độ lớn góc và áp dụng giải tam giác vuông,...).","12"]]],["HH","Hình học phẳng","Đường tròn","Đường tròn. Vị trí tương đối của hai đường tròn",[["Nhận biết được tâm đối xứng, trục đối xứng của đường tròn.","13"],["So sánh được độ dài của đường kính và dây.","14"],["Mô tả được ba vị trí tương đối của hai đường tròn (hai đường tròn cắt nhau, hai đường tròn tiếp xúc nhau, hai đường tròn không giao nhau).","17"]]],["HH","Hình học phẳng","Đường tròn","Vị trí tương đối của đường thẳng và đường tròn. Tiếp tuyến của đường tròn",[["Mô tả được ba vị trí tương đối của đường thẳng và đường tròn (đường thẳng và đường tròn cắt nhau, đường thẳng và đường tròn tiếp xúc nhau, đường thẳng và đường tròn không giao nhau).","16"],["Giải thích được dấu hiệu nhận biết tiếp tuyến của đường tròn và tính chất của hai tiếp tuyến cắt nhau.","16"]]],["HH","Hình học phẳng","Đường tròn","Góc ở tâm, góc nội tiếp",[["Nhận biết được góc ở tâm, góc nội tiếp.","14 27"],["Giải thích được mối liên hệ giữa số đo của cung với số đo góc ở tâm, số đo góc nội tiếp.","14 27"],["Giải thích được mối liên hệ giữa số đo góc nội tiếp và số đo góc ở tâm cùng chắn một cung.","27"]]],["HH","Hình học phẳng","Đường tròn","Đường tròn ngoại tiếp tam giác. Đường tròn nội tiếp tam giác",[["Nhận biết được định nghĩa đường tròn ngoại tiếp tam giác.","28"],["Xác định được tâm và bán kính đường tròn ngoại tiếp tam giác, trong đó có tâm và bán kính đường tròn ngoại tiếp tam giác vuông, tam giác đều.","28"],["Nhận biết được định nghĩa đường tròn nội tiếp tam giác.","28"],["Xác định được tâm và bán kính đường tròn nội tiếp tam giác, trong đó có tâm và bán kính đường tròn nội tiếp tam giác đều.","28"]]],["HH","Hình học phẳng","Đường tròn","Tứ giác nội tiếp",[["Nhận biết được tứ giác nội tiếp đường tròn và giải thích được định lí về tổng hai góc đối của tứ giác nội tiếp bằng 180°.","29"],["Xác định được tâm và bán kính đường tròn ngoại tiếp hình chữ nhật, hình vuông.","29"],["Tính được độ dài cung tròn, diện tích hình quạt tròn, diện tích hình vành khuyên (hình giới hạn bởi hai đường tròn đồng tâm).","15"],["Giải quyết được một số vấn đề thực tiễn gắn với đường tròn (ví dụ: một số bài toán liên quan đến chuyển động tròn trong Vật lí; tính được diện tích một số hình phẳng có thể đưa về những hình phẳng gắn với hình tròn, chẳng hạn hình viên phân,...).","15 29"]]],["HH","Hình học phẳng","Đa giác đều","Đa giác đều",[["Nhận dạng được đa giác đều.","30"],["Nhận biết được phép quay.","30"],["Mô tả được các phép quay giữ nguyên hình đa giác đều.","30"],["Nhận biết được những hình phẳng đều trong tự nhiên, nghệ thuật, kiến trúc, công nghệ chế tạo,...","30"],["Nhận biết được vẻ đẹp của thế giới tự nhiên biểu hiện qua tính đều.","30"]]],["TK","Một số yếu tố thống kê","Thu thập và tổ chức dữ liệu","Mô tả và biểu diễn dữ liệu trên các bảng, biểu đồ",[["Lí giải và thiết lập được dữ liệu vào bảng, biểu đồ thích hợp ở dạng: bảng thống kê; biểu đồ tranh; biểu đồ dạng cột/cột kép (column chart), biểu đồ hình quạt tròn (pie chart); biểu đồ đoạn thẳng (line graph).","22 23"],["Phát hiện và lí giải được số liệu không chính xác dựa trên mối liên hệ toán học đơn giản giữa các số liệu đã được biểu diễn trong những ví dụ đơn giản.","22 23"],["Lí giải và thực hiện được cách chuyển dữ liệu từ dạng biểu diễn này sang dạng biểu diễn khác.","23"]]],["TK","Một số yếu tố thống kê","Phân tích và xử lí dữ liệu","Bảng tần số, biểu đồ tần số. Bảng tần số tương đối, biểu đồ tần số tương đối. Bảng tần số ghép nhóm, bảng tần số tương đối ghép nhóm, biểu đồ tần số tương đối ghép nhóm",[["Xác định được tần số (frequency) của một giá trị.","22"],["Thiết lập được bảng tần số, biểu đồ tần số (biểu diễn các giá trị và tần số của chúng ở dạng biểu đồ cột hoặc biểu đồ đoạn thẳng).","22"],["Giải thích được ý nghĩa và vai trò của tần số trong thực tiễn.","22"],["Xác định được tần số tương đối (relative frequency) của một giá trị.","23"],["Thiết lập được bảng tần số tương đối, biểu đồ tần số tương đối (biểu diễn các giá trị và tần số tương đối của chúng ở dạng biểu đồ cột hoặc biểu đồ hình quạt tròn).","23"],["Giải thích được ý nghĩa và vai trò của tần số tương đối trong thực tiễn.","23"],["Thiết lập được bảng tần số ghép nhóm, bảng tần số tương đối ghép nhóm.","24"],["Thiết lập được biểu đồ tần số tương đối ghép nhóm (histogram) (ở dạng biểu đồ cột hoặc biểu đồ đoạn thẳng).","24"],["Nhận biết được mối liên hệ giữa thống kê với những kiến thức của các môn học khác trong Chương trình lớp 9 và trong thực tiễn.","23 24"]]],["TK","Một số yếu tố xác suất","Một số yếu tố xác suất","Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố trong một số mô hình xác suất đơn giản",[["Nhận biết được phép thử ngẫu nhiên và không gian mẫu.","25"],["Tính được xác suất của biến cố bằng cách kiểm đếm số trường hợp có thể và số trường hợp thuận lợi trong một số mô hình xác suất đơn giản.","26"]]]]};
+/* Mức độ gợi ý theo động từ của YCCĐ */
 window.ctLevel=function(t){
  if(/^(Vận dụng|Giải quyết|Diễn đạt được lập luận|Giải được một số bài toán)/.test(t))return 2;
  if(/^(Nhận biết|Nhận dạng|Làm quen|Sử dụng được thuật ngữ|Nêu được|Đọc và mô tả)/.test(t))return 0;
  return 1};
-/* Chỉ mục: mã bài -> các dòng YCCĐ */
+/* Chỉ mục: mã bài ("8-B1") -> các dòng YCCĐ */
+window.lessonId=function(g,n){return g+'-B'+n};
 window.CT_IDX={};
-Object.keys(window.CT2018).forEach(g=>{const ix=window.CT_IDX[g]={};
- window.CT2018[g].forEach((nd,ni)=>nd[4].forEach(([t,us],li)=>us.split(' ').forEach(u=>{(ix[u]=ix[u]||[]).push({t,lv:ctLevel(t),ni,li})})))});
+Object.keys(window.CT2018).forEach(function(g){var ix=window.CT_IDX[g]={};
+ window.CT2018[g].forEach(function(nd,ni){nd[4].forEach(function(x,li){x[1].split(' ').filter(Boolean).forEach(function(n){var k=lessonId(g,n);(ix[k]=ix[k]||[]).push({t:x[0],lv:ctLevel(x[0]),ni:ni,li:li})})})})});
 
+
+/* Đơn vị kiến thức -> các bài SGK Kết nối tri thức thuộc đơn vị đó */
+window.UNIT_LESSONS={"6": {"6-1-1": [1, 2, 3], "6-1-2": [4, 5], "6-1-3": [6, 7], "6-2-1": [8, 9], "6-2-2": [10], "6-2-3": [11, 12], "6-3-1": [13], "6-3-2": [14, 15], "6-3-3": [16, 17], "6-4-1": [18], "6-4-2": [19], "6-4-3": [20], "6-5-1": [21], "6-5-2": [22], "6-6-1": [23, 24], "6-6-2": [25, 26], "6-6-3": [27], "6-7-1": [28], "6-7-2": [29, 30], "6-7-3": [31], "6-8-1": [32, 33], "6-8-2": [34, 35], "6-8-3": [36, 37], "6-9-1": [38, 39], "6-9-2": [40, 41], "6-9-3": [42, 43]}, "7": {"7-1-1": [1], "7-1-2": [2], "7-1-3": [3], "7-1-4": [4], "7-2-1": [5], "7-2-2": [6], "7-2-3": [7], "7-3-1": [8], "7-3-2": [9], "7-3-3": [10], "7-3-4": [11], "7-4-1": [12], "7-4-2": [13, 14], "7-4-3": [15], "7-4-4": [16], "7-5-1": [17], "7-5-2": [18], "7-5-3": [19], "7-6-1": [20], "7-6-2": [21], "7-6-3": [22, 23], "7-7-1": [24], "7-7-2": [25], "7-7-3": [26], "7-7-4": [27, 28], "7-8-1": [29], "7-8-2": [30], "7-9-1": [31], "7-9-2": [32, 33], "7-9-3": [34], "7-9-4": [35], "7-10-1": [36], "7-10-2": [37]}, "8": {"8-1-1": [1, 2], "8-1-2": [3, 4, 5], "8-2-1": [6, 7, 8], "8-2-2": [9], "8-3-1": [10], "8-3-2": [11, 12, 13, 14], "8-4-1": [15, 16], "8-4-2": [17], "8-5-1": [18, 19], "8-5-2": [20], "8-6-1": [21, 22], "8-6-2": [23, 24], "8-7-1": [25, 26], "8-7-2": [27], "8-7-3": [28, 29], "8-8-1": [30, 31, 32], "8-9-1": [33, 34], "8-9-2": [36], "8-9-3": [35], "8-9-4": [37], "8-10-1": [38, 39]}, "9": {"9-1-1": [1], "9-1-2": [2], "9-1-3": [3], "9-2-1": [4], "9-2-2": [5], "9-2-3": [6], "9-3-1": [7], "9-3-2": [8], "9-3-3": [9], "9-3-4": [10], "9-4-1": [11], "9-4-2": [12], "9-5-1": [13], "9-5-2": [14], "9-5-3": [15], "9-5-4": [16], "9-5-5": [17], "9-6-1": [18], "9-6-2": [19], "9-6-3": [20], "9-6-4": [21], "9-7-1": [22], "9-7-2": [23], "9-7-3": [24], "9-8-1": [25], "9-8-2": [26], "9-9-1": [27], "9-9-2": [28], "9-9-3": [29], "9-9-4": [30], "9-10-1": [31], "9-10-2": [32]}};
+/* Lớp 9: bổ sung đơn vị "Đa giác đều" (Bài 30, Chương IX) */
+(function(){const c=window.CURRICULUM&&window.CURRICULUM[9];if(!c)return;const ch=c.chapters.find(x=>x.id==='9-9');
+ if(ch&&!ch.units.some(u=>u.id==='9-9-4'))ch.units.push({id:'9-9-4',name:'Đa giác đều',
+  biet:['Nhận dạng được đa giác đều.','Nhận biết được phép quay.'],hieu:['Mô tả được các phép quay giữ nguyên hình đa giác đều.'],
+  vd:['Xác định được các phép quay giữ nguyên một đa giác đều cho trước và giải quyết được vấn đề thực tiễn gắn với hình phẳng đều.']})})();
 </script>
 <script>
 "use strict";
-async function saveFile(name,blob){let dl=null;try{if(typeof claude!=='undefined'&&claude.use)dl=await claude.use('downloads')}catch(e){}
-  if(dl){await dl.save({filename:name,data:blob});return}
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),5000)}
+function browserDownload(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.rel='noopener';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),8000)}
+async function saveFile(name,blob){
+  // Ưu tiên hộp thoại "Lưu thành…" của ứng dụng; nếu cầu nối lỗi/không có thì tải bằng trình duyệt (luôn chạy được).
+  try{if(typeof claude!=='undefined'&&claude.use){const dl=await claude.use('downloads');
+    if(dl&&typeof dl.save==='function'){window.__lastSaved='';await dl.save({filename:name,data:blob});
+      if(window.__lastSaved){const p=window.__lastSaved;setTimeout(()=>{try{toast('Đã lưu: '+p)}catch(e){}},80)}return}}}
+  catch(e){if(e&&e.code==='declined')throw e;}   // người dùng bấm Huỷ -> dừng; lỗi khác -> tải bằng trình duyệt
+  browserDownload(name,blob)}
 const LV=['biet','hieu','vd','vdc'], LVN=['Biết','Hiểu','Vận dụng','VD cao'], LVF=['Nhận biết','Thông hiểu','Vận dụng','Vận dụng cao'];
 const NLV={nlc:3,ds:4,tln:4,tl:4}; // số mức độ của từng dạng câu (Nhiều lựa chọn không có Vận dụng cao)
 const TY=['nlc','ds','tln','tl'];
@@ -1314,7 +1057,24 @@ const TYH={nlc:'NHIỀU LỰA CHỌN',ds:'ĐÚNG - SAI',tln:'TL NGẮN',tl:'Tự
 const UNITW={nlc:'câu',ds:'ý',tln:'câu',tl:'câu'};
 const KY={gk1:'GIỮA HỌC KÌ I',ck1:'HỌC KÌ I',gk2:'GIỮA HỌC KÌ II',ck2:'HỌC KÌ II'};
 const KYN={gk1:'Giữa học kì I',ck1:'Cuối học kì I',gk2:'Giữa học kì II',ck2:'Cuối học kì II'};
-const STEPS=['thongtin','noidung','matran','xuat','rade','ai','ct'];
+/* Gợi ý cho ô "Kì kiểm tra" – định kì và thường xuyên; người dùng gõ nội dung khác cũng được */
+const KY_GOI_Y=[
+  ['Thường xuyên lần 1',15],['Thường xuyên lần 2',15],['Thường xuyên lần 3',15],['Thường xuyên lần 4',15],
+  ['Giữa học kì I',90],['Cuối học kì I',90],['Giữa học kì II',90],['Cuối học kì II',90]];
+/* thời gian làm bài mặc định theo kì (thường xuyên 15 phút, định kì 90 phút) */
+const kyTime=v=>{const t=String(v||'').trim().toLowerCase();
+  const g=KY_GOI_Y.find(x=>x[0].toLowerCase()===t);if(g)return g[1];
+  const k=Object.keys(KYN).find(x=>x===t||KYN[x].toLowerCase()===t);if(k)return 90;
+  if(/thường xuyên|thuong xuyen|\btx\b|15\s*(phút|phut|')/.test(t))return 15;
+  return null};
+/* ky có thể là mã cũ (gk1, ck1…) hoặc chữ do người dùng nhập */
+const kyName=k=>KYN[k]||String(k==null?'':k).trim()||'Cuối học kì I';
+const kyTitle=k=>KY[k]||kyName(k).toUpperCase();
+/* gõ đúng tên một kì định kì thì lưu lại bằng mã cũ cho thống nhất */
+const kyNorm=v=>{const t=String(v||'').trim();const k=Object.keys(KYN).find(x=>KYN[x].toLowerCase()===t.toLowerCase());return k||t};
+const kySlug=k=>kyName(k).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D')
+  .replace(/[^A-Za-z0-9]+/g,'-').replace(/^-+|-+$/g,'').toUpperCase()||'DE';
+const STEPS=['thongtin','noidung','matran','xuat','rade','ai','ct','hd'];
 const KEY='mt-thcs-v2';
 
 /* ---------- tiện ích ---------- */
@@ -1333,12 +1093,54 @@ function presetCfg(k){
   if(k==='tl') return {...base,on:{nlc:false,ds:false,tln:false,tl:true},cnt:{nlc:[0,0,0,0],ds:[0,0,0,0],tln:[0,0,0,0],tl:[3,3,2,0]},tlq:[1,1.25,1.5,2]};
   return {...base,cnt:{nlc:[8,3,1,0],ds:[3,3,2,0],tln:[1,2,1,0],tl:[1,1,1,0]}};
 }
-function newProj(g){
+/* Chương -> đơn vị kiến thức (dòng ma trận) -> các bài SGK Kết nối tri thức (nhánh con, chọn/bỏ từng bài).
+   Đơn vị chọn đủ bài: đề ra ngẫu nhiên trong cả đơn vị; bỏ bài nào thì YCCĐ, số tiết và đề bỏ nội dung bài đó. */
+function lessonMeta(g,n){for(const ls of Object.values(((window.SGK||{})[g])||{}))for(const x of ls)if(x[0]===n)return x;return null}
+const cleanName=s=>String(s||'').replace(/\s*\(Bài[^)]*\)\s*$/,'');
+const hasLs=u=>Array.isArray(u.lessons)&&u.lessons.length>0;
+const selLs=u=>hasLs(u)?u.lessons.filter(l=>l.sel):[];
+const partial=u=>hasLs(u)&&selLs(u).length>0&&selLs(u).length<u.lessons.length;
+function curUnit(g,id){for(const c of ((window.CURRICULUM[g]||{}).chapters||[]))for(const u of c.units)if(u.id===id)return u;return null}
+/* YCCĐ CT 2018 của các bài đang chọn trong đơn vị (không chọn bài nào: lấy cả đơn vị), bỏ trùng */
+function uLines(u,g){g=g||S.grade;if(!hasLs(u))return ctLines(g,u.id);
+  const ls=selLs(u).length?selLs(u):u.lessons,seen=new Set(),out=[];
+  ls.forEach(l=>ctLines(g,l.id).forEach(x=>{if(!seen.has(x.t)){seen.add(x.t);out.push(x)}}));return out}
+function reqFromLessons(u,g){const r={biet:[],hieu:[],vd:[],vdc:[]};uLines(u,g).forEach(x=>r[LV[x.lv]].push(x.t));
+  /* mức CT không đặt yêu cầu: khi chọn đủ bài thì bổ sung bằng yêu cầu soạn sẵn của đơn vị (theo SGK) */
+  if(!partial(u)){const cu=curUnit(g,u.id);if(cu)['biet','hieu','vd'].forEach(k=>{if(!r[k].length&&(cu[k]||[]).length)r[k]=[...cu[k]]})}
+  return r}
+/* đồng bộ đơn vị theo các bài đang chọn: chọn/bỏ, số tiết, YCCĐ (nếu đang dùng YCCĐ CT) */
+function syncUnit(u,g){if(!hasLs(u))return;u.sel=u.lessons.some(l=>l.sel);
+  const on=selLs(u);u.tiet=sum((on.length?on:u.lessons).map(l=>+l.tiet||0));if(!on.length)u.tiet=0;
+  if(u.ct)u.req=reqFromLessons(u,g)}
+function syncTiet(p,g){g=g||(p&&p.g)||S.grade;(p&&p.chapters||[]).forEach(ch=>{const us=ch.units||[];us.forEach(u=>syncUnit(u,g));
+  const all=sum(us.map(u=>hasLs(u)?sum(u.lessons.map(l=>+l.tiet||0)):(+u.tiet||0))),on=sum(us.filter(u=>u.sel).map(u=>+u.tiet||0));
+  if(us.some(u=>u.tiet!=null||hasLs(u))){ch.tietAll=all;ch.tiet=us.some(u=>u.sel)?on:all}})}
+/* tên đơn vị trong ma trận/đặc tả: chọn đủ bài -> giữ tên; chọn một phần -> ghi rõ các bài */
+function unitLabel(u){if(!partial(u))return u.name;return u.name+' (chỉ '+selLs(u).map(l=>'Bài '+l.n).join(', ')+')'}
+function newProj(g,keepCfg){
+  const UL=((window.UNIT_LESSONS||{})[g])||{};
   const chapters=window.CURRICULUM[g].chapters.map((c,ci)=>({id:c.id,name:c.name,strand:c.strand,tiet:c.tiet,
-    units:c.units.map(u=>{const cr=ctReq(g,u.id,u);return {id:u.id,name:u.name,sel:ci<5,ct:!!cr,req:cr||{biet:[...u.biet],hieu:[...u.hieu],vd:[...u.vd],vdc:[...(u.vdc||[])]}}})}));
-  const P={chapters,cells:{},cfg:presetCfg('full')};
-  autoAlloc(P);return P;
+    units:c.units.map(u=>{const ls=(UL[u.id]||[]).map(n=>{const m=lessonMeta(g,n);return {id:lessonId(g,n),n,name:'Bài '+n+'. '+(m?m[1]:''),tiet:m?m[2]:1,sel:ci<5}});
+      const x={id:u.id,name:cleanName(u.name),sel:ci<5,ct:true,req:{biet:[],hieu:[],vd:[],vdc:[]},lessons:ls};
+      if(!ls.length){x.ct=false;x.tiet=Math.max(1,Math.round(c.tiet/c.units.length));x.req={biet:[...u.biet],hieu:[...u.hieu],vd:[...u.vd],vdc:[...(u.vdc||[])]}}
+      return x})}));
+  const P={v:3,g,chapters,cells:{},cfg:keepCfg?JSON.parse(JSON.stringify(keepCfg)):presetCfg('full')};
+  syncTiet(P,g);autoAlloc(P);return P;
 }
+/* chuyển dự án lưu từ bản trước: v1 (đơn vị kiến thức) giữ lựa chọn, YCCĐ tự sửa, ma trận; v2 (từng bài) giữ bài đã chọn, số tiết */
+function migrate(st){let n=0;Object.keys(st.proj||{}).forEach(g=>{const old=st.proj[g];if(!old||old.v===3||!window.CURRICULUM[g])return;
+  const np=newProj(+g,old.cfg),byId={},lsById={};
+  (old.chapters||[]).forEach(ch=>(ch.units||[]).forEach(u=>{byId[u.id]=u;lsById[u.id]=u}));
+  np.chapters.forEach(ch=>ch.units.forEach(u=>{
+    if(old.v===2){u.lessons.forEach(l=>{const o=lsById[l.id];if(o){l.sel=!!o.sel;if(o.tiet!=null)l.tiet=+o.tiet}})}
+    else{const o=byId[u.id];if(!o)return;u.lessons.forEach(l=>l.sel=!!o.sel);if(!u.lessons.length)u.sel=!!o.sel;
+      if(o.ct===false||o.ai){u.req=JSON.parse(JSON.stringify(o.req||u.req));u.ct=false;u.ai=!!o.ai}
+      if(o.name&&cleanName(o.name)!==cleanName((curUnit(+g,u.id)||{}).name))u.name=o.name}}));
+  syncTiet(np,+g);
+  if(old.v!==2&&old.cells){np.cells={};Object.keys(old.cells).forEach(k=>{if(np.chapters.some(ch=>ch.units.some(u=>u.id===k)))np.cells[k]=old.cells[k]});if(old.qd)np.qd=old.qd}
+  else autoAlloc(np);
+  st.proj[g]=np;n++});return n}
 function defaultState(){
   const S={step:'thongtin',grade:8,info:{school:'TRƯỜNG THCS NGUYỄN BỈNH KHIÊM',dept:'TỔ KHOA HỌC TỰ NHIÊN',ky:'ck1',year:'2026 - 2027',time:90},
     opt:{onlyLv:true,specBrief:false,part:'both'},proj:{}};
@@ -1346,7 +1148,7 @@ function defaultState(){
 }
 let S=load()||defaultState();
 const P=()=>S.proj[S.grade]||(S.proj[S.grade]=newProj(S.grade));
-function load(){try{const j=localStorage.getItem(KEY);if(!j)return null;const s=JSON.parse(j);return validState(s)?s:null}catch(e){return null}}
+function load(){try{const j=localStorage.getItem(KEY);if(!j)return null;const s=JSON.parse(j);if(!validState(s))return null;if(migrate(s))window.__mig=1;return s}catch(e){return null}}
 function validState(s){return s&&s.info&&s.proj&&s.proj[s.grade]&&s.proj[s.grade].chapters&&s.opt}
 let saveT;function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},400)}
 
@@ -1370,26 +1172,35 @@ function distribute(total,w,off){
   for(let j=0;j<rem;j++)fl[ord[j%n].i]++;
   return fl;
 }
+/* mô tả chung khi bài chưa có yêu cầu cần đạt ở mức của câu hỏi (giáo viên nên bổ sung ở bước 2 hoặc dùng AI) */
+function genReq(u,l){const b=(u&&partial(u))?selLs(u).map(x=>x.name.replace(/^Bài\s*\d+\.\s*/,'')).join('; '):String(u&&u.name||'').replace(/^Bài\s*\d+\.\s*/,'');
+  return ['Nhận biết được các khái niệm, kí hiệu cơ bản về “'+b+'”','Hiểu và thực hiện được các yêu cầu cơ bản về “'+b+'”',
+    'Vận dụng được kiến thức về “'+b+'” để giải bài toán (có thể gắn với thực tiễn)','Vận dụng được kiến thức về “'+b+'” để giải quyết vấn đề phức hợp, không quen thuộc'][l]}
+/* bài có yêu cầu cần đạt ở mức l không (VD cao: chấp nhận bài có yêu cầu Vận dụng) */
+function hasLv(u,l){const r=u.req||{};return ((r[LV[l]]||[]).length>0)||(l===3&&(r.vd||[]).length>0)}
 function autoAlloc(p){
-  const us=selUnits(p);p.cells={};if(!us.length)return;
+  syncTiet(p);const us=selUnits(p);p.cells={};if(!us.length)return;
   const perCh={};us.forEach(x=>perCh[x.ch.id]=(perCh[x.ch.id]||0)+1);
-  const w=us.map(x=>x.ch.tiet/perCh[x.ch.id]);
+  const w=us.map(x=>x.u.tiet!=null?Math.max(+x.u.tiet||0,0.5):x.ch.tiet/perCh[x.ch.id]);
   let off=0;const used=us.map(()=>0);
   TY.forEach(t=>{if(!p.cfg.on[t]){off+=3;return}
-    for(let l=0;l<NLV[t];l++){const w2=w.map((x,i)=>x/(1+used[i]*0.8));
+    for(let l=0;l<NLV[t];l++){const ok=us.map(x=>hasLv(x.u,l)),any=ok.some(Boolean);
+      const w2=w.map((x,i)=>(any&&!ok[i])?0:x/(1+used[i]*0.8));
       const d=distribute(p.cfg.cnt[t][l]||0,w2,off++);us.forEach((x,i)=>{if(d[i]){cellOf(p,x.u.id)[t][l]=d[i];used[i]+=d[i]}})}});
   // mỗi nội dung nên có ít nhất 1 câu: lấy từ ô có từ 2 câu trở lên
   const tot=u=>{const c=p.cells[u.id];return c?sum(TY.map(t=>sum(c[t]))):0};
   for(const x of us){ if(tot(x.u)>0)continue;
     let best=null;
-    TY.filter(t=>p.cfg.on[t]).forEach(t=>{for(let l=0;l<NLV[t];l++){us.forEach(y=>{const c=p.cells[y.u.id];if(c&&c[t][l]>=2&&(!best||tot(y.u)>best.tot))best={y,t,l,tot:tot(y.u)}})}});
+    for(const strict of [true,false]){if(best)break;
+      TY.filter(t=>p.cfg.on[t]).forEach(t=>{for(let l=0;l<NLV[t];l++){if(strict&&!hasLv(x.u,l))continue;
+        us.forEach(y=>{const c=p.cells[y.u.id];if(c&&c[t][l]>=2&&(!best||tot(y.u)>best.tot))best={y,t,l,tot:tot(y.u)}})}})}
     if(best){p.cells[best.y.u.id][best.t][best.l]--;cellOf(p,x.u.id)[best.t][best.l]++}
   }
 }
 
 /* ---------- tính toán ---------- */
 function calc(p){
-  const us=selUnits(p),act=actTypes(p),rows=[];
+  syncTiet(p);const us=selUnits(p),act=actTypes(p),rows=[];
   const T={cnt:{},pt:{},lvC:[0,0,0,0],lvP:[0,0,0,0],c:0,p:0};
   TY.forEach(t=>{T.cnt[t]=[0,0,0,0];T.pt[t]=[0,0,0,0]});
   const chIdx=new Map();
@@ -1413,7 +1224,7 @@ const pct=(x)=>f(x/10*100)+'%';
 /* ---------- mô hình bảng (dùng chung cho xem trước và Word) ---------- */
 function cl(content,o={}){const arr=Array.isArray(content)?content:[content];
   return {lines:arr.filter(x=>x!==''&&x!=null).map(x=>typeof x==='string'?{t:x}:x),...o}}
-function titleFor(S,kind){return (kind==='spec'?'BẢN ĐẶC TẢ ĐỀ KIỂM TRA ĐÁNH GIÁ ':'MA TRẬN ĐỀ KIỂM TRA ĐÁNH GIÁ ')+KY[S.info.ky]}
+function titleFor(S,kind){return (kind==='spec'?'BẢN ĐẶC TẢ ĐỀ KIỂM TRA ĐÁNH GIÁ ':'MA TRẬN ĐỀ KIỂM TRA ĐÁNH GIÁ ')+kyTitle(S.info.ky)}
 function buildHeader(S,kind){
   const i=S.info;
   return {widths:[40,60],noBorder:true,hdrRows:0,rows:[[
@@ -1438,7 +1249,7 @@ function buildMatrix(S,p,K,edit){
   K.rows.forEach(r=>{
     const row=[];
     if(r.first){row.push(cl(String(r.tt),{al:'c',rs:r.chRows,b:1}),cl([{t:r.ch.name,b:true},{t:'('+r.ch.tiet+' tiết)',b:true}],{al:'l',rs:r.chRows}))}
-    row.push(cl(r.u.name,{al:'l'}));
+    row.push(cl(unitLabel(r.u),{al:'l'}));
     act.forEach(t=>{for(let l=0;l<NLV[t];l++)row.push(cellCP(r.cnt[t][l],r.pt[t][l],edit?{u:r.u.id,t,l}:null))});
     for(let l=0;l<4;l++)row.push(cl(r.lvC[l]?[String(r.lvC[l]),f(r.lvP[l])]:'',{al:'c'}));
     row.push(cl(r.c?[f(r.p),pct(r.p)]:'',{al:'c',b:1}));
@@ -1478,6 +1289,26 @@ function rowQuestions(r,act,counter){
   const qs=[];act.forEach(t=>{for(let l=0;l<NLV[t];l++)for(let j=0;j<(r.cnt[t][l]||0);j++)qs.push({t,l,i:counter[t]++})});
   return qs}
 const idsOf=(qs,t,l)=>qs.filter(q=>q.t===t&&q.l===l).map(q=>q.i);
+/* Danh sách câu tự luận theo đúng thứ tự trong ma trận, kèm nội dung, mức độ, điểm */
+function tlQuestions(p,K){K=K||calc(p);if(!p.cfg.on.tl)return [];
+  const counter={nlc:0,ds:0,tln:0,tl:0},out=[],ord=[0,0,0,0];
+  K.rows.forEach(r=>rowQuestions(r,K.act,counter).forEach(q=>{if(q.t!=='tl')return;
+    const arr=tlPts(p.cfg,q.l),pts=arr[ord[q.l]]!=null?arr[ord[q.l]]:(p.cfg.tlq[q.l]||1);ord[q.l]++;
+    out.push({i:q.i,l:q.l,u:r.u,ch:r.ch,pts,code:qPre('tl')+qName('tl',q.i)})}));
+  return out}
+/* Nhóm bài tổng hợp: p.tlg = [[chỉ số câu,...],...]; mặc định mỗi câu một bài */
+function tlGroups(p,K){const qs=tlQuestions(p,K),n=qs.length;
+  /* giữ các nhóm còn hợp lệ, bỏ chỉ số thừa/trùng, câu mới thêm thành bài riêng */
+  const seen=new Set(),g=[];
+  (Array.isArray(p.tlg)?p.tlg:[]).forEach(grp=>{if(!Array.isArray(grp))return;
+    const keep=[];grp.forEach(i=>{if(Number.isInteger(i)&&i>=0&&i<n&&!seen.has(i)){seen.add(i);keep.push(i)}});
+    if(keep.length)g.push(keep)});
+  for(let i=0;i<n;i++)if(!seen.has(i))g.push([i]);
+  g.sort((a,b)=>Math.min(...a)-Math.min(...b));
+  /* trong một bài tổng hợp, xếp các ý từ dễ đến khó để a) là ý dễ nhất */
+  return g.map(idx=>{const ord=idx.slice().sort((a,b)=>(qs[a].l-qs[b].l)||(a-b));
+    return {idx:ord,items:ord.map(i=>qs[i]),pts:sum(ord.map(i=>qs[i].pts))}})}
+const tlHasGroup=p=>Array.isArray(p.tlg)&&p.tlg.some(x=>Array.isArray(x)&&x.length>1);
 function reqDetail(r,qs,o){
   const out=[],byL=[[],[],[],[]];qs.forEach(q=>byL[q.l].push(q));
   const text=new Map();
@@ -1486,7 +1317,7 @@ function reqDetail(r,qs,o){
     const L=lines.length,n=Q.length;
     Q.forEach((q,j)=>{const a=Math.floor(j*L/n),b=Math.max(Math.floor((j+1)*L/n),a+1);text.set(q,lines.slice(a,b).join('; '))})});
   TY.forEach(t=>qs.filter(q=>q.t===t).forEach(q=>{
-    out.push({t:qPre(t)+qName(t,q.i)+' ('+TYS[t]+' – '+LVF[q.l]+'): '+(qdText(r.u.id,q)||text.get(q)||'chưa có yêu cầu cần đạt cho mức độ này'),al:'l'})}));
+    out.push({t:qPre(t)+qName(t,q.i)+' ('+TYS[t]+' – '+LVF[q.l]+'): '+(qdText(r.u.id,q)||text.get(q)||genReq(r.u,q.l)),al:'l'})}));
   LV.forEach((k,l)=>{const lines=r.u.req[k]||[];
     if(!lines.length||byL[l].length)return;
     if(o.onlyLv&&qs.length)return;
@@ -1505,7 +1336,7 @@ function buildSpecDetail(S,p,K){
   K.rows.forEach(r=>{
     const row=[];
     if(r.first)row.push(cl(String(r.tt),{al:'c',rs:r.chRows,b:1}),cl([{t:r.ch.name,b:true},{t:'('+r.ch.tiet+' tiết)',b:true}],{al:'l',rs:r.chRows}));
-    row.push(cl(r.u.name,{al:'l'}));
+    row.push(cl(unitLabel(r.u),{al:'l'}));
     const qs=rowQuestions(r,act,counter);
     row.push(cl(reqDetail(r,qs,o),{al:'l',cls:'yc'}));
     act.forEach(t=>{for(let l=0;l<NLV[t];l++){const ids=idsOf(qs,t,l);
@@ -1538,7 +1369,7 @@ function buildSpecMau(S,p,K){
   K.rows.forEach(r=>{
     const row=[];
     if(r.first)row.push(cl(String(r.tt),{al:'c',rs:r.chRows,b:1}),cl([{t:r.ch.name,b:true}],{al:'l',rs:r.chRows}));
-    row.push(cl(r.u.name,{al:'l'}));
+    row.push(cl(unitLabel(r.u),{al:'l'}));
     const qs=rowQuestions(r,act,counter);
     row.push(cl(reqDetail(r,qs,o),{al:'l',cls:'yc'}));
     for(let l=0;l<4;l++){const n=r.lvC[l];
@@ -1620,7 +1451,7 @@ function buildDocx(S,part){
   zip.file('word/document.xml',doc);zip.file('word/styles.xml',styles);
   return zip.generateAsync({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
 }
-const fileBase=()=>`Toan-${S.grade}-${S.info.ky.toUpperCase()}`;
+const fileBase=()=>`Toan-${S.grade}-${kySlug(S.info.ky)}`;
 
 /* ---------- giao diện: điều hướng ---------- */
 function setStep(s){S.step=STEPS.includes(s)?s:'thongtin';try{history.replaceState(null,'','#'+S.step)}catch(e){location.hash=S.step}render();save()}
@@ -1629,11 +1460,13 @@ window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(STEP
 
 function render(){
   $$('#side [data-step]').forEach(b=>{if(b.dataset.step===S.step)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
-  $('#gradeBadge').textContent='Toán '+S.grade+' · '+KYN[S.info.ky];
-  const sec={rade:'rade',ai:'aiset',ct:'ctref'}[S.step]||'p1';['p1','rade','aiset','ctref'].forEach(id=>$('#'+id).hidden=id!==sec);
+  {const a=$('#side [aria-current]');if(a&&innerWidth<=860){const sd=$('#side');sd.scrollTo({left:a.offsetLeft-sd.clientWidth/2+a.offsetWidth/2,behavior:'smooth'})}}
+  $('#gradeBadge').textContent='Toán '+S.grade+' · '+kyName(S.info.ky);
+  const sec={rade:'rade',ai:'aiset',ct:'ctref',hd:'guide'}[S.step]||'p1';['p1','rade','aiset','ctref','guide'].forEach(id=>$('#'+id).hidden=id!==sec);
   if(S.step==='rade'){if(window.RADE)RADE.refresh()}
   else if(S.step==='ct')renderCT();
   else if(S.step==='ai'){if(window.AI&&AI.refreshUI)AI.refreshUI()}
+  else if(S.step==='hd'){}
   else ({thongtin:renderInfo,noidung:renderContent,matran:renderMatrix,xuat:renderExport})[S.step]();
   window.scrollTo({top:0});
 }
@@ -1647,20 +1480,32 @@ function renderInfo(){
       <label class="f full">Khối lớp<div class="seg" id="gradeSeg">${[6,7,8,9].map(g=>`<button type="button" data-g="${g}" aria-pressed="${g===S.grade}">Lớp ${g}</button>`).join('')}</div></label>
       <label class="f full">Tên trường<input type="text" id="i-school" value="${esc(i.school)}"></label>
       <label class="f full">Tổ chuyên môn<input type="text" id="i-dept" value="${esc(i.dept)}"></label>
-      <label class="f">Kì kiểm tra<select id="i-ky">${Object.keys(KYN).map(k=>`<option value="${k}" ${k===i.ky?'selected':''}>${KYN[k]}</option>`).join('')}</select></label>
+      <label class="f">Kì kiểm tra<select id="i-ky-sel">${KY_GOI_Y.map(([x,t])=>`<option value="${esc(x)}" ${kyName(i.ky)===x?'selected':''}>${esc(x)} – ${t} phút</option>`).join('')}<option value="__khac" ${KY_GOI_Y.some(([x])=>kyName(i.ky)===x)?'':'selected'}>Khác (tự nhập)…</option></select>
+      <input type="text" id="i-ky" value="${esc(kyName(i.ky))}" placeholder="Tên kì kiểm tra" ${KY_GOI_Y.some(([x])=>kyName(i.ky)===x)?'hidden':''} style="margin-top:6px"></label>
       <label class="f">Năm học<input type="text" id="i-year" value="${esc(i.year)}"></label>
       <label class="f">Thời gian làm bài (phút)<input type="text" inputmode="numeric" id="i-time" value="${esc(i.time)}"></label>
     </div>
     <div class="row" style="margin-top:16px"><span class="sp"></span><button class="btn primary" id="next1">Chọn nội dung kiểm tra →</button></div>
   </div>
   <div><div class="card"><h2>Xem trước phần đầu</h2><p class="hint">Cập nhật ngay khi bạn gõ.</p><div class="paperbox"><div class="paper" id="hdrPrev" style="min-width:560px"></div></div></div>
-  <div class="card"><h2>Chương trình Toán ${S.grade}</h2><p class="hint">Dữ liệu chương, nội dung và yêu cầu cần đạt được soạn sẵn theo CT GDPT 2018 và sách Kết nối tri thức. Bạn có thể sửa tên, số tiết và yêu cầu ở bước 2 cho khớp với phân phối chương trình của trường.</p>
-  <div class="sumline"><span><b>${window.CURRICULUM[S.grade].chapters.length}</b> chương</span><span><b>${sum(window.CURRICULUM[S.grade].chapters.map(c=>c.units.length))}</b> đơn vị kiến thức</span><span><b>${sum(window.CURRICULUM[S.grade].chapters.map(c=>c.tiet))}</b> tiết</span><span><b>${sum((CT2018[S.grade]||[]).map(d=>d[4].length))}</b> YCCĐ CT 2018</span></div>
+  <div class="card"><h2>Chương trình Toán ${S.grade}</h2><p class="hint">Mỗi chủ đề gồm các đơn vị kiến thức; mỗi đơn vị có nhánh con là các bài SGK Kết nối tri thức kèm yêu cầu cần đạt, mức độ theo CT GDPT 2018. Số tiết từng bài là gợi ý: hãy sửa ở bước 2 cho khớp phân phối chương trình của trường.</p>
+  <div class="sumline"><span><b>${window.CURRICULUM[S.grade].chapters.length}</b> chương</span><span><b>${sum(window.CURRICULUM[S.grade].chapters.map(c=>c.units.length))}</b> đơn vị kiến thức</span><span><b>${sum(Object.values((window.SGK||{})[S.grade]||{}).map(x=>x.length))}</b> bài SGK</span><span><b>${sum(window.CURRICULUM[S.grade].chapters.map(c=>c.tiet))}</b> tiết</span><span><b>${sum((CT2018[S.grade]||[]).map(d=>d[4].length))}</b> YCCĐ CT 2018</span></div>
   <div class="stat" style="margin-top:10px">${(()=>{const st=strandStats(window.CURRICULUM[S.grade].chapters);return strandChipsHTML(st.m,st.tot)})()}</div>
   <div class="row" style="margin-top:12px"><button class="btn small" id="toCT1">Xem YCCĐ CT 2018 lớp ${S.grade} →</button></div></div></div></div>`;
   const prev=()=>{$('#hdrPrev').innerHTML=tableHTML(buildHeader(S,'matrix'))};prev();
-  const bind=(id,k,fn)=>$(id).addEventListener('input',e=>{i[k]=fn?fn(e.target.value):e.target.value;prev();$('#gradeBadge').textContent='Toán '+S.grade+' · '+KYN[i.ky];save()});
-  bind('#i-school','school');bind('#i-dept','dept');bind('#i-year','year');bind('#i-time','time',v=>v.replace(/\D/g,'')||'');bind('#i-ky','ky');
+  const bind=(id,k,fn)=>$(id).addEventListener('input',e=>{i[k]=fn?fn(e.target.value):e.target.value;prev();$('#gradeBadge').textContent='Toán '+S.grade+' · '+kyName(i.ky);save()});
+  bind('#i-school','school');bind('#i-dept','dept');bind('#i-year','year');bind('#i-time','time',v=>v.replace(/\D/g,'')||'');bind('#i-ky','ky',kyNorm);
+  /* chọn/gõ đúng một kì có sẵn thì tự đặt thời gian làm bài tương ứng */
+  /* chọn trong menu: đặt tên kì + thời gian tương ứng; chọn "Khác" thì hiện ô tự nhập */
+  const setTime=t=>{if(t==null||String(i.time)===String(t))return false;i.time=t;$('#i-time').value=t;return true};
+  $('#i-ky-sel').addEventListener('change',e=>{const v=e.target.value,inp=$('#i-ky');
+    if(v==='__khac'){inp.hidden=false;inp.focus();inp.select();return}
+    inp.hidden=true;inp.value=v;i.ky=kyNorm(v);
+    const changed=setTime(kyTime(v));prev();$('#gradeBadge').textContent='Toán '+S.grade+' · '+kyName(i.ky);save();
+    if(changed)toast(`Đã đặt thời gian làm bài ${i.time} phút cho “${kyName(i.ky)}”. Sửa lại được ở ô Thời gian.`)});
+  /* tự nhập: nếu trùng tên một kì có sẵn thì cũng đặt thời gian theo */
+  $('#i-ky').addEventListener('input',e=>{if(setTime(kyTime(e.target.value))){prev();save()}});
+  $('#i-ky').addEventListener('blur',e=>{if(!String(i.ky||'').trim()){i.ky='ck1';e.target.value=kyName(i.ky);$('#i-ky-sel').value=kyName(i.ky);e.target.hidden=true;prev();save()}});
   $('#gradeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.grade=+b.dataset.g;render();save()});
   $('#next1').onclick=()=>setStep('noidung');$('#toCT1').onclick=()=>{ctG=S.grade;setStep('ct')};
 }
@@ -1672,7 +1517,8 @@ function ctLines(g,uid){return ((window.CT_IDX||{})[g]||{})[uid]||[]}
 function ctReq(g,uid,fb){const L=ctLines(g,uid);if(!L.length)return null;
   const r={biet:[],hieu:[],vd:[],vdc:[]};L.forEach(x=>{if(!r[LV[x.lv]].includes(x.t))r[LV[x.lv]].push(x.t)});
   if(fb)['biet','hieu','vd'].forEach(k=>{if(!r[k].length&&fb[k]&&fb[k].length)r[k]=[...fb[k]]});return r}
-function applyCT(u){const cr=ctReq(S.grade,u.id,null);if(!cr)return false;LV.forEach(k=>{if(cr[k].length)u.req[k]=cr[k]});u.ct=true;u.ai=false;return true}
+function applyCT(u){if(hasLs(u)){if(!uLines(u).length)return false;u.ct=true;u.ai=false;u.req=reqFromLessons(u);return true}
+  const cr=ctReq(S.grade,u.id,null);if(!cr)return false;LV.forEach(k=>{if(cr[k].length)u.req[k]=cr[k]});u.ct=true;u.ai=false;return true}
 function ctNdNames(uid){const g=S.grade,L=ctLines(g,uid);return [...new Set(L.map(x=>x.ni))].map(i=>CT2018[g][i][3])}
 function strandStats(chs){const m={};let tot=0;chs.forEach(c=>{const k=c.strand||'Khác';m[k]=(m[k]||0)+(+c.tiet||0);tot+=(+c.tiet||0)});return {m,tot}}
 function strandChipsHTML(m,tot,unit){return Object.keys(m).map(k=>`<span class="chip m-${mk(k)}">${esc(k)}: ${unit==='đ'?f(m[k])+'đ':m[k]+' tiết'} (${tot?Math.round(m[k]/tot*100):0}%)</span>`).join('')}
@@ -1694,16 +1540,16 @@ async function aiJSON(btn,prompt){
     return j}
   catch(e){toast('Lỗi AI: '+String(e.message||e).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').slice(0,220));return null}
   finally{if(btn&&btn.isConnected){btn.disabled=false;btn.textContent=old}}}
-function unitCTText(uid){const L=ctLines(S.grade,uid);return L.length?L.map(x=>`  - [${LVF[x.lv]}] ${x.t}`).join('\n'):'  (không có – tự suy ra từ tên bài, đúng chương trình)'}
+function unitCTText(u){const L=uLines(u);return L.length?L.map(x=>`  - [${LVF[x.lv]}] ${x.t}`).join('\n'):'  (không có – tự suy ra từ tên bài, đúng chương trình)'}
 async function aiReq(btn,units){
-  const prompt=`Lớp ${S.grade}. Soạn "Yêu cầu cần đạt" theo 4 mức độ cho từng đơn vị kiến thức dưới đây, dùng cho cột "Mức độ kiến thức, kĩ năng cần kiểm tra, đánh giá" của bản đặc tả.
+  const prompt=`Lớp ${S.grade}. Soạn "Yêu cầu cần đạt" theo 4 mức độ cho từng đơn vị kiến thức dưới đây (chỉ trong phạm vi các bài SGK được liệt kê của mỗi đơn vị), dùng cho cột "Mức độ kiến thức, kĩ năng cần kiểm tra, đánh giá" của bản đặc tả.
 Quy tắc:
 - Bám sát YCCĐ chính thức CT GDPT 2018 đi kèm từng đơn vị: giữ thuật ngữ, động từ của chương trình; chỉ cụ thể hoá cho đúng phạm vi bài học, không vượt chương trình.
 - Mỗi dòng bắt đầu bằng động từ đo được. Nhận biết: "Nhận biết được", "Nêu được", "Nhận dạng được"... Thông hiểu: "Mô tả được", "Giải thích được", "Thực hiện được", "Tính được", "Xác định được", "So sánh được"... Vận dụng: "Vận dụng được", "Giải quyết được (vấn đề thực tiễn quen thuộc)"... Vận dụng cao: giải quyết vấn đề phức hợp, không quen thuộc (để mảng rỗng nếu nội dung không phù hợp).
 - Mỗi mức 1–3 dòng, ngắn gọn, không đánh số, không gạch đầu dòng.
 Trả về JSON: {"<mã>":{"biet":[...],"hieu":[...],"vd":[...],"vdc":[...]}}
 
-${units.map(({ch,u})=>`### Mã: ${u.id}\nChương: ${ch.name} (${ch.strand||''})\nĐơn vị kiến thức: ${u.name}\nYCCĐ CT GDPT 2018 liên quan:\n${unitCTText(u.id)}`).join('\n\n')}`;
+${units.map(({ch,u})=>`### Mã: ${u.id}\nChương: ${ch.name} (${ch.strand||''})\nĐơn vị kiến thức: ${u.name}${hasLs(u)?'\nCác bài SGK được kiểm tra: '+selLs(u).map(l=>l.name).join('; ')+(partial(u)?'\nKHÔNG đưa nội dung của: '+u.lessons.filter(l=>!l.sel).map(l=>l.name).join('; '):''):''}\nYCCĐ CT GDPT 2018 liên quan:\n${unitCTText(u)}`).join('\n\n')}`;
   const j=await aiJSON(btn,prompt);if(!j)return 0;let n=0;
   units.forEach(({u})=>{const r=j[u.id];if(!r||typeof r!=='object')return;
     LV.forEach(k=>{if(Array.isArray(r[k]))u.req[k]=r[k].map(s=>String(s).replace(/^[-–•\s]+/,'').trim()).filter(Boolean)});u.ai=true;n++});
@@ -1719,17 +1565,17 @@ async function aiMatrix(btn){
   if(!us.length){toast('Chưa chọn nội dung kiểm tra.');return}
   if(!act.length){toast('Hãy bật ít nhất một dạng câu hỏi.');return}
   const note=($('#aiMxNote')&&$('#aiMxNote').value.trim())||'';
-  const prompt=`Phân bổ số câu hỏi của đề kiểm tra ${KYN[S.info.ky]} môn Toán lớp ${S.grade} (${S.info.time} phút) vào ma trận.
+  const prompt=`Phân bổ số câu hỏi của đề kiểm tra ${kyName(S.info.ky)} môn Toán lớp ${S.grade} (${S.info.time} phút) vào ma trận.
 TỔNG SỐ CÂU THEO DẠNG VÀ MỨC ĐỘ (cộng theo cột phải khớp tuyệt đối):
 ${act.map(t=>`- ${t} = ${TYN[t]}${t==='ds'?' (đếm theo ý; 4 ý = 1 câu)':''}: ${LVF.slice(0,NLV[t]).map((n,l)=>n+' '+(c.cnt[t][l]||0)).join(', ')}`).join('\n')}
 Nguyên tắc:
-- Số câu mỗi nội dung tương ứng với số tiết (chương nhiều tiết có nhiều câu hơn); cân đối giữa các mạch kiến thức theo số tiết.
+- Mỗi dòng là một đơn vị kiến thức (gồm các bài SGK đã chọn); số câu mỗi đơn vị tương ứng với số tiết của các bài đã chọn; cân đối giữa các mạch kiến thức theo số tiết.
 - Mỗi nội dung có ít nhất 1 câu/ý; câu ở mức nào chỉ đặt vào nội dung có yêu cầu cần đạt ở mức đó.
 - Vận dụng, Vận dụng cao đặt ở nội dung trọng tâm, có bài toán thực tiễn; tự luận ưu tiên nội dung trọng tâm.
 - Phần Đúng–Sai: 4 ý của một câu nên thuộc cùng một nội dung hoặc cùng một chương.
 ${note?'- Yêu cầu riêng của giáo viên: '+note:''}
-DANH SÁCH NỘI DUNG (mã | chương, số tiết, mạch | đơn vị kiến thức | các mức có YCCĐ):
-${us.map(x=>`- ${x.u.id} | ${x.ch.name}, ${x.ch.tiet} tiết, ${x.ch.strand||''} | ${x.u.name} | ${LV.filter(k=>(x.u.req[k]||[]).length).map(k=>LVF[LV.indexOf(k)]).join(', ')||'chưa có'}`).join('\n')}
+DANH SÁCH NỘI DUNG (mã | chủ đề, mạch | đơn vị kiến thức (các bài đã chọn), số tiết | các mức có YCCĐ):
+${us.map(x=>`- ${x.u.id} | ${x.ch.name}, ${x.ch.strand||''} | ${unitLabel(x.u)}, ${x.u.tiet!=null?x.u.tiet:'?'} tiết | ${LV.filter(k=>(x.u.req[k]||[]).length).map(k=>LVF[LV.indexOf(k)]).join(', ')||'chưa có'}`).join('\n')}
 Trả về JSON: {"cells":{"<mã>":{"nlc":[NB,TH,VD,0],"ds":[NB,TH,VD,VDC],"tln":[NB,TH,VD,VDC],"tl":[NB,TH,VD,VDC]}},"note":"một câu nêu ý tưởng phân bổ"} – mỗi mảng 4 số nguyên; dạng không dùng ghi 0.`;
   const j=await aiJSON(btn,prompt);if(!j||!j.cells){if(j)toast('AI không trả về phân bổ hợp lệ.');return}
   const q={cells:{},cfg:p.cfg,chapters:p.chapters};
@@ -1741,85 +1587,122 @@ async function aiSpec(btn,done){
   const p=P(),K=calc(p);if(!K.rows.length||!K.act.length){toast('Chưa có ma trận.');return}
   const counter={nlc:0,ds:0,tln:0,tl:0},items=[];
   K.rows.forEach(r=>rowQuestions(r,K.act,counter).forEach(q=>items.push({key:q.t+':'+q.i,sig:r.u.id+'|'+q.l,code:qPre(q.t)+qName(q.t,q.i),t:q.t,l:q.l,r})));
-  const prompt=`Viết bản đặc tả chi tiết cho TỪNG câu/ý của đề kiểm tra ${KYN[S.info.ky]} môn Toán lớp ${S.grade}. Với mỗi khoá, viết MỘT câu mô tả cụ thể câu hỏi đó kiểm tra điều gì, theo phong cách bản đặc tả CV 7991: bắt đầu bằng động từ đúng mức độ, nêu rõ dạng bài/đối tượng (ví dụ: "Tính được giá trị của biểu thức chứa luỹ thừa với số mũ tự nhiên", "Giải quyết được bài toán thực tiễn về tính tiền khi mua hàng có giảm giá theo tỉ số phần trăm").
+  const prompt=`Viết bản đặc tả chi tiết cho TỪNG câu/ý của đề kiểm tra ${kyName(S.info.ky)} môn Toán lớp ${S.grade}. Với mỗi khoá, viết MỘT câu mô tả cụ thể câu hỏi đó kiểm tra điều gì, theo phong cách bản đặc tả CV 7991: bắt đầu bằng động từ đúng mức độ, nêu rõ dạng bài/đối tượng (ví dụ: "Tính được giá trị của biểu thức chứa luỹ thừa với số mũ tự nhiên", "Giải quyết được bài toán thực tiễn về tính tiền khi mua hàng có giảm giá theo tỉ số phần trăm").
 Yêu cầu: nằm trong YCCĐ của nội dung và đúng mức độ; các câu cùng nội dung, cùng mức không trùng ý; phần Đúng–Sai: 4 ý của một câu cùng khai thác một tình huống/dữ kiện; không đưa đáp án.
 Trả về JSON: {"<khoá>":"mô tả"}
-${items.map(x=>`- khoá ${x.key} | mã ${x.code} (${TYN[x.t]} – ${LVF[x.l]}) | ${x.r.u.name} | YCCĐ mức này: ${(x.r.u.req[LV[x.l]]||[]).join('; ')||'(trống)'}`).join('\n')}`;
+${items.map(x=>`- khoá ${x.key} | mã ${x.code} (${TYN[x.t]} – ${LVF[x.l]}) | ${unitLabel(x.r.u)} | YCCĐ mức này: ${(x.r.u.req[LV[x.l]]||[]).join('; ')||'(trống)'}`).join('\n')}`;
   const j=await aiJSON(btn,prompt);if(!j)return;p.qd=p.qd||{};let n=0;
   items.forEach(x=>{const v=j[x.key];if(typeof v==='string'&&v.trim()){p.qd[x.key]={sig:x.sig,text:v.trim().replace(/\.$/,'')+'.'};n++}});
   save();done&&done();toast(`AI đã viết mô tả cho ${n}/${items.length} câu, ý.`)}
 
-/* ---------- bước 2 (viết lại: thêm YCCĐ CT 2018, mạch kiến thức, AI) ---------- */
+/* ---------- bước 2: nội dung kiểm tra = đơn vị kiến thức, mỗi đơn vị có nhánh con là các bài SGK ---------- */
 const openU=new Set();
+function lvCount(u){return LV.map(k=>((u.req||{})[k]||[]).length)}
+function chipsFromCounts(c,tip){return LVN.map((n,l)=>c[l]?`<span class="lvc ${LVCLS[l]}" title="${c[l]} yêu cầu mức ${LVF[l]}${tip||''}">${n} ${c[l]}</span>`
+    :`<span class="lvc lv0" title="Chưa có yêu cầu mức ${LVF[l]}${tip||''}">${n} –</span>`).join('')}
+function lvChips(u){return chipsFromCounts(lvCount(u))}
+function lessonChips(l){const c=[0,0,0];ctLines(S.grade,l.id).forEach(x=>c[x.lv]++);
+  return LVN.slice(0,3).map((n,i)=>c[i]?`<span class="lvc ${LVCLS[i]}" title="CT 2018: ${c[i]} yêu cầu mức ${LVF[i]}">${n} ${c[i]}</span>`:`<span class="lvc lv0" title="CT 2018 không đặt yêu cầu mức ${LVF[i]} cho bài này">${n} –</span>`).join('')}
+function chCount(ch){let nb=0,ns=0;ch.units.forEach(u=>{if(hasLs(u)){nb+=u.lessons.length;ns+=selLs(u).length}else{nb++;if(u.sel)ns++}});
+  const ta=ch.tietAll!=null?ch.tietAll:ch.tiet,ts=ch.units.some(u=>u.sel)?ch.tiet:0;return `<b>${ns}</b>/${nb} bài · <b>${ts}</b>/${ta} tiết`}
 function renderContent(){
-  const p=P();
-  $('#app').innerHTML=`<div class="card"><div class="row"><div><h2>Nội dung kiểm tra · Toán ${S.grade}</h2><p class="hint" style="margin:0">Tích chọn các đơn vị kiến thức nằm trong phạm vi đề. Mở “Yêu cầu cần đạt” để xem YCCĐ chính thức CT GDPT 2018 và sửa nội dung sẽ ghi vào bản đặc tả.</p></div><span class="sp"></span>
-    <button class="btn small" data-pre="hk1">Học kì I (chương 1–5)</button><button class="btn small" data-pre="hk2">Học kì II (từ chương 6)</button><button class="btn small" data-pre="all">Chọn tất cả</button><button class="btn small" data-pre="none">Bỏ chọn</button></div>
+  const p=P();syncTiet(p);
+  const flatL=()=>{const o=[];p.chapters.forEach((ch,ci)=>ch.units.forEach((u,ui)=>{if(hasLs(u))u.lessons.forEach((l,li)=>o.push({ch,u,l,ci,ui,li}))}));return o};
+  $('#app').innerHTML=`<div class="card"><h2>Nội dung kiểm tra · Toán ${S.grade}</h2>
+    <p class="hint" style="margin:0">Mỗi chủ đề gồm các <b>đơn vị kiến thức</b> (mỗi đơn vị là một dòng của ma trận). Bên trong mỗi đơn vị là các <b>bài SGK Kết nối tri thức</b> kèm mức độ theo CT GDPT 2018. Chọn đủ các bài: đề ra ngẫu nhiên trong cả đơn vị. Bỏ chọn bài nào (chưa học, không muốn kiểm tra): yêu cầu cần đạt, số tiết và đề sẽ bỏ nội dung bài đó.</p>
+    <div class="rangebar"><span class="lab">Chọn nhanh</span>
+      <label>Từ <select id="rgFrom"></select></label><label>đến <select id="rgTo"></select></label>
+      <button class="btn small primary" id="rgApply">Chọn các bài trong khoảng</button>
+      <span class="sp"></span><button class="btn small" data-pre="hk1">Học kì I (chương 1–5)</button><button class="btn small" data-pre="hk2">Học kì II (từ chương 6)</button><button class="btn small" data-pre="all">Tất cả</button><button class="btn small" data-pre="none">Bỏ chọn</button></div>
     <div class="sumline" id="sumC" style="margin-top:12px"></div><div class="stat" id="sumM" style="margin-top:8px"></div>
     <div id="ctBanner"></div>
-    <div class="aibar"><span class="lab">Yêu cầu cần đạt</span><button class="btn small" id="ctAll">Áp dụng YCCĐ CT 2018 cho nội dung đã chọn</button><button class="btn small primary" id="aiAll">AI soạn YCCĐ 4 mức cho nội dung đã chọn</button><button class="btn small ghost" id="toCT">Tra cứu YCCĐ CT 2018 →</button></div></div>
+    <div class="aibar"><span class="lab">Yêu cầu cần đạt</span><button class="btn small" id="ctAll">Áp dụng YCCĐ CT 2018 theo các bài đã chọn</button><button class="btn small primary" id="aiAll">AI soạn YCCĐ 4 mức cho nội dung đã chọn</button><button class="btn small ghost" id="toCT">Tra cứu YCCĐ CT 2018 →</button></div></div>
     <div id="chaps" style="margin-top:14px"></div>
-    <div class="row" style="margin-top:6px"><button class="btn small" id="addCh">+ Thêm chương</button><span class="sp"></span><button class="btn" id="back2">← Thông tin</button><button class="btn primary" id="next2">Lập ma trận →</button></div>`;
-  const unitHTML=(ch,u,ui)=>{const nds=ctNdNames(u.id),L=ctLines(S.grade,u.id);
-    return `<div class="unit ${u.sel?'':'off'} ${openU.has(u.id)?'open':''}" data-ui="${ui}"><div class="u-h"><input type="checkbox" class="u-cb" ${u.sel?'checked':''} aria-label="Chọn đơn vị kiến thức">
+    <div class="row" style="margin-top:6px"><button class="btn small" id="addCh">+ Thêm chủ đề</button><span class="sp"></span><button class="btn" id="back2">← Thông tin</button><button class="btn primary" id="next2">Lập ma trận →</button></div>`;
+  const lessonHTML=(u,l,li)=>`<label class="lsn ${l.sel?'':'off'}" data-li="${li}"><input type="checkbox" class="l-cb" ${l.sel?'checked':''} aria-label="Chọn ${esc(l.name)}">
+      <span class="ln">${esc(l.name)}</span><span class="u-lv sm">${lessonChips(l)}</span>
+      <span class="lt">Tiết <input type="text" inputmode="numeric" class="l-tiet" value="${l.tiet==null?'':l.tiet}" aria-label="Số tiết ${esc(l.name)}"></span></label>`;
+  const unitHTML=(ch,u,ui)=>{const L=uLines(u),nds=[...new Set(L.map(x=>x.ni))].map(i=>CT2018[S.grade][i][3]),ls=hasLs(u),part=partial(u);
+    return `<div class="unit ${u.sel?'':'off'} ${openU.has(u.id)?'open':''}" data-ui="${ui}"><div class="u-h"><input type="checkbox" class="u-cb" ${u.sel?'checked':''} aria-label="Chọn cả đơn vị kiến thức">
       <div class="u-main"><input type="text" class="u-name" value="${esc(u.name)}" style="border-color:transparent" aria-label="Tên đơn vị kiến thức">
-      <div class="u-ct">${nds.length?'CT 2018: '+esc(nds.join(' · ')):'Chưa gắn với nội dung CT 2018'}${u.ct?'<span class="tag">YCCĐ CT</span>':''}${u.ai?'<span class="tag">AI</span>':''}</div></div>
+      <div class="u-ct">${nds.length?'CT 2018: '+esc(nds.join(' · ')):'Chưa gắn với nội dung CT 2018'}${part?'<span class="tag warn">chọn '+selLs(u).length+'/'+u.lessons.length+' bài</span>':''}${u.ct?'<span class="tag">YCCĐ CT</span>':'<span class="tag mute">YCCĐ tự sửa</span>'}${u.ai?'<span class="tag">AI</span>':''}</div></div>
+      <div class="u-lv">${lvChips(u)}</div>
+      ${ls?`<span class="utiet">${u.tiet||0} tiết</span>`:`<label class="tiet">Tiết <input type="text" inputmode="numeric" class="u-tiet" value="${u.tiet==null?'':u.tiet}"></label>`}
       <button class="btn small u-tog">Yêu cầu cần đạt</button><button class="btn small ghost u-del" title="Xóa">Xóa</button></div>
+      ${ls?`<div class="lsn-list">${u.lessons.map((l,li)=>lessonHTML(u,l,li)).join('')}</div>`:''}
       <div class="req">${LV.map((k,l)=>`<label><span class="lv lv${l+1}">${LVF[l]}</span><textarea rows="4" data-k="${k}" placeholder="Mỗi yêu cầu một dòng">${esc((u.req[k]||[]).join('\n'))}</textarea></label>`).join('')}</div>
-      <div class="reqx">${L.length?`<h4>YCCĐ chính thức – CT GDPT 2018 (mức độ gợi ý)</h4><ul class="ctl">${L.map(x=>`<li><span class="lvc ${LVCLS[x.lv]}">${LVN[x.lv]}</span><span>${esc(x.t)}</span></li>`).join('')}</ul>`:'<p class="hint" style="margin:0">Nội dung này chưa gắn với YCCĐ CT 2018 (nội dung tự thêm).</p>'}
-        <div class="row" style="margin-top:8px">${L.length?'<button class="btn small u-ct">Dùng YCCĐ CT 2018 cho nội dung này</button>':''}<button class="btn small u-ai">AI soạn lại 4 mức</button></div></div></div>`};
-  const draw=()=>{
+      <div class="reqx">${L.length?`<h4>YCCĐ chính thức – CT GDPT 2018 của ${part?'các bài đang chọn':'đơn vị này'} (mức độ gợi ý)</h4><ul class="ctl">${L.map(x=>`<li><span class="lvc ${LVCLS[x.lv]}">${LVN[x.lv]}</span><span>${esc(x.t)}</span></li>`).join('')}</ul>`:'<p class="hint" style="margin:0">Nội dung này chưa gắn với YCCĐ CT 2018 (nội dung tự thêm).</p>'}
+        ${!u.ct&&ls?'<p class="hint" style="margin:8px 0 0">Yêu cầu cần đạt của nội dung này đã được sửa tay/AI nên không tự đổi khi chọn hoặc bỏ bài. Bấm nút bên dưới để lấy lại theo các bài đang chọn.</p>':''}
+        <div class="row" style="margin-top:8px">${L.length?'<button class="btn small u-ct">Dùng YCCĐ CT 2018 theo các bài đang chọn</button>':''}<button class="btn small u-ai">AI soạn lại 4 mức</button></div></div></div>`};
+  const fillRange=()=>{const F=flatL(),on=F.map((x,i)=>x.l.sel?i:-1).filter(i=>i>=0);
+    const opts=F.map((x,i)=>`<option value="${i}">${esc(x.l.name.length>58?x.l.name.slice(0,56)+'…':x.l.name)}</option>`).join('');
+    $('#rgFrom').innerHTML=opts;$('#rgTo').innerHTML=opts;
+    $('#rgFrom').value=String(on.length?on[0]:0);$('#rgTo').value=String(on.length?on[on.length-1]:Math.max(F.length-1,0))};
+  const draw=()=>{syncTiet(p);
     $('#chaps').innerHTML=p.chapters.map((ch,ci)=>{const on=ch.units.filter(u=>u.sel).length;
-      return `<section class="chap" data-ci="${ci}"><div class="ch-h"><input type="checkbox" class="ch-cb" aria-label="Chọn cả chương" ${on===ch.units.length&&on?'checked':''}>
-        <input type="text" class="ch-name" value="${esc(ch.name)}" aria-label="Tên chương">${ch.strand?`<span class="strand pill m-${mk(ch.strand)}">${esc(ch.strand)}</span>`:''}
-        <label class="tiet">Số tiết <input type="text" inputmode="numeric" class="ch-tiet" value="${ch.tiet}"></label>
-        <button class="btn small ghost ch-del" title="Xóa chương">Xóa</button></div>
+      return `<section class="chap" data-ci="${ci}"><div class="ch-h"><input type="checkbox" class="ch-cb" aria-label="Chọn cả chủ đề" ${on===ch.units.length&&on&&!ch.units.some(partial)?'checked':''}>
+        <input type="text" class="ch-name" value="${esc(ch.name)}" aria-label="Tên chủ đề">${ch.strand?`<span class="strand pill m-${mk(ch.strand)}">${esc(ch.strand)}</span>`:''}
+        <span class="chcount">${chCount(ch)}</span>
+        <button class="btn small ghost ch-del" title="Xóa chủ đề">Xóa</button></div>
         ${ch.units.map((u,ui)=>unitHTML(ch,u,ui)).join('')}
         <div class="unit"><button class="btn small add-u">+ Thêm đơn vị kiến thức</button></div></section>`}).join('');
-    upd()};
-  const upd=()=>{const us=selUnits(p),chs=[...new Set(us.map(x=>x.ch))];const st=strandStats(chs);
-    $('#sumC').innerHTML=`<span><b>${us.length}</b> đơn vị kiến thức</span><span><b>${chs.length}</b> chương</span><span><b>${st.tot}</b> tiết</span>`;
+    $$('#chaps .chap').forEach((sec,ci)=>{const ch=p.chapters[ci];$$('.u-cb',sec).forEach((cb,ui)=>{cb.indeterminate=partial(ch.units[ui])});
+      const c=$('.ch-cb',sec);c.indeterminate=ch.units.some(u=>u.sel)&&!c.checked});
+    fillRange();upd()};
+  /* cập nhật một đơn vị tại chỗ (giữ con trỏ khi đang gõ số tiết) */
+  const updUnit=(sec,ch,ue,u)=>{syncTiet(p);const t=$('.utiet',ue);if(t)t.textContent=(u.tiet||0)+' tiết';const lv=$('.u-lv',ue);if(lv)lv.innerHTML=lvChips(u);
+    const c=$('.chcount',sec);if(c)c.innerHTML=chCount(ch)};
+  const upd=()=>{syncTiet(p);const us=selUnits(p),chs=[...new Set(us.map(x=>x.ch))];const st=strandStats(chs);
+    let nb=0;us.forEach(x=>nb+=hasLs(x.u)?selLs(x.u).length:1);
+    $('#sumC').innerHTML=`<span><b>${us.length}</b> đơn vị kiến thức</span><span><b>${nb}</b> bài</span><span><b>${chs.length}</b> chủ đề</span><span><b>${st.tot}</b> tiết</span>`;
     $('#sumM').innerHTML=chs.length?'<span class="chip">Theo mạch:</span>'+strandChipsHTML(st.m,st.tot):'';
-    const miss=us.filter(x=>!x.u.ct&&!x.u.ai&&ctLines(S.grade,x.u.id).length).length;
-    $('#ctBanner').innerHTML=miss?`<div class="note-b">${miss} nội dung đang dùng yêu cầu cần đạt cũ, chưa theo YCCĐ chính thức CT GDPT 2018.<button class="btn small" id="ctFix">Áp dụng YCCĐ CT 2018</button></div>`:'';
+    const miss=us.filter(x=>!x.u.ct&&uLines(x.u).length).length;
+    $('#ctBanner').innerHTML=miss?`<div class="note-b">${miss} nội dung đang dùng yêu cầu cần đạt tự sửa/AI: khi chọn hoặc bỏ bài, yêu cầu của các nội dung này không tự cập nhật.<button class="btn small" id="ctFix">Áp dụng lại YCCĐ CT 2018 theo bài đã chọn</button></div>`:'';
     save()};
   draw();
-  const ctApply=()=>{let n=0;selUnits(p).forEach(x=>{if(applyCT(x.u))n++});draw();toast(n?`Đã áp dụng YCCĐ CT 2018 cho ${n} nội dung.`:'Không có nội dung nào gắn với CT 2018.')};
+  $('#rgApply').onclick=()=>{let a=+$('#rgFrom').value,b=+$('#rgTo').value;if(a>b)[a,b]=[b,a];
+    flatL().forEach((x,i)=>x.l.sel=i>=a&&i<=b);draw();toast(`Đã chọn ${b-a+1} bài.`)};
+  const ctApply=()=>{let n=0;selUnits(p).forEach(x=>{if(applyCT(x.u))n++});draw();toast(n?`Đã áp dụng YCCĐ CT 2018 theo các bài đã chọn cho ${n} nội dung.`:'Không có nội dung nào gắn với CT 2018.')};
   $('#ctAll').onclick=ctApply;$('#ctBanner').addEventListener('click',e=>{if(e.target.id==='ctFix')ctApply()});
   $('#toCT').onclick=()=>setStep('ct');
   $('#aiAll').onclick=async()=>{const us=selUnits(p);if(!us.length){toast('Hãy chọn nội dung trước.');return}
     if(us.length>24&&!confirm(`Đang chọn ${us.length} nội dung, AI sẽ trả lời khá lâu. Tiếp tục?`))return;
     const n=await aiReq($('#aiAll'),us.map(x=>({ch:x.ch,u:x.u})));if(n){if(S.step==='noidung')draw();toast(`AI đã soạn yêu cầu cần đạt cho ${n} nội dung.`)}};
-  $$('[data-pre]').forEach(b=>b.onclick=()=>{const k=b.dataset.pre;p.chapters.forEach((c,i)=>c.units.forEach(u=>u.sel=k==='all'?true:k==='none'?false:k==='hk1'?i<5:i>=5));draw()});
+  const setAll=(u,v)=>{if(hasLs(u))u.lessons.forEach(l=>l.sel=v);else u.sel=v};
+  $$('[data-pre]').forEach(b=>b.onclick=()=>{const k=b.dataset.pre;p.chapters.forEach((c,i)=>c.units.forEach(u=>setAll(u,k==='all'?true:k==='none'?false:k==='hk1'?i<5:i>=5)));draw()});
   const root=$('#chaps');
   root.addEventListener('change',e=>{const t=e.target,sec=t.closest('.chap');if(!sec)return;const ch=p.chapters[+sec.dataset.ci];
-    if(t.classList.contains('ch-cb')){ch.units.forEach(u=>u.sel=t.checked);draw()}
-    else if(t.classList.contains('u-cb')){const u=ch.units[+t.closest('.unit').dataset.ui];u.sel=t.checked;t.closest('.unit').classList.toggle('off',!t.checked);
-      $('.ch-cb',sec).checked=ch.units.every(x=>x.sel);upd()}});
+    const ue=t.closest('.unit'),u=ue&&ue.dataset.ui!=null?ch.units[+ue.dataset.ui]:null;
+    if(t.classList.contains('ch-cb')){ch.units.forEach(x=>setAll(x,t.checked));draw()}
+    else if(t.classList.contains('u-cb')){setAll(u,t.checked);draw()}
+    else if(t.classList.contains('l-cb')){u.lessons[+t.closest('.lsn').dataset.li].sel=t.checked;draw()}});
   root.addEventListener('input',e=>{const t=e.target,sec=t.closest('.chap');if(!sec)return;const ch=p.chapters[+sec.dataset.ci];
+    const ue=t.closest('.unit'),u=ue&&ue.dataset.ui!=null?ch.units[+ue.dataset.ui]:null;
+    const num=v=>Math.max(0,parseInt(String(v).replace(/\D/g,''))||0);
     if(t.classList.contains('ch-name'))ch.name=t.value;
-    else if(t.classList.contains('ch-tiet')){ch.tiet=Math.max(0,parseInt(t.value.replace(/\D/g,''))||0);upd()}
-    else if(t.classList.contains('u-name'))ch.units[+t.closest('.unit').dataset.ui].name=t.value;
-    else if(t.tagName==='TEXTAREA'){ch.units[+t.closest('.unit').dataset.ui].req[t.dataset.k]=t.value.split('\n').map(s=>s.trim()).filter(Boolean)}
+    else if(t.classList.contains('l-tiet')){u.lessons[+t.closest('.lsn').dataset.li].tiet=num(t.value);updUnit(sec,ch,ue,u);upd()}
+    else if(t.classList.contains('u-tiet')){u.tiet=num(t.value);updUnit(sec,ch,ue,u);upd()}
+    else if(t.classList.contains('u-name'))u.name=t.value;
+    else if(t.tagName==='TEXTAREA'){u.req[t.dataset.k]=t.value.split('\n').map(s=>s.trim()).filter(Boolean);u.ct=false;const lv=$('.u-lv',ue);if(lv)lv.innerHTML=lvChips(u)}
     save()});
   root.addEventListener('click',async e=>{const t=e.target,sec=t.closest('.chap');if(!sec)return;const ci=+sec.dataset.ci,ch=p.chapters[ci];
     const ue=t.closest('.unit'),u=ue&&ue.dataset.ui!=null?ch.units[+ue.dataset.ui]:null;
     if(t.classList.contains('u-tog')){ue.classList.toggle('open');ue.classList.contains('open')?openU.add(u.id):openU.delete(u.id)}
     else if(t.classList.contains('u-del')){ch.units.splice(+ue.dataset.ui,1);draw()}
-    else if(t.classList.contains('u-ct')){applyCT(u);openU.add(u.id);draw();toast('Đã dùng YCCĐ CT 2018 cho “'+u.name.slice(0,40)+'”.')}
+    else if(t.classList.contains('u-ct')){applyCT(u);openU.add(u.id);draw();toast('Đã dùng YCCĐ CT 2018 theo các bài đang chọn.')}
     else if(t.classList.contains('u-ai')){const n=await aiReq(t,[{ch,u}]);if(n){openU.add(u.id);if(S.step==='noidung')draw();toast('AI đã soạn lại yêu cầu cần đạt.')}}
     else if(t.classList.contains('ch-del')){p.chapters.splice(ci,1);draw()}
-    else if(t.classList.contains('add-u')){ch.units.push({id:ch.id+'-x'+Date.now().toString(36),name:'Nội dung mới',sel:true,req:{biet:[],hieu:[],vd:[],vdc:[]}});draw();const us=$$('.u-name',$$('.chap')[ci]);us[us.length-1].select()}});
-  $('#addCh').onclick=()=>{p.chapters.push({id:'c-x'+Date.now().toString(36),name:'Chương mới',strand:'',tiet:6,units:[{id:'u-x'+Date.now().toString(36),name:'Nội dung mới',sel:true,req:{biet:[],hieu:[],vd:[],vdc:[]}}]});draw()};
+    else if(t.classList.contains('add-u')){ch.units.push({id:ch.id+'-x'+Date.now().toString(36),name:'Nội dung mới',tiet:2,sel:true,ct:false,req:{biet:[],hieu:[],vd:[],vdc:[]},lessons:[]});draw();const us=$$('.u-name',$$('.chap')[ci]);us[us.length-1].select()}});
+  $('#addCh').onclick=()=>{p.chapters.push({id:'c-x'+Date.now().toString(36),name:'Chủ đề mới',strand:'',tiet:2,units:[{id:'u-x'+Date.now().toString(36),name:'Nội dung mới',tiet:2,sel:true,ct:false,req:{biet:[],hieu:[],vd:[],vdc:[]},lessons:[]}]});draw()};
   $('#back2').onclick=()=>setStep('thongtin');
-  $('#next2').onclick=()=>{if(!selUnits(p).length){toast('Hãy chọn ít nhất một đơn vị kiến thức.');return}setStep('matran')};
+  $('#next2').onclick=()=>{if(!selUnits(p).length){toast('Hãy chọn ít nhất một nội dung.');return}setStep('matran')};
 }
 
 /* ---------- tra cứu YCCĐ CT GDPT 2018 ---------- */
 let ctG=null,ctQ='';
 function renderCT(){
   const g=ctG||S.grade,D=CT2018[g],names={};
-  CURRICULUM[g].chapters.forEach(c=>c.units.forEach(u=>names[u.id]=u.name.replace(/\s*\(Bài[^)]*\)\s*$/,'')));
+  Object.values((window.SGK||{})[g]||{}).forEach(ls=>ls.forEach(([n,t])=>names[String(n)]='Bài '+n+'. '+t));
   const nLines=sum(D.map(d=>d[4].length));
   const box=$('#ctref');
   box.innerHTML=`<header class="top"><div><div class="kick">Tra cứu</div><h1>Yêu cầu cần đạt – Chương trình GDPT 2018</h1>
@@ -1836,7 +1719,7 @@ function renderCT(){
       rows.forEach(d=>{const lines=d[4].filter(([t])=>!q||t.toLowerCase().includes(q)||d[3].toLowerCase().includes(q)||d[2].toLowerCase().includes(q));if(!lines.length)return;
         cnt+=lines.length;
         if(d[1]!==lastPm){body+=`<tr class="pm"><td colspan="4">${esc(d[1])}</td></tr>`;lastPm=d[1];lastCd=''}
-        const us=[...new Set(lines.flatMap(([,u])=>u.split(' ')))];
+        const us=[...new Set(lines.flatMap(([,u])=>u.split(' ').filter(Boolean)))].sort((x,y)=>x-y);
         body+=`<tr><td class="cd">${d[2]!==lastCd?hl(d[2]):''}</td><td class="nd">${hl(d[3])}</td><td><ul class="ctl">${lines.map(([t])=>{const l=ctLevel(t);return `<li><span class="lvc ${LVCLS[l]}">${LVN[l]}</span><span>${hl(t)}</span></li>`}).join('')}</ul></td><td class="bai">${us.map(u=>`<span>${esc(names[u]||u)}</span>`).join('')}</td></tr>`;lastCd=d[2]});
       stat[CT_MACH[M]]=cnt;
       if(body)html+=`<section class="card ctsec"><h2 class="mh m-${M}">${esc(CT_MACH[M])}<small>${cnt} yêu cầu cần đạt</small></h2><div class="scroll"><table class="ct"><thead><tr><th>Chủ đề</th><th>Nội dung</th><th>Yêu cầu cần đạt</th><th>Bài (KNTT)</th></tr></thead><tbody>${body}</tbody></table></div></section>`});
@@ -1927,7 +1810,11 @@ function drawGrid(){
   if(!okP&&K.rows.length)notes.push(`Tổng điểm trong ma trận là ${f(T.p)}, chưa đủ 10 điểm.`);
   K.act.forEach(t=>{if(T.typeC[t]!==cfg.per[t].n)notes.push(`${TYN[t]}: ma trận có ${T.typeC[t]} ${UNITW[t]}, cấu trúc đề đặt ${cfg.per[t].n}.`)});
   const empty=K.rows.filter(r=>r.c===0);if(empty.length&&K.act.length)notes.push(`${empty.length} nội dung chưa có câu hỏi: ${empty.slice(0,3).map(r=>'“'+r.u.name.slice(0,40)+(r.u.name.length>40?'…':'')+'”').join(', ')}${empty.length>3?'…':''}.`);
-  $('#notes').innerHTML=notes.map(n=>`<li>${esc(n)}</li>`).join('');
+  const gap=K.rows.filter(r=>r.c>0).map(r=>({r,ls:[0,1,2,3].filter(l=>r.lvC[l]>0&&!hasLv(r.u,l))})).filter(x=>x.ls.length);
+  const gapHTML=gap.length?`<li class="gap">${gap.length} nội dung có câu hỏi ở mức độ chưa có yêu cầu cần đạt (theo các bài đã chọn): ${gap.slice(0,4).map(x=>{const nm=unitLabel(x.r.u);return '“'+esc(nm.slice(0,48))+(nm.length>48?'…':'')+'” ('+x.ls.map(l=>LVN[l]).join(', ')+')'}).join('; ')}${gap.length>4?'…':''}. Bản đặc tả sẽ ghi mô tả chung; nên bổ sung yêu cầu cho sát nội dung. <button class="btn small" id="gapAI">AI soạn YCCĐ cho các nội dung này</button> <button class="btn small ghost" id="gapGo">Sửa ở bước 2</button></li>`:'';
+  $('#notes').innerHTML=notes.map(n=>`<li>${esc(n)}</li>`).join('')+gapHTML;
+  const gb=$('#gapAI');if(gb){gb.onclick=async()=>{const n=await aiReq(gb,gap.map(x=>({ch:x.r.ch,u:x.r.u})));if(n&&S.step==='matran'){drawGrid();toast(`AI đã soạn yêu cầu cần đạt cho ${n} nội dung.`)}};
+    $('#gapGo').onclick=()=>{gap.forEach(x=>openU.add(x.r.u.id));setStep('noidung')}}
 }
 
 /* ---------- bước 4 ---------- */
@@ -1961,14 +1848,15 @@ function renderExport(){
     catch(e){if(!e||e.code!=='declined')toast('Không tải được file: '+(e&&e.message||'lỗi không xác định'))}};
   $('#sv').onclick=async()=>{
     try{await saveFile(fileBase()+'.json',new Blob([JSON.stringify(S)],{type:'application/json'}));toast('Đã lưu dự án.')}catch(e){if(!e||e.code!=='declined')toast('Không lưu được: '+(e&&e.message||''))}};
-  $('#ld').onchange=e=>{const fl=e.target.files[0];if(!fl)return;const rd=new FileReader();rd.onload=()=>{try{const s=JSON.parse(rd.result);if(!validState(s))throw 0;S=s;S.step='xuat';save();render();toast('Đã mở dự án.')}catch(x){toast('File không đúng định dạng dự án.')}};rd.readAsText(fl)};
+  $('#ld').onchange=e=>{const fl=e.target.files[0];if(!fl)return;const rd=new FileReader();rd.onload=()=>{try{const s=JSON.parse(rd.result);if(!validState(s))throw 0;const mg=migrate(s);S=s;S.step='xuat';save();render();if(mg){setTimeout(()=>toast('Dự án đã được chuyển sang dạng đơn vị kiến thức có nhánh bài SGK; hãy kiểm tra các bài đã chọn.'),300);return}toast('Đã mở dự án.')}catch(x){toast('File không đúng định dạng dự án.')}};rd.readAsText(fl)};
   $('#cp').onclick=async()=>{const el=$('#paper');const html=el.innerHTML;
     try{await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([el.innerText],{type:'text/plain'})})]);toast('Đã sao chép. Dán vào Word hoặc Google Docs.')}
     catch(e){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);toast('Bảng đã được chọn. Nhấn Ctrl+C (hoặc ⌘C) để sao chép.')}};
 }
 
 /* khởi động */
-(function(){const h=location.hash.slice(1);if(STEPS.includes(h))S.step=h;render();})();
+(function(){const h=location.hash.slice(1);if(STEPS.includes(h))S.step=h;render();
+  if(window.__mig){save();setTimeout(()=>toast('Đơn vị kiến thức nay có thêm nhánh các bài SGK. Dự án đã được chuyển đổi, hãy kiểm tra các bài đã chọn ở bước 2.'),700)}})();
 window.MT={buildDocx:(part)=>buildDocx(S,part),S:()=>S,calc:()=>calc(P()),autoAlloc:()=>autoAlloc(P())};
 </script>
 <script>
@@ -1993,12 +1881,16 @@ const SYS=`Bạn là trợ lý ra đề kiểm tra định kì môn Toán (Chư�
 10. Hướng dẫn tự luận: đúng chương trình GDPT 2018, trình bày theo SGK mới, hệ phương trình ưu tiên thế hoặc cộng đại số, từng bước, kết luận rõ ràng; không dùng mẹo vượt chuẩn.
 11. Chứng minh tứ giác nội tiếp chỉ dùng 2 cách: (1) tam giác vuông nội tiếp đường tròn đường kính tương ứng; (2) 4 điểm cách đều một điểm nên cùng thuộc một đường tròn.
 12. Không dùng Markdown bảng/tiêu đề #; chỉ văn bản thuần, có thể dùng **in đậm**.
-13. VẼ HÌNH (chỉ khi người dùng bật vẽ hình và bài toán cần hình: hình học phẳng, hình khối, đồ thị hàm số, hệ trục tọa độ, sơ đồ): đặt mã SVG đúng vị trí cần hình, bọc trong cặp dấu hiệu [[HÌNH]] và [[/HÌNH]] (mỗi hình một cặp). Mã SVG: thẻ svg có xmlns và viewBox="0 0 W H" với W không quá 400, H không quá 320; nền trong suốt, nét đen mảnh (stroke-width 1.2 đến 1.5), fill="none", đường khuất nét đứt (stroke-dasharray); nhãn điểm bằng thẻ text chữ in hoa, font-family Times New Roman, font-size 14, đặt sát điểm và không đè lên nét vẽ; không dùng ảnh ngoài, script, style, foreignObject; không dùng $...$ trong SVG. TỌA ĐỘ PHẢI TÍNH CHÍNH XÁC theo dữ kiện: điểm thuộc đường tròn phải đúng bán kính, tiếp tuyến thật sự vuông góc bán kính, góc vuông có kí hiệu, độ dài tỉ lệ đúng số liệu của đề; đồ thị hàm số vẽ bằng polyline hoặc path từ các điểm đã tính, có trục Ox, Oy, gốc O, mũi tên, đánh dấu điểm đặc biệt nhưng không ghi đáp án. Hình trong ĐỀ THI không tiết lộ kết quả; trong HƯỚNG DẪN được vẽ thêm hình có đường phụ nếu lời giải cần.
+13. VẼ HÌNH: chỉ vẽ khi người dùng bật vẽ hình và bài toán thật sự cần hình. Có HAI KIỂU HÌNH, phải chọn đúng kiểu cho từng bài.
+13a. HÌNH HỌC (hình phẳng, hình khối, đồ thị hàm số, hệ trục toạ độ, sơ đồ): nét đen mảnh (stroke-width 1.2 đến 1.5), fill="none", nền trong suốt, đường khuất nét đứt (stroke-dasharray); nhãn điểm bằng thẻ text chữ in hoa, font-family Times New Roman, font-size 14, đặt sát điểm và không đè lên nét vẽ; viewBox="0 0 W H" với W không quá 400, H không quá 320. TỌA ĐỘ PHẢI TÍNH CHÍNH XÁC theo dữ kiện: điểm thuộc đường tròn phải đúng bán kính, tiếp tuyến thật sự vuông góc bán kính, góc vuông có kí hiệu, độ dài tỉ lệ đúng số liệu của đề; đồ thị hàm số vẽ bằng polyline hoặc path từ các điểm đã tính, có trục Ox, Oy, gốc O, mũi tên, đánh dấu điểm đặc biệt nhưng không ghi đáp án.
+13b. HÌNH MINH HOẠ THỰC TẾ (bắt buộc dùng kiểu này cho BÀI TOÁN CÓ BỐI CẢNH THỰC TẾ: xe khách, xe máy, bồn/bể nước, thửa ruộng, mảnh vườn, thang dựa tường, cột cờ, cây, toà nhà, hộp sữa, thùng hàng, khúc gỗ, biển báo, đồng hồ, giỏ hàng, bảng giá...): vẽ MINH HOẠ PHẲNG CÓ MÀU, nhìn ra ngay vật thật, giống tranh minh hoạ trong sách giáo khoa — KHÔNG vẽ bằng nét đen rỗng ruột như hình học. Quy cách: viewBox="0 0 W H" với W không quá 420, H không quá 260; chỉ dùng rect (thêm rx để bo góc), circle, ellipse, polygon, polyline, path; TÔ MÀU ĐẶC bằng thuộc tính fill, viền cùng tông đậm hơn với stroke-width 1 đến 2; dùng bảng màu tươi, đơn giản, tối đa 6 màu; vẽ một đường nền hoặc mặt đất cho vật đứng vững; vật thể chiếm phần lớn khung, bố cục cân đối; KHÔNG viết chữ mô tả vào hình, chỉ ghi số đo kèm đoạn thẳng/mũi tên khi bài toán cần số đo đó. Gợi ý cách dựng: xe khách = thân xe là rect bo góc + dải cửa sổ màu nhạt + kính lái nghiêng vẽ bằng path + hai bánh xe là circle đen có tâm xám + vạch sơn màu dọc thân; bồn nước hình trụ = rect thân + ellipse đáy + ellipse nắp; thang dựa tường = mảng tường + mặt đất + hai thanh song song nghiêng + các bậc ngang; thửa ruộng = polygon màu xanh lá + bờ ruộng màu nâu.
+CHUNG cho cả hai kiểu: đặt mã SVG đúng vị trí cần hình trong đề, bọc trong cặp dấu hiệu [[HÌNH]] và [[/HÌNH]] (mỗi hình một cặp); thẻ svg phải có xmlns và viewBox; không dùng ảnh ngoài, script, style, foreignObject; không dùng $...$ trong SVG. Hình trong ĐỀ THI không được tiết lộ kết quả; trong HƯỚNG DẪN được vẽ thêm hình có đường phụ nếu lời giải cần.
+14a. Khi có mục "CÁCH TRÌNH BÀY PHẦN TỰ LUẬN": phải theo đúng số bài và cách gộp ý đã ghi. Bài tổng hợp nhiều ý chỉ có MỘT đầu bài chung (dữ kiện/hình vẽ dùng chung), các ý a), b), c) cùng khai thác dữ kiện đó, không được tách thành các bài rời rạc; trong HƯỚNG DẪN cũng chấm theo từng ý a), b), c) của bài đó.
 14. Khi có mục "MA TRẬN VÀ BẢN ĐẶC TẢ (lập bằng ứng dụng ở Phần 1)": đó là căn cứ chính. Đánh số câu trong đề theo đúng thứ tự mã câu của bản đặc tả; mỗi câu/ý bám đúng yêu cầu cần đạt (theo Chương trình GDPT 2018) và mức độ ghi cho mã đó; ghi điểm từng phần, từng câu tự luận đúng như ma trận.`;
 
 /* ---- khu vực tải tệp ---- */
 SEC.forEach(([id,t,b])=>{const d=document.createElement('details');d.className='acc';d.dataset.sec=id;
- d.innerHTML=`<summary><span>${t}</span><span class="sbad">${b?`<span class="badge req">${b}</span>`:''}<span class="badge mute" id="n_${id}">0 tệp</span></span></summary><div class="bd">
+ d.innerHTML=`<summary><span>${t}</span><span class="sbad"><span class="badge req" id="rq_${id}" ${b?'':'hidden'}>${b||'Bắt buộc'}</span><span class="badge mute" id="n_${id}">0 tệp</span></span></summary><div class="bd">
 <div class="drop" id="d_${id}" tabindex="0" role="button">Bấm hoặc kéo thả tệp (Word .docx, PDF, ảnh, .txt)<input type="file" id="f_${id}" multiple accept=".docx,.pdf,.png,.jpg,.jpeg,.webp,.txt,.md,.tex" hidden></div><div id="l_${id}" class="flist"></div>
 <label class="lb" for="t_${id}">Hoặc dán nội dung trực tiếp</label><textarea id="t_${id}" rows="3"></textarea></div>`;$('secs').appendChild(d);
  const dz=$('d_'+id),fi=$('f_'+id);dz.onclick=()=>fi.click();dz.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fi.click()}};
@@ -2006,6 +1898,9 @@ SEC.forEach(([id,t,b])=>{const d=document.createElement('details');d.className='
  dz.ondrop=e=>{e.preventDefault();dz.classList.remove('on');add(id,e.dataTransfer.files)};
  fi.onclick=e=>e.stopPropagation();fi.onchange=()=>{add(id,fi.files);fi.value=''}});
 $('secs').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;files[b.dataset.rm].splice(+b.dataset.i,1);draw(b.dataset.rm)});
+$('secs').addEventListener('input',e=>{const d=e.target.closest('[data-sec]');if(e.target.tagName!=='TEXTAREA'||!d)return;const k=d.dataset.sec;
+ if((k==='mt'||k==='dt')&&typeof linked==='function'&&!linked())refresh();
+ if(k==='bt'||k==='mh')srcSync(false)});
 async function readF(f){const n=f.name.toLowerCase();
  if(n.endsWith('.docx')){const r=await mammoth.convertToHtml({arrayBuffer:await f.arrayBuffer()});return{name:f.name,text:r.value}}
  if(/\.(txt|md|tex)$/.test(n))return{name:f.name,text:await f.text()};
@@ -2015,7 +1910,9 @@ async function readF(f){const n=f.name.toLowerCase();
  throw new Error('Chưa hỗ trợ định dạng: '+f.name+' (với .doc hãy lưu lại thành .docx)')}
 async function add(id,fl){$('err').innerHTML='';for(const f of fl){try{files[id].push(await readF(f))}catch(e){$('err').innerHTML=`<div class="err">${escH(e.message)}</div>`}}draw(id)}
 function draw(id){$('l_'+id).innerHTML=files[id].map((f,i)=>`<span class="chip">${escH(f.name)}<button type="button" class="x" data-rm="${id}" data-i="${i}" aria-label="Xoá tệp">×</button></span>`).join('');
- const n=$('n_'+id);n.textContent=files[id].length+' tệp';n.classList.toggle('mute',!files[id].length)}
+ const n=$('n_'+id);n.textContent=files[id].length+' tệp';n.classList.toggle('mute',!files[id].length);
+ if((id==='mt'||id==='dt')&&typeof linked==='function'&&!linked())refresh();
+ if(id==='bt'||id==='mh')srcSync(false)}
 
 /* ---- cài đặt AI (giữ nguyên logic gốc) ---- */
 /* ================= BỘ GỌI AI: nhiều key + tự động mô hình thấp → cao ================= */
@@ -2186,32 +2083,107 @@ function cellText(c){return c.lines.map(l=>escH(l.t)).join(c.cls==='yc'?'<br>':'
 function simpleTable(m){return '<table border="1">'+m.rows.map(r=>'<tr>'+r.map(c=>`<td${c.cs>1?` colspan="${c.cs}"`:''}${c.rs>1?` rowspan="${c.rs}"`:''}>${cellText(c)}</td>`).join('')+'</tr>').join('')+'</table>'}
 function linkText(){const p=P(),K=calc(p),T=K.T,i=S.info,c=p.cfg,RN=['I','II','III','IV'];let k=0;
  const out=['### MA TRẬN VÀ BẢN ĐẶC TẢ (lập bằng ứng dụng ở Phần 1 – đây là căn cứ chính, phải tuân thủ tuyệt đối)',
-  `Môn Toán – Khối ${S.grade} – Kiểm tra ${KYN[i.ky]} – Năm học ${i.year} – Thời gian làm bài ${i.time} phút.`,'CẤU TRÚC ĐỀ (theo đúng thứ tự phần):'];
+  `Môn Toán – Khối ${S.grade} – Kiểm tra ${kyName(i.ky)} – Năm học ${i.year} – Thời gian làm bài ${i.time} phút.`,'CẤU TRÚC ĐỀ (theo đúng thứ tự phần):'];
  K.act.forEach(t=>{const n=T.typeC[t];if(!n)return;const lvs=[];for(let l=0;l<NLV[t];l++)if(T.cnt[t][l])lvs.push(`${LVF[l]} ${T.cnt[t][l]}`);
   let s=`- Phần ${RN[k++]}. ${TYN[t]}: `;
   if(t==='ds')s+=`${n} ý (= ${Math.ceil(n/4)} câu, mỗi câu 4 ý a, b, c, d), mỗi ý ${f(c.pq.ds)} điểm`;
-  else if(t==='tl')s+=`${n} câu/bài, điểm từng câu theo ô của ma trận`;
+  else if(t==='tl'){const G=tlGroups(p,K),big=G.filter(x=>x.items.length>1).length;
+    s+=`${n} câu, gộp thành ${G.length} bài`+(big?` (trong đó ${big} bài tổng hợp nhiều ý)`:'')+`, điểm từng câu theo ô của ma trận`}
   else s+=`${n} câu, mỗi câu ${f(c.pq[t])} điểm`;
   out.push(s+`; mức độ: ${lvs.join(', ')}; tổng ${f(T.typeP[t])} điểm.`)});
  out.push(`Tổng cả đề: ${f(T.p)} điểm (Trắc nghiệm ${f(T.tn)} điểm, Tự luận ${f(T.tlP)} điểm).`);
+ {const inc=[],exc=[];K.rows.forEach(r=>{if(hasLs(r.u)){inc.push(r.u.name+': '+selLs(r.u).map(l=>l.name).join('; '));r.u.lessons.filter(l=>!l.sel).forEach(l=>exc.push(l.name))}else inc.push(r.u.name)});
+  p.chapters.forEach(ch=>ch.units.forEach(u=>{if(!u.sel&&hasLs(u)&&K.rows.some(r=>r.ch===ch))u.lessons.forEach(l=>exc.push(l.name))}));
+  out.push('PHẠM VI KIẾN THỨC (theo bài SGK Kết nối tri thức đã chọn): '+inc.join(' | ')+'. Trong mỗi đơn vị kiến thức, chọn ngẫu nhiên, đa dạng kiến thức giữa các bài được chọn.'+(exc.length?' TUYỆT ĐỐI KHÔNG ra câu hỏi về nội dung của các bài: '+[...new Set(exc)].join('; ')+'.':''))}
  out.push('Cách đọc mã câu trong bản đặc tả: Cx (NLC) là câu x phần nhiều lựa chọn; Cxa (Đ–S) là câu x ý a phần Đúng–Sai; Cx (TLN) là câu x phần trả lời ngắn; Bx (TL) là bài/câu tự luận x. Mỗi câu/ý phải đúng nội dung (hàng), yêu cầu cần đạt và mức độ ghi cho chính mã đó. Với phần Đúng–Sai, các ý của cùng một câu có thể thuộc các nội dung khác nhau: hãy xây dựng dữ liệu đầu vào chung bao quát các nội dung đó và giữ đúng mức độ từng ý theo đặc tả. Ghi điểm của từng phần/câu ngay trong đề.');
+{const G=tlGroups(p,K);
+  if(p.cfg.on.tl&&G.length){const L=['CÁCH TRÌNH BÀY PHẦN TỰ LUẬN (bắt buộc theo đúng cách đánh số này):'];
+   G.forEach((g,gi)=>{const ab='abcdefgh';
+    if(g.items.length===1)L.push(`- Bài ${gi+1} (${f(g.pts)} điểm) = mã ${g.items[0].code} trong bản đặc tả · ${g.items[0].u.name} · ${LVF[g.items[0].l]}.`);
+    else L.push(`- Bài ${gi+1} (${f(g.pts)} điểm) là BÀI TỔNG HỢP gồm ${g.items.length} ý: `+
+      g.items.map((x,k)=>`${ab[k]}) = mã ${x.code} · ${x.u.name} · ${LVF[x.l]} · ${f(x.pts)} điểm`).join('; ')+'.')});
+   if(G.some(g=>g.items.length>1))L.push('Với BÀI TỔNG HỢP: viết MỘT dữ kiện đầu bài dùng chung cho cả bài (một hình vẽ, một bài toán thực tế, một hàm số, một bảng số liệu...), sau đó mới hỏi các ý a), b), c), ... Các ý phải khai thác chính dữ kiện chung đó, sắp xếp từ dễ đến khó theo mức độ ghi ở trên, ý sau có thể dùng kết quả ý trước. Đánh số trong đề là "Bài X." rồi xuống dòng từng ý "a) ...", "b) ...". Ghi điểm của cả bài ở đầu bài và điểm từng ý ở cuối mỗi ý. Nếu các ý thuộc nhiều nội dung khác nhau thì dữ kiện chung phải bao quát được các nội dung đó.');
+   out.push(L.join('\n'))}}
  out.push('MA TRẬN (mỗi ô câu hỏi ghi: số câu / số điểm):\n'+simpleTable(buildMatrix(S,p,K,false)));
  out.push('BẢN ĐẶC TẢ (yêu cầu cần đạt theo từng câu/ý):\n'+simpleTable(buildSpecDetail(S,p,K)));
  return out.join('\n')}
+/* mở và cuộn tới một mục tải tệp (dùng khi thiếu tài liệu) */
+function openSec(id){const d=document.querySelector(`#secs [data-sec="${id}"]`);if(!d)return;d.hidden=false;d.open=true;
+ d.scrollIntoView({behavior:'smooth',block:'center'});d.classList.add('flash');setTimeout(()=>d.classList.remove('flash'),1600);
+ const t=$('t_'+id);if(t)setTimeout(()=>t.focus({preventScroll:true}),400)}
+/* nguồn đề bài 2 hoặc 3 thì ngân hàng câu hỏi là bắt buộc: đánh dấu, mở sẵn và báo trạng thái */
+function srcSync(openIfEmpty){const v=$('src').value,need=v!=='1',bs=srcStatus('bt'),ms=srcStatus('mh');
+ const rq=$('rq_bt');if(rq)rq.hidden=!need;
+ const d=document.querySelector('#secs [data-sec="bt"]');
+ if(d&&need&&!bs&&openIfEmpty)d.open=true;
+ const chip=(l,st)=>`<span class="chip ${st?'good':(need?'warn':'')}">${l}: ${st||'chưa có'}</span>`;
+ $('srcHint').innerHTML=need
+   ? `<div class="stat" style="margin-top:8px">${chip('Ngân hàng câu hỏi',bs)}${chip('Đề minh hoạ',ms)}</div>
+      <p class="hint" style="margin:6px 0 0">${v==='2'?'Chỉ lấy câu hỏi từ tài liệu bạn đưa lên.':'Ưu tiên tài liệu bạn đưa lên, thiếu thì AI tìm thêm trên Internet.'}
+      ${bs?'':' <button type="button" class="btn small" data-opensec="bt">Tải ngân hàng câu hỏi lên</button>'}</p>`
+   : '<p class="hint" style="margin:6px 0 0">AI tự tìm câu hỏi trên Internet; không dùng tài liệu bài tập bạn đưa lên.</p>'}
+/* ---- gộp câu tự luận thành bài tổng hợp (dùng một dữ kiện chung cho nhiều ý) ---- */
+let tlSel=new Set();
+function tlDraw(){const card=$('tlCard');const p=P();
+ if(!linked()||!p.cfg.on.tl){card.hidden=true;return}
+ const G=tlGroups(p),qs=tlQuestions(p);card.hidden=false;
+ if(!qs.length){$('tlBadge').textContent='không có câu tự luận';$('tlBody').innerHTML='<p class="hint" style="margin:0">Ma trận ở Phần 1 chưa có câu tự luận nào.</p>';return}
+ const big=G.filter(g=>g.items.length>1).length;
+ $('tlBadge').textContent=`${qs.length} câu → ${G.length} bài`+(big?` · ${big} bài tổng hợp`:'');
+ $('tlBadge').classList.toggle('mute',!big);
+ const ab='abcdefgh';
+ $('tlBody').innerHTML=`<p class="hint" style="margin:0 0 10px">Tích chọn các câu rồi bấm <b>Gộp thành 1 bài</b> để chúng thành <b>một bài lớn nhiều ý</b> a), b), c) cùng khai thác <b>một dữ kiện/hình vẽ chung</b> (dạng bài hình hoặc đại số). Không gộp thì mỗi câu là một bài riêng.</p>
+  <div class="tlg">${G.map((g,gi)=>`<div class="tlgrp ${g.items.length>1?'big':''}">
+    <div class="tlgh"><b>Bài ${gi+1}</b><span class="tlpt">${f(g.pts)} điểm</span>${g.items.length>1?`<span class="tag">bài tổng hợp · ${g.items.length} ý</span>`:''}<span class="sp"></span>${g.items.length>1?`<button class="btn small ghost" data-tlsplit="${gi}">Tách ra</button>`:''}</div>
+    ${g.items.map((x,k)=>`<label class="tlq"><input type="checkbox" data-tli="${g.idx[k]}" ${tlSel.has(g.idx[k])?'checked':''}>
+      <span class="tlc">${g.items.length>1?ab[k]+')':x.code}</span><span class="tln">${esc(x.u.name)}</span>
+      <span class="lvc ${LVCLS[x.l]}">${LVN[x.l]}</span><span class="tlpt">${f(x.pts)}đ</span></label>`).join('')}
+   </div>`).join('')}</div>
+  <div class="rrow"><button class="btn primary small" id="tlMerge" ${tlSel.size<2?'disabled':''}>Gộp ${tlSel.size||''} câu đã chọn thành 1 bài</button>
+   <button class="btn small" id="tlAllOne" ${qs.length<2?'disabled':''}>Gộp tất cả thành 1 bài</button>
+   <button class="btn small ghost" id="tlReset" ${big?'':'disabled'}>Tách hết, mỗi câu một bài</button></div>`}
+$('tlBody').addEventListener('change',e=>{const c=e.target.closest('[data-tli]');if(!c)return;
+ const i=+c.dataset.tli;c.checked?tlSel.add(i):tlSel.delete(i);
+ const b=$('tlMerge');if(b){b.disabled=tlSel.size<2;b.textContent=`Gộp ${tlSel.size||''} câu đã chọn thành 1 bài`}});
+$('tlBody').addEventListener('click',e=>{const p=P(),G=tlGroups(p),t=e.target;
+ const setG=g=>{p.tlg=g.filter(x=>x.length).map(x=>x.slice().sort((a,b)=>a-b));save();tlSel.clear();tlDraw();refresh()};
+ if(t.id==='tlMerge'&&tlSel.size>1){const pick=[...tlSel].sort((a,b)=>a-b);
+   const rest=G.map(g=>g.idx.filter(i=>!tlSel.has(i)));rest.push(pick);setG(rest);
+   toast(`Đã gộp ${pick.length} câu thành một bài tổng hợp.`)}
+ else if(t.id==='tlAllOne'){setG([tlQuestions(p).map((_,i)=>i)]);toast('Đã gộp tất cả câu tự luận thành một bài lớn.')}
+ else if(t.id==='tlReset'){setG(tlQuestions(p).map((_,i)=>[i]));toast('Đã tách, mỗi câu tự luận là một bài riêng.')}
+ else if(t.dataset.tlsplit!=null){const gi=+t.dataset.tlsplit;
+   const out=[];G.forEach((g,k)=>{if(k===gi)g.idx.forEach(i=>out.push([i]));else out.push(g.idx)});setG(out);
+   toast('Đã tách bài tổng hợp thành các bài riêng.')}});
+function srcStatus(id){const nf=files[id].length,tx=($('t_'+id)?$('t_'+id).value.trim():'');
+ if(nf&&tx)return `${nf} tệp + nội dung dán`;if(nf)return `${nf} tệp`;if(tx)return 'đã dán nội dung';return ''}
 function refresh(){const link=linked(),i=S.info;
  $$('#lnkSeg button').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.l==='1')===link)));
- document.querySelectorAll('#secs [data-sec="mt"],#secs [data-sec="dt"]').forEach(d=>d.hidden=link);
- $('rdSub').textContent=`Toán ${S.grade} · ${KYN[i.ky]} · ${i.time} phút · Công thức viết trong $...$ để chuyển sang MathType`;
+ document.querySelectorAll('#secs [data-sec="mt"],#secs [data-sec="dt"]').forEach(d=>{d.hidden=link;if(!link)d.open=true});
+ $('rdSub').textContent=`Toán ${S.grade} · ${kyName(i.ky)} · ${i.time} phút · Công thức viết trong $...$ để chuyển sang MathType`;
+ srcSync(false);try{tlDraw()}catch(e){}
  {const n=keysOf(CFG.prov).length;$('rdAi').innerHTML=`AI: <b>${escH(PV[CFG.prov].n)}</b> · ${escH(modelLabel())}${n>1?` · ${n} key xoay vòng`:''}${aiReady()?'':' · <span style="color:var(--warn)">chưa có API key</span>'} · <a href="#ai" data-go="ai">Đổi trong Cài đặt AI</a>`}
- if(!link){$('lnkInfo').innerHTML='<p class="hint" style="margin:8px 0 0">Tải ma trận và bảng đặc tả của bạn ở hai mục bên dưới (Word, PDF, ảnh hoặc dán chữ).</p>';return}
+ if(!link){const ms=srcStatus('mt'),ds=srcStatus('dt'),chip=(l,s)=>`<span class="chip ${s?'good':'warn'}">${l}: ${s||'chưa có'}</span>`;
+  $('lnkInfo').innerHTML=`<p class="hint" style="margin:8px 0 6px">Nhập ma trận và bản đặc tả <b>có sẵn</b> của bạn (từ đề cũ, do tổ chuyên môn cung cấp…) để AI ra đề theo đó, không cần lập ở Phần 1. Mỗi mục có thể tải tệp <b>Word (.docx), PDF, ảnh</b> hoặc <b>dán chữ</b> ở hai ô ngay bên dưới.</p>
+   <div class="stat">${chip('Ma trận',ms)}${chip('Bản đặc tả',ds)}</div>
+   <p class="hint" style="margin:8px 0 0">Nên nhập cả hai để đề bám sát nhất; tối thiểu cần một trong hai. “Đề minh hoạ” và “Ngân hàng câu hỏi” bên dưới là tuỳ chọn.</p>`;return}
  const K=calc(P()),T=K.T;
  if(!K.rows.length||!K.act.length){$('lnkInfo').innerHTML=`<p class="hint" style="margin:8px 0 0">Phần 1 chưa có ma trận (chưa chọn nội dung hoặc chưa bật dạng câu nào).</p><div class="rrow"><button class="btn small primary" data-go="noidung">Lập ma trận ở Phần 1</button></div>`;return}
  const ok=Math.abs(T.p-10)<1e-6;
- $('lnkInfo').innerHTML=`<p class="hint" style="margin:8px 0 0">Toán ${S.grade} · ${escH(KYN[i.ky])} · ${K.rows.length} đơn vị kiến thức. Ma trận và bản đặc tả chi tiết (yêu cầu cần đạt từng câu) được gửi kèm cho AI.</p>
+ $('lnkInfo').innerHTML=`<p class="hint" style="margin:8px 0 0">Toán ${S.grade} · ${escH(kyName(i.ky))} · ${K.rows.length} đơn vị kiến thức. Ma trận và bản đặc tả chi tiết (yêu cầu cần đạt từng câu) được gửi kèm cho AI.</p>
   <div class="stat"><span class="chip ${ok?'good':'warn'}">${f(T.p)}/10 điểm</span>${K.act.filter(t=>T.typeC[t]).map(t=>`<span class="chip">${TYN[t]} ${T.typeC[t]} ${UNITW[t]} · ${f(T.typeP[t])}đ</span>`).join('')}</div>
   <div class="rrow"><button class="btn small" data-go="matran">Sửa ma trận</button><button class="btn small" data-go="xuat">Xem bản đặc tả</button></div>`}
 $('linkCard').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){e.preventDefault();setStep(b.dataset.go)}});
-document.getElementById('aiset').addEventListener('click',e=>{const b=e.target.closest('[data-goto]');if(b)setStep(b.dataset.goto)});
+document.getElementById('rade').addEventListener('click',e=>{const b=e.target.closest('[data-opensec]');if(b){e.preventDefault();openSec(b.dataset.opensec)}});
+$('src').addEventListener('change',()=>srcSync(true));
+['aiset','guide'].forEach(id=>document.getElementById(id).addEventListener('click',e=>{const b=e.target.closest('[data-goto]');if(b)setStep(b.dataset.goto)}));
+/* giao diện: tự động → sáng → tối */
+{const TH=[['','Tự động'],['light','Sáng'],['dark','Tối']],btn=$('themeBtn');
+ const cur=()=>document.documentElement.dataset.theme||'';
+ const paint=()=>{btn.textContent='Giao diện: '+TH.find(x=>x[0]===cur())[1]};paint();
+ btn.onclick=()=>{const i=(TH.findIndex(x=>x[0]===cur())+1)%TH.length,v=TH[i][0];
+  if(v)document.documentElement.dataset.theme=v;else delete document.documentElement.dataset.theme;
+  try{v?localStorage.setItem('mt-theme',v):localStorage.removeItem('mt-theme')}catch(e){}paint()}}
 $('lnkSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;CFG.link=b.dataset.l==='1';sv();refresh()});
 
 function build(k,n){const c=[];const link=linked();
@@ -2229,7 +2201,8 @@ function build(k,n){const c=[];const link=linked();
 - Thời gian làm bài: ${link?S.info.time:90} phút.
 - Nội dung ${$('star').value==='yes'?'CÓ dấu *':'KHÔNG có dấu *'}.
 - ${$('close').value==='yes'?'Bám sát đề minh hoạ (nếu có).':'Không cần bám sát đề minh hoạ, nhưng vẫn đúng ma trận và đặc tả.'}
-- ${$('fig').value==='yes'?'Vẽ hình bằng SVG (theo quy tắc 13) ở những câu cần hình.':'Không vẽ hình; nếu cần thì mô tả bằng lời.'}
+- ${{all:'Vẽ hình bằng SVG ở những câu cần hình: câu hình học dùng quy tắc 13a, câu có bối cảnh thực tế dùng quy tắc 13b (minh hoạ phẳng CÓ MÀU, nhìn ra vật thật).',hh:'Chỉ vẽ hình học theo quy tắc 13a; bài toán thực tế không cần hình minh hoạ.',no:'Không vẽ hình; nếu cần thì mô tả bằng lời.'}[$('fig').value]}${$('tt').value==='tang'?`
+- TĂNG CƯỜNG BÀI TOÁN THỰC TẾ: với các câu mức Thông hiểu, Vận dụng, Vận dụng cao (cả trắc nghiệm lẫn tự luận), hãy đặt bài toán trong một tình huống thực tế quen thuộc ở Việt Nam (xe khách chạy tuyến, ruộng lúa, bể nước, thang dựa tường, cột cờ, tiền điện, khuyến mãi giảm giá, sân trường, quán ăn, công nhân làm việc...). Nêu bối cảnh bằng 1-2 câu trước khi hỏi, số liệu hợp lí với đời sống${$('fig').value!=='no'?'; mỗi bài thực tế như vậy vẽ kèm một hình minh hoạ theo quy tắc 13b':''}. Vẫn giữ đúng nội dung, mức độ và điểm của từng câu theo ma trận.`:''}
 - Hướng dẫn chấm: ${$('det').value==='yes'?'chi tiết từng câu':'rút gọn nhưng vẫn đủ ý'}.
 ${$('note').value.trim()?'- Yêu cầu thêm: '+$('note').value.trim():''}
 Trả lời ĐÚNG định dạng 3 phần, mỗi phần mở đầu bằng một dòng dấu hiệu, không thêm lời dẫn:
@@ -2267,20 +2240,42 @@ function show(math){const r=R[cur];if(!r)return;const t=parse(r.raw)[rv]||'(chư
 function frame(){const tabs=R.length>1?`<div class="seg">${R.map((_,i)=>`<button data-act="de" data-i="${i}" aria-pressed="${i==cur}">Đề ${i+1}</button>`).join('')}</div>`:'';
  const v=[['ĐỀ THI','Đề thi'],['HƯỚNG DẪN','Hướng dẫn giải / chấm'],['NGUỒN','Nguồn']].map(([x,t])=>`<button data-act="view" data-v="${x}" aria-pressed="${x==rv}">${t}</button>`).join('');
  $('res').innerHTML=`<div class="rhead">${tabs}<div class="rbar"><div class="seg">${v}</div>
- <details class="menu"><summary class="btn primary">Xuất / Sao chép ▾</summary><div class="pop"><button data-act="exp" data-v="ĐỀ THI">Tải Word: Đề thi</button><button data-act="exp" data-v="HƯỚNG DẪN">Tải Word: Hướng dẫn</button><button data-act="cp">Sao chép phần đang xem</button></div></details></div></div><div class="paperbox"><div id="out" class="rpaper"></div></div>`;show(true)}
+ <details class="menu"><summary class="btn primary">Xuất / Sao chép ▾</summary><div class="pop"><button data-act="exp" data-v="ĐỀ THI">Tải Word (.docx): Đề thi</button><button data-act="exp" data-v="HƯỚNG DẪN">Tải Word (.docx): Hướng dẫn</button><button data-act="cp">Sao chép phần đang xem</button></div></details></div></div><div class="paperbox"><div id="out" class="rpaper"></div></div>`;show(true)}
 $('res').addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;
  const m=b.closest('details.menu');if(m)m.removeAttribute('open');
  if(a==='de'){cur=+b.dataset.i;frame()}else if(a==='view'){rv=b.dataset.v;frame()}else if(a==='exp')exp(b.dataset.v);else if(a==='cp')cp();else if(a==='fig')dlFig(+b.dataset.i)});
 function cp(){if(!R[cur])return;const t=pieces(parse(R[cur].raw)[rv]||'').map(p=>p.k==='t'?p.v:'[Hình]').join('');
  navigator.clipboard.writeText(t).then(()=>toast('Đã sao chép (công thức giữ nguyên trong $...$; hình thay bằng [Hình]).'),()=>toast('Trình duyệt không cho sao chép.'))}
-async function exp(w){try{const t=parse(R[cur].raw)[w]||'',imgs=[];let h='';
- const ln=v=>esc(v.replace(/^\n|\n$/g,'')).split('\n').map(l=>`<p style="margin:3pt 0">${l||'&nbsp;'}</p>`).join('');
- for(const p of pieces(t)){if(p.k==='t')h+=ln(p.v);else if(p.k==='f'){const c=cleanSvg(p.v);if(c){imgs.push((await svgPng(c)).split(',')[1]);h+=`<p style="text-align:center"><img src="doc_files/hinh${imgs.length}.png" width="${c.w}" height="${c.h}"></p>`}}}
- const w76=x=>x.replace(/.{76}/g,'$&\r\n'),b64=x=>w76(btoa(unescape(encodeURIComponent(x))));
- const html='<html><head><meta charset="utf-8"><style>body{font-family:"Times New Roman";font-size:13pt}</style></head><body>'+h+'</body></html>';
- let m='MIME-Version: 1.0\r\nContent-Type: multipart/related; boundary="----=_rd"; type="text/html"\r\n\r\n------=_rd\r\nContent-Type: text/html; charset="utf-8"\r\nContent-Transfer-Encoding: base64\r\nContent-Location: file:///C:/rade/doc.htm\r\n\r\n'+b64(html)+'\r\n';
- imgs.forEach((x,i)=>{m+=`------=_rd\r\nContent-Type: image/png\r\nContent-Transfer-Encoding: base64\r\nContent-Location: file:///C:/rade/doc_files/hinh${i+1}.png\r\n\r\n${w76(x)}\r\n`});m+='------=_rd--';
- await saveFile((w=='ĐỀ THI'?'De_thi_':'Huong_dan_')+'Toan'+S.grade+'_'+(cur+1)+'.doc',new Blob([m],{type:'application/msword'}));toast('Đã tải file Word.')}catch(e){toast(e.message||'Không xuất được file.')}}
+/* Xuất ĐỀ THI / HƯỚNG DẪN thành .docx thật (khổ dọc A4), nhúng hình SVG dưới dạng ảnh PNG;
+   công thức giữ nguyên trong $...$ để chuyển sang MathType như phần ma trận/đặc tả. */
+async function exp(w){try{const t=parse(R[cur].raw)[w]||'';
+ const Xx=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+ const runs=(text,sz)=>{const ps=[];let i=0,m;const re=/\*\*(.+?)\*\*/g;
+   while((m=re.exec(text))){if(m.index>i)ps.push([text.slice(i,m.index),false]);ps.push([m[1],true]);i=re.lastIndex}
+   if(i<text.length)ps.push([text.slice(i),false]);if(!ps.length)ps.push(['',false]);
+   return ps.map(([tx,b])=>`<w:r><w:rPr>${b?'<w:b/>':''}<w:sz w:val="${sz}"/><w:szCs w:val="${sz}"/></w:rPr><w:t xml:space="preserve">${Xx(tx)}</w:t></w:r>`).join('')};
+ const para=text=>`<w:p><w:pPr><w:spacing w:after="40" w:line="288" w:lineRule="auto"/></w:pPr>${runs(text,26)}</w:p>`;
+ const EMU=9525,MAX=620,media=[],relImg=[];let body='';
+ for(const p of pieces(t)){
+   if(p.k==='t'){p.v.replace(/^\n+|\n+$/g,'').split('\n').forEach(l=>{body+=para(l)})}
+   else if(p.k==='f'){const c=cleanSvg(p.v);if(!c)continue;
+     const png=(await svgPng(c,2)).split(',')[1],n=media.length+1;media.push(png);relImg.push(n);
+     let W=c.w,H=c.h;if(W>MAX){H=Math.round(H*MAX/W);W=MAX}const cx=Math.round(W*EMU),cy=Math.round(H*EMU),rid='rIdImg'+n;
+     body+=`<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="60" w:after="60"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${cx}" cy="${cy}"/><wp:effectExtent l="0" t="0" r="0" b="0"/><wp:docPr id="${n}" name="hinh${n}"/><wp:cNvGraphicFramePr/><a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="${n}" name="hinh${n}"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${rid}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>`}}
+ if(!body)body='<w:p/>';
+ const doc=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1418" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+ const styles=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman" w:eastAsia="Times New Roman"/><w:sz w:val="26"/><w:szCs w:val="26"/><w:lang w:val="vi-VN"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0" w:line="240" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style></w:styles>`;
+ let relsXml='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>';
+ relImg.forEach(n=>relsXml+=`<Relationship Id="rIdImg${n}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image${n}.png"/>`);
+ relsXml+='</Relationships>';
+ const zip=new JSZip();
+ zip.file('[Content_Types].xml','<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>');
+ zip.file('_rels/.rels','<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>');
+ zip.file('word/_rels/document.xml.rels',relsXml);
+ zip.file('word/document.xml',doc);zip.file('word/styles.xml',styles);
+ media.forEach((d,i)=>zip.file('word/media/image'+(i+1)+'.png',d,{base64:true}));
+ const blob=await zip.generateAsync({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+ await saveFile((w=='ĐỀ THI'?'De_thi_':'Huong_dan_')+'Toan'+S.grade+'_'+(cur+1)+'.docx',blob);toast('Đã tải file Word (.docx).')}catch(e){if(!e||e.code!=='declined')toast(e.message||'Không xuất được file.')}}
 
 $('stop').onclick=()=>ctl&&ctl.abort();
 $('go').onclick=async()=>{$('err').innerHTML='';const E=m=>$('err').innerHTML=`<div class="err">${m}</div>`;
@@ -2290,7 +2285,7 @@ $('go').onclick=async()=>{$('err').innerHTML='';const E=m=>$('err').innerHTML=`<
   if(!K.rows.length||!K.act.length)return E('Phần 1 chưa có ma trận. Hãy chọn nội dung và lập ma trận ở Phần 1, hoặc chọn “Tải tệp khác”.');
   if(Math.abs(K.T.p-10)>1e-6&&!confirm(`Ma trận ở Phần 1 đang có tổng ${f(K.T.p)} điểm (chưa đúng 10 điểm). Vẫn tạo đề?`))return}
  else if(!has('mt')&&!has('dt'))return E('Chưa có ma trận hoặc bảng đặc tả. Vui lòng tải lên ma trận/đặc tả (PDF, Word hoặc ảnh) hoặc chọn “Dùng ma trận ở Phần 1”.');
- if($('src').value==='2'&&!has('bt')&&!has('mh'))return E('Nguồn “ngân hàng câu hỏi / bài tập” cần có tài liệu trong mục Ngân hàng câu hỏi (hoặc đề minh hoạ). Hãy tải lên hoặc chọn nguồn Internet.');
+ if($('src').value==='2'&&!has('bt')&&!has('mh')){E('Nguồn “Từ ngân hàng câu hỏi / bài tập” cần có tài liệu. Hãy tải tệp (Word, PDF, ảnh) hoặc dán câu hỏi vào mục <b>Ngân hàng câu hỏi / bài tập</b>, hoặc đổi sang nguồn Internet. <button type="button" class="btn small" data-opensec="bt">Mở mục Ngân hàng câu hỏi</button>');openSec('bt');return}
  const n=+$('num').value;R=[];cur=0;rv='ĐỀ THI';ctl=new AbortController();
  $('go').disabled=true;$('go').textContent='Đang tạo đề…';$('stop').hidden=false;
  try{for(let k=1;k<=n;k++){R.push({raw:''});cur=k-1;frame();
